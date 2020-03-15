@@ -1,7 +1,9 @@
-﻿namespace DecisionMaster.AlgorihtmsLibrary.Models
+﻿using System.Collections.Generic;
+
+namespace DecisionMaster.AlgorihtmsLibrary.Models
 {
     public class AlternativeBase
     {
-        public double Value { get; set; }
+        public List<double> Value { get; set; }
     }
 }
