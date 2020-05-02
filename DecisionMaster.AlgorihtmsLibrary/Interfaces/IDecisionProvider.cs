@@ -4,7 +4,7 @@ namespace DecisionMaster.AlgorihtmsLibrary.Interfaces
 {
     public interface IDecisionProvider
     {
-        void Init(DecisionConfigurationBase configuration);
+        void Init(IDecisionConfiguration configuration);
         DecisionResultBase Solve(AlternativesBase alternatives);
     }
 }

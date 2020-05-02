@@ -4,6 +4,6 @@ namespace DecisionMaster.AlgorihtmsLibrary.Models
 {
     public class DecisionResultBase
     {
-        List<int> Ranks { get; set; }
+        public List<int> Ranks { get; set; } = new List<int>();
     }
 }

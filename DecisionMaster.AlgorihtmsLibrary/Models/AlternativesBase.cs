@@ -4,7 +4,7 @@ namespace DecisionMaster.AlgorihtmsLibrary.Models
 {
     public class AlternativesBase
     {
-        List<AlternativeBase> Alternatives { get; set; }
-        List<CriteriaBase> Criterias { get; set; }
+        public List<AlternativeBase> Alternatives { get; set; }
+        public List<CriteriaBase> Criterias { get; set; }
     }
 }
