@@ -1,4 +1,4 @@
-﻿namespace DecisionMaster.AlgorihtmsLibrary.Interfaces
+﻿namespace DecisionMaster.AlgorithmsLibrary.Interfaces
 {
     public interface IAlternativeValue
     {

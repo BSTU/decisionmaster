@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DecisionMaster.AlgorihtmsLibrary\DecisionMaster.AlgorihtmsLibrary.csproj" />
+    <ProjectReference Include="..\DecisionMaster.AlgorihtmsLibrary\DecisionMaster.AlgorithmsLibrary.csproj" />
   </ItemGroup>
 
 </Project>

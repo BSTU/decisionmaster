@@ -1,8 +1,8 @@
-﻿using DecisionMaster.AlgorihtmsLibrary.Interfaces;
-using DecisionMaster.AlgorihtmsLibrary.Models;
+﻿using DecisionMaster.AlgorithmsLibrary.Interfaces;
+using DecisionMaster.AlgorithmsLibrary.Models;
 using System;
 
-namespace DecisionMaster.AlgorihtmsLibrary.Algoritms.SMART
+namespace DecisionMaster.AlgorithmsLibrary.Algoritms.SMART
 {
     public class SMARTQualitativeCriteria: IQualitativeCriteria
     {

@@ -1,11 +1,11 @@
-using DecisionMaster.AlgorihtmsLibrary.Algoritms.SMART;
-using DecisionMaster.AlgorihtmsLibrary.Algoritms.REGIME;
-using DecisionMaster.AlgorihtmsLibrary.Interfaces;
-using DecisionMaster.AlgorihtmsLibrary.Models;
+using DecisionMaster.AlgorithmsLibrary.Algoritms.SMART;
+using DecisionMaster.AlgorithmsLibrary.Algoritms.REGIME;
+using DecisionMaster.AlgorithmsLibrary.Interfaces;
+using DecisionMaster.AlgorithmsLibrary.Models;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace DecisionMaster.AlgorihtmsLibrary.Tests.Unit
+namespace DecisionMaster.AlgorithmsLibrary.Tests.Unit
 {
     public class Tests
     {

@@ -1,7 +1,7 @@
-﻿using DecisionMaster.AlgorihtmsLibrary.Interfaces;
+﻿using DecisionMaster.AlgorithmsLibrary.Interfaces;
 using System.Collections.Generic;
 
-namespace DecisionMaster.AlgorihtmsLibrary.Models
+namespace DecisionMaster.AlgorithmsLibrary.Models
 {
     public class SMARTDecisionConfiguration: IDecisionConfiguration
     {

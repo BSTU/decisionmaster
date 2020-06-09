@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DecisionMaster.AlgorihtmsLibrary.Interfaces
+namespace DecisionMaster.AlgorithmsLibrary.Interfaces
 {
     public interface IDecisionConfiguration
     {

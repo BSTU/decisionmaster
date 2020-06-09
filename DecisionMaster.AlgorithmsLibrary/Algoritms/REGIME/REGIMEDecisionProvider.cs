@@ -1,8 +1,8 @@
-﻿using DecisionMaster.AlgorihtmsLibrary.Interfaces;
-using DecisionMaster.AlgorihtmsLibrary.Models;
+﻿using DecisionMaster.AlgorithmsLibrary.Interfaces;
+using DecisionMaster.AlgorithmsLibrary.Models;
 using System.Collections.Generic;
 
-namespace DecisionMaster.AlgorihtmsLibrary.Algoritms.REGIME
+namespace DecisionMaster.AlgorithmsLibrary.Algoritms.REGIME
 {
     public class REGIMEDecisionProvider
     {
