@@ -1,6 +1,6 @@
-﻿using DecisionMaster.AlgorihtmsLibrary.Interfaces;
+﻿using DecisionMaster.AlgorithmsLibrary.Interfaces;
 
-namespace DecisionMaster.AlgorihtmsLibrary.Models
+namespace DecisionMaster.AlgorithmsLibrary.Models
 {
     public class CriteriaBase : ICriteria
     {

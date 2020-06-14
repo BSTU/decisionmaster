@@ -1,6 +1,6 @@
-﻿using DecisionMaster.AlgorihtmsLibrary.Models;
+﻿using DecisionMaster.AlgorithmsLibrary.Models;
 
-namespace DecisionMaster.AlgorihtmsLibrary.Interfaces
+namespace DecisionMaster.AlgorithmsLibrary.Interfaces
 {
     public interface IDecisionProvider
     {
