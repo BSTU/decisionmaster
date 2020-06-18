@@ -2,7 +2,7 @@
 using DecisionMaster.AlgorithmsLibrary.Models;
 using System;
 
-namespace DecisionMaster.AlgorithmsLibrary.Algoritms.SMART
+namespace DecisionMaster.AlgorithmsLibrary.Algorithms.SMART
 {
     public class SMARTQualitativeCriteria: IQualitativeCriteria
     {

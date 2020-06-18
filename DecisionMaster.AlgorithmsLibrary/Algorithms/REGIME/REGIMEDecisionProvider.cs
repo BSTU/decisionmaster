@@ -2,7 +2,7 @@
 using DecisionMaster.AlgorithmsLibrary.Models;
 using System.Collections.Generic;
 
-namespace DecisionMaster.AlgorithmsLibrary.Algoritms.REGIME
+namespace DecisionMaster.AlgorithmsLibrary.Algorithms.REGIME
 {
     public class REGIMEDecisionProvider
     {
