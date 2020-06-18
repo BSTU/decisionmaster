@@ -1,5 +1,5 @@
-using DecisionMaster.AlgorithmsLibrary.Algoritms.SMART;
-using DecisionMaster.AlgorithmsLibrary.Algoritms.REGIME;
+using DecisionMaster.AlgorithmsLibrary.Algorithms.SMART;
+using DecisionMaster.AlgorithmsLibrary.Algorithms.REGIME;
 using DecisionMaster.AlgorithmsLibrary.Interfaces;
 using DecisionMaster.AlgorithmsLibrary.Models;
 using NUnit.Framework;
