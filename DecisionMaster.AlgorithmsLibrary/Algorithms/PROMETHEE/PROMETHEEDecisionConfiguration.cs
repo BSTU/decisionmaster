@@ -7,7 +7,7 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE
     public class PROMETHEEDecisionConfiguration:IDecisionConfiguration
     {
         public List<double> CriteriaRanks { get; set; }
-        public List<PreferenceFunction> CriteriaFunctions { get; set; }        
+        public List<PreferenceFunction> PreferenceFunctions { get; set; }        
     }
 
 

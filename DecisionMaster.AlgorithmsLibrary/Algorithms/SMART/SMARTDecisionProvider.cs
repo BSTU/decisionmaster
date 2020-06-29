@@ -57,16 +57,27 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.SMART
                 }
             }
             var w = new double[alternatives.Criterias.Count];
-            double sum = 0;
-            for (i = 0; i < alternatives.Criterias.Count; i++)
+
+            if (IsCriterialWeightsNormalized() == false)
             {
-                w[i] = Math.Pow(root2, _configuration.CriteriaRanks[i]);
-                sum += w[i];
+                double sum = 0;
+                for (i = 0; i < alternatives.Criterias.Count; i++)
+                {
+                    w[i] = Math.Pow(root2, _configuration.CriteriaRanks[i]);
+                    sum += w[i];
+                }
+                //Normalizing w
+                for (i = 0; i < alternatives.Criterias.Count; i++)
+                {
+                    w[i] /= sum;
+                }
             }
-            //Normalizing w
-            for (i = 0; i < alternatives.Criterias.Count; i++)
+            else
             {
-                w[i] /= sum;
+                for (i = 0; i < alternatives.Criterias.Count; i++)
+                {
+                    w[i] = _configuration.CriteriaRanks[i];
+                }
             }
 
             var f = new double[alternatives.Alternatives.Count];
@@ -113,6 +124,17 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.SMART
                 result.Ranks.Add(permutation[j] + 1);
             }
             return result;
+        }
+
+        private bool IsCriterialWeightsNormalized()
+        {
+            double sum = 0;
+            for (int i = 0; i < _alternatives.Criterias.Count; i++)
+            {
+                sum += _configuration.CriteriaRanks[i];
+            }
+
+            return (Math.Abs(sum - 1) <= 0.001);
         }
     }
 }
