@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DecisionMaster.AlgorithmsLi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DecisionMaster.AlgorithmsLibrary.Tests.Unit", "DecisionMaster.AlgorithmsLibrary.Tests.Unit\DecisionMaster.AlgorithmsLibrary.Tests.Unit.csproj", "{87C7F526-0A14-4B74-8BFF-AE527BD04EEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecisionMaster.UserInterface", "DecisionMaster.UserInterface\DecisionMaster.UserInterface.csproj", "{DAABB85B-0506-4BC2-BBC9-88CF086A99DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{87C7F526-0A14-4B74-8BFF-AE527BD04EEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87C7F526-0A14-4B74-8BFF-AE527BD04EEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87C7F526-0A14-4B74-8BFF-AE527BD04EEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAABB85B-0506-4BC2-BBC9-88CF086A99DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAABB85B-0506-4BC2-BBC9-88CF086A99DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAABB85B-0506-4BC2-BBC9-88CF086A99DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAABB85B-0506-4BC2-BBC9-88CF086A99DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

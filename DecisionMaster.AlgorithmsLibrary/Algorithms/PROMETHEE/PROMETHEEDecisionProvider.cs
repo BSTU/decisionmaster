@@ -27,10 +27,17 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE
             double result = 0;
             for (int i = 0; i < lhs.Values.Count; ++i)
             {
-                result += 
-                    config.CriteriaFunctions[i].GetValue(
-                        criterias[i].CriteriaDirection == CriteriaDirectionType.Maximization ? lhs.Values[i].Value - rhs.Values[i].Value : rhs.Values[i].Value - lhs.Values[i].Value
-                        ) * config.CriteriaRanks[i];
+                if (criterias[i] is CriteriaBase)
+                {
+                    result +=
+                        config.PreferenceFunctions[i].GetValue(
+                            criterias[i].CriteriaDirection == CriteriaDirectionType.Maximization ? lhs.Values[i].Value - rhs.Values[i].Value : rhs.Values[i].Value - lhs.Values[i].Value
+                            ) * config.CriteriaRanks[i];
+                }
+                else
+                {
+                    result += config.PreferenceFunctions[i].GetValue(lhs.Values[i].Value - rhs.Values[i].Value) * config.CriteriaRanks[i];
+                }
             }
 
             return result;

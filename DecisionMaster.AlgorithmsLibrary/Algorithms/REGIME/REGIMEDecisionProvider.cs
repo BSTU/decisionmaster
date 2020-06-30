@@ -27,13 +27,20 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.REGIME
                 var criteria = criterias[i];
                 var lhs_value = lhs.Values[i].Value;
                 var rhs_value = rhs.Values[i].Value;
-                if (criteria.CriteriaDirection == CriteriaDirectionType.Maximization &&
-                    lhs_value >= rhs_value)
+                if (criteria is QualitativeCriteriaBase)
                 {
-                    result += config.CriteriaRanks[i];
+                    if (criteria.CriteriaDirection == CriteriaDirectionType.Maximization &&
+                        lhs_value >= rhs_value)
+                    {
+                        result += config.CriteriaRanks[i];
+                    }
+                    if (criteria.CriteriaDirection == CriteriaDirectionType.Minimization &&
+                        lhs_value <= rhs_value)
+                    {
+                        result += config.CriteriaRanks[i];
+                    }
                 }
-                if (criteria.CriteriaDirection == CriteriaDirectionType.Minimization &&
-                    lhs_value <= rhs_value)
+                else if (lhs_value >= rhs_value)
                 {
                     result += config.CriteriaRanks[i];
                 }
