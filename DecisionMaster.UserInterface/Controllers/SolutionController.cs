@@ -8,6 +8,7 @@ using DecisionMaster.AlgorithmsLibrary.Models;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.SMART;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.REGIME;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE;
+using DecisionMaster.AlgorithmsLibrary.Algorithms.WASPAS;
 using System.Windows.Forms;
 
 namespace DecisionMaster.UserInterface.Controllers
@@ -16,11 +17,14 @@ namespace DecisionMaster.UserInterface.Controllers
     {
         public CriteriasController _criterias = new CriteriasController();
         public AlternativesController _alternatives = new AlternativesController();
+        public SpecialParametersEnum WASPASConfiguration = SpecialParametersEnum.None;
+        public double WASPASLambda { get; set; }
         public Dictionary<MethodsEnum, bool> _methods = new Dictionary<MethodsEnum, bool>
         {
             {MethodsEnum.SMART, false },
             {MethodsEnum.REGIME, false },
-            {MethodsEnum.PROMETHEE, false }
+            {MethodsEnum.PROMETHEE, false },
+            {MethodsEnum.WASPAS, false }
         };
 
         public List <String> GetAlternativesTitles()
@@ -82,6 +86,21 @@ namespace DecisionMaster.UserInterface.Controllers
                 }
                 result.Add(NewRow);
             }
+            if (_methods[MethodsEnum.WASPAS] == true)
+            {
+                DataGridViewRow NewRow = new DataGridViewRow();
+                DataGridViewTextBoxCell TitleCell = new DataGridViewTextBoxCell();
+                TitleCell.Value = "WASPAS";
+                NewRow.Cells.Add(TitleCell);
+
+                foreach (int value in GetRanksWASPAS())
+                {
+                    DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
+                    newCell.Value = value.ToString();
+                    NewRow.Cells.Add(newCell);
+                }
+                result.Add(NewRow);
+            }
 
             return result;
         }
@@ -133,6 +152,22 @@ namespace DecisionMaster.UserInterface.Controllers
             return result;
         }
 
+        public List<int> GetRanksWASPAS()
+        {
+            WASPASDecisionProvider provider = new WASPASDecisionProvider();
+            WASPASDecisionConfiguration config = new WASPASDecisionConfiguration
+            {
+                CriteriaRanks = _criterias.GetNormalizedWeight(),
+                Lambda = WASPASLambda
+            };
+            provider.Init(config);
+
+            AlternativesBase alternatives = GetAlternativesBases(MethodsEnum.PROMETHEE);
+
+            List<int> result = provider.Solve(alternatives).Ranks;
+            return result;
+        }
+
         public AlternativesBase GetAlternativesBases(MethodsEnum method)
         {
             List<ICriteria> criterias = _criterias.GetCriteriasAsSMART();
@@ -161,7 +196,8 @@ namespace DecisionMaster.UserInterface.Controllers
         {
             SMART = 1,
             REGIME = 2,
-            PROMETHEE = 3
+            PROMETHEE = 3,
+            WASPAS = 4
         };
     }
 }

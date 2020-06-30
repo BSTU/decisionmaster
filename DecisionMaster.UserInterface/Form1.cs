@@ -111,6 +111,7 @@ namespace DecisionMaster.UserInterface
                 textBoxQuantitativeMaxValue.Enabled = false;
                 comboBoxQualitativeMaxValue.Enabled = false;
                 comboBoxQualitativeMinValue.Enabled = false;
+
                 comboBoxSpecifyPROMETHEE.Enabled = false;
                 comboBoxPreferenceFunction.Enabled = false;
                 textBoxPreferenceParameter1.Visible = false;
@@ -130,7 +131,9 @@ namespace DecisionMaster.UserInterface
             {
                 comboBoxSpecifyPROMETHEE.Enabled = true;
                 comboBoxSpecifyPROMETHEE.SelectedIndex = 0;
+
                 buttonApplyCriteria.Enabled = true;
+
                 if (comboBoxCriteriaType.SelectedIndex == 0)
                 {
                     textBoxQuantitativeMaxValue.Enabled = true;
@@ -387,6 +390,7 @@ namespace DecisionMaster.UserInterface
             {
                 data.PreferenceFunction = new PreferenceFunction(PreferenceFunctionEnum.UsualCriterion);
             }
+
         }
 
         private void AddToCriteriaDataGrid(CriteriaController data)
@@ -652,6 +656,22 @@ namespace DecisionMaster.UserInterface
                             checkBoxPROMETHEE.Enabled = false;
                         }
                     }
+                    comboBoxSpecifyWASPAS.SelectedIndex = (int)controller.WASPASConfiguration;
+                    if (comboBoxSpecifyWASPAS.SelectedIndex <= 0)
+                    {
+                        checkBoxWASPAS.Enabled = false;
+                        checkBoxWASPAS.Checked = false;                        
+                    }
+                    if (comboBoxSpecifyWASPAS.SelectedIndex == 1)
+                    {
+                        textBoxWASPASLambda.Enabled = false;
+                        checkBoxWASPAS.Enabled = true;
+                    }
+                    if (comboBoxSpecifyWASPAS.SelectedIndex == 2)
+                    {
+                        textBoxWASPASLambda.Enabled = true;
+                        checkBoxWASPAS.Enabled = true;
+                    }
                 }
                 catch (Exception E)
                 {
@@ -663,13 +683,38 @@ namespace DecisionMaster.UserInterface
 
         private void buttonCalc_Click(object sender, EventArgs e)
         {
-            dataGridViewRanks.Rows.Clear();
-            dataGridViewRanks.Columns.Clear();
-            FillColumns();
-            foreach(DataGridViewRow row in controller.GetSolutionsAsDataGrid())
+            if (CheckWASPASValue() == true)
             {
-                dataGridViewRanks.Rows.Add(row);
+                dataGridViewRanks.Rows.Clear();
+                dataGridViewRanks.Columns.Clear();
+                FillColumns();
+                foreach (DataGridViewRow row in controller.GetSolutionsAsDataGrid())
+                {
+                    dataGridViewRanks.Rows.Add(row);
+                }
             }
+            else
+            {
+                MessageBox.Show("WASPAS parameter must belong [0,1] interval");
+            }
+        }
+
+        private bool CheckWASPASValue()
+        {
+            if (comboBoxSpecifyWASPAS.SelectedIndex == 1)
+            {
+                controller.WASPASLambda = 0.5;
+            }
+            if (comboBoxSpecifyWASPAS.SelectedIndex == 2)
+            {
+                double Value;
+                if (textBoxWASPASLambda.Text == "" || double.TryParse(textBoxWASPASLambda.Text, out Value) == false)
+                {
+                    return false;
+                }
+                controller.WASPASLambda = Value;
+            }
+            return true;
         }
 
         private void FillColumns()
@@ -684,31 +729,83 @@ namespace DecisionMaster.UserInterface
 
         private void checkBoxChooseAll_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxPROMETHEE.Enabled == true)
+            if (checkBoxChooseAll.Checked == true)
             {
-                checkBoxPROMETHEE.Checked = checkBoxChooseAll.Checked;
-                controller._methods[SolutionController.MethodsEnum.PROMETHEE] = checkBoxChooseAll.Checked;
+                if (checkBoxPROMETHEE.Enabled == true)
+                {
+                    checkBoxPROMETHEE.Checked = checkBoxChooseAll.Checked;
+                    controller._methods[SolutionController.MethodsEnum.PROMETHEE] = checkBoxChooseAll.Checked;
+                }
+                checkBoxSMART.Checked = checkBoxChooseAll.Checked;
+                controller._methods[SolutionController.MethodsEnum.SMART] = checkBoxChooseAll.Checked;
+
+                checkBoxREGIME.Checked = checkBoxChooseAll.Checked;
+                controller._methods[SolutionController.MethodsEnum.REGIME] = checkBoxChooseAll.Checked;
+
+                if (checkBoxWASPAS.Enabled == true)
+                {
+                    checkBoxWASPAS.Checked = checkBoxChooseAll.Checked;
+                    controller._methods[SolutionController.MethodsEnum.WASPAS] = checkBoxChooseAll.Checked;
+                }
             }
-            checkBoxSMART.Checked = checkBoxChooseAll.Checked;
-            controller._methods[SolutionController.MethodsEnum.SMART] = checkBoxChooseAll.Checked;
-            checkBoxREGIME.Checked = checkBoxChooseAll.Checked;
-            controller._methods[SolutionController.MethodsEnum.REGIME] = checkBoxChooseAll.Checked;
         }
 
         private void checkBoxSMART_CheckedChanged(object sender, EventArgs e)
         {
             controller._methods[SolutionController.MethodsEnum.SMART] = checkBoxSMART.Checked;
+            if (checkBoxSMART.Checked == false)
+            {
+                checkBoxChooseAll.Checked = false;
+            }
         }
 
         private void checkBoxREGIME_CheckedChanged(object sender, EventArgs e)
         {
             controller._methods[SolutionController.MethodsEnum.REGIME] = checkBoxREGIME.Checked;
+            if (checkBoxREGIME.Checked == false)
+            {
+                checkBoxChooseAll.Checked = false;
+            }
         }
 
         private void checkBoxPROMETHEE_CheckedChanged(object sender, EventArgs e)
         {
             controller._methods[SolutionController.MethodsEnum.PROMETHEE] = checkBoxPROMETHEE.Checked;
+            if (checkBoxPROMETHEE.Checked == false)
+            {
+                checkBoxChooseAll.Checked = false;
+            }
         }
+
+        private void checkBoxWASPAS_CheckedChanged(object sender, EventArgs e)
+        {
+            controller._methods[SolutionController.MethodsEnum.WASPAS] = checkBoxPROMETHEE.Checked;
+            if (checkBoxWASPAS.Checked == false)
+            {
+                checkBoxChooseAll.Checked = false;
+            }
+        }
+
+        private void comboBoxSpecifyWASPAS_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (comboBoxSpecifyWASPAS.SelectedIndex <= 0)
+            {
+                checkBoxWASPAS.Enabled = false;
+                checkBoxWASPAS.Checked = false;
+            }
+            if (comboBoxSpecifyWASPAS.SelectedIndex == 1)
+            {
+                textBoxWASPASLambda.Enabled = false;
+                checkBoxWASPAS.Enabled = true;
+            }
+            if (comboBoxSpecifyWASPAS.SelectedIndex == 2)
+            {
+                textBoxWASPASLambda.Enabled = true;
+                checkBoxWASPAS.Enabled = true;
+            }
+        }
+
+        
     }
 
 }

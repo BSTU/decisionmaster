@@ -30,20 +30,20 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.SMART
             var factor = Math.Pow(basis, intervals); // = 64 (default)
             var root2 = Math.Sqrt(2.0);
 
-            double[,] g = new double[alternatives.Criterias.Count, alternatives.Alternatives.Count];
+            double[,] g = new double[_alternatives.Criterias.Count, _alternatives.Alternatives.Count];
             int i, j;
-            for (i = 0; i < alternatives.Criterias.Count; i++) //i - criteria number
+            for (i = 0; i < _alternatives.Criterias.Count; i++) //i - criteria number
             {
-                var critera = alternatives.Criterias[i];
+                var critera = _alternatives.Criterias[i];
                 var minCriteriaValue = critera.MinValue;
                 var maxCriteriaValue = critera.MaxValue;
                 //posible correcting minCriteraValue
                 //minCriteriaValue += (maxCriteriaValue - minCriteriaValue) / factor;
                 var deltaCriteraValue = maxCriteriaValue - minCriteriaValue;
 
-                for (j = 0; j < alternatives.Alternatives.Count; j++) // j - alternative number
+                for (j = 0; j < _alternatives.Alternatives.Count; j++) // j - alternative number
                 {
-                    var alternative = alternatives.Alternatives[j];
+                    var alternative = _alternatives.Alternatives[j];
                     if (critera is IQualitativeCriteria)
                     {
                         g[i, j] = alternative.Values[i].Value;
@@ -56,7 +56,7 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.SMART
                     }
                 }
             }
-            var w = new double[alternatives.Criterias.Count];
+            var w = new double[_alternatives.Criterias.Count];
 
             if (IsCriterialWeightsNormalized() == false)
             {
@@ -111,7 +111,7 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.SMART
                 f[j1] = f[maxIndex];
                 f[maxIndex] = temp;
 
-                var tempNumber = j1;
+                var tempNumber = number[j1];
                 number[j1] = number[maxIndex];
                 number[maxIndex] = tempNumber;
                 permutation[number[j1]] = j1;

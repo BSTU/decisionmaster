@@ -1,6 +1,7 @@
 using DecisionMaster.AlgorithmsLibrary.Algorithms.SMART;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.REGIME;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE;
+using DecisionMaster.AlgorithmsLibrary.Algorithms.WASPAS;
 using DecisionMaster.AlgorithmsLibrary.Interfaces;
 using DecisionMaster.AlgorithmsLibrary.Models;
 using NUnit.Framework;
@@ -275,5 +276,88 @@ namespace DecisionMaster.AlgorithmsLibrary.Tests.Unit
             Assert.IsTrue(result.Ranks[4] == 1);
             Assert.IsTrue(result.Ranks[5] == 4);
         }
+
+        [Test]
+        public void TestWASPASDecision()
+        {
+            WASPASDecisionProvider provider = new WASPASDecisionProvider();
+            WASPASDecisionConfiguration config = new WASPASDecisionConfiguration
+            {
+                Lambda = 0.2,
+                CriteriaRanks = new List<double>
+                {
+                    0.331, 0.181, 0.369, 0.072, 0.047
+                }
+            };
+
+            provider.Init(config);
+
+            var alternatives = new AlternativesBase
+            {
+                Criterias = new List<ICriteria>
+                {
+                    new CriteriaBase { CriteriaDirection = CriteriaDirectionType.Minimization },
+                    new CriteriaBase { CriteriaDirection = CriteriaDirectionType.Minimization },
+                    new CriteriaBase { CriteriaDirection = CriteriaDirectionType.Maximization },
+                    new CriteriaBase { CriteriaDirection = CriteriaDirectionType.Minimization },
+                    new CriteriaBase { CriteriaDirection = CriteriaDirectionType.Maximization },
+                },
+                Alternatives = new List<AlternativeBase>
+                {
+                    new AlternativeBase
+                    {
+                        Values = new List<IAlternativeValue>
+                        {
+                            new AlternativeValueBase(0.035),
+                            new AlternativeValueBase(847),
+                            new AlternativeValueBase(0.335),
+                            new AlternativeValueBase(1.760),
+                            new AlternativeValueBase(0.590),
+                        }
+                    },
+                    new AlternativeBase
+                    {
+                        Values = new List<IAlternativeValue>
+                        {
+                            new AlternativeValueBase(0.027),
+                            new AlternativeValueBase(834),
+                            new AlternativeValueBase(0.335),
+                            new AlternativeValueBase(1.680),
+                            new AlternativeValueBase(0.665),
+                        }
+                    },
+                    new AlternativeBase
+                    {
+                        Values = new List<IAlternativeValue>
+                        {
+                            new AlternativeValueBase(0.037),
+                            new AlternativeValueBase(808),
+                            new AlternativeValueBase(0.590),
+                            new AlternativeValueBase(2.400),
+                            new AlternativeValueBase(0.500),
+                        }
+                    },
+                    new AlternativeBase
+                    {
+                        Values = new List<IAlternativeValue>
+                        {
+                            new AlternativeValueBase(0.028),
+                            new AlternativeValueBase(821),
+                            new AlternativeValueBase(0.500),
+                            new AlternativeValueBase(1.590),
+                            new AlternativeValueBase(0.410),
+                        }
+                    }
+                }
+            };
+
+            var result = provider.Solve(alternatives);
+            Assert.IsTrue(result.Ranks.Count == 4);
+            Assert.IsTrue(result.Ranks[0] == 4);
+            Assert.IsTrue(result.Ranks[1] == 3);
+            Assert.IsTrue(result.Ranks[2] == 2);
+            Assert.IsTrue(result.Ranks[3] == 1);
+        }
+        
     }
 }

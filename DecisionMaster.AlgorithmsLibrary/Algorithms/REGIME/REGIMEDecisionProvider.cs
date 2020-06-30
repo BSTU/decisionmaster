@@ -85,7 +85,7 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.REGIME
                 {
                     if (i != j)
                     {
-                        if (impact_matrix[i,j] - impact_matrix[j,i] > 0)
+                        if (impact_matrix[i,j] - impact_matrix[j,i] >= 0)
                         {
                             dominated++;
                         }

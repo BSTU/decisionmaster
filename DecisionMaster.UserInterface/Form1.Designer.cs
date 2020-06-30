@@ -30,10 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDecisionMaster));
             this.panelNewCriteriaData = new System.Windows.Forms.Panel();
-            this.textBoxWASPASAlpha = new System.Windows.Forms.TextBox();
-            this.labelWASPASParameter = new System.Windows.Forms.Label();
-            this.comboBoxSpecifyWASPAS = new System.Windows.Forms.ComboBox();
-            this.labelSpecifyWASPAS = new System.Windows.Forms.Label();
             this.labelElectreQ = new System.Windows.Forms.Label();
             this.textBoxElectreQ = new System.Windows.Forms.TextBox();
             this.textBoxElectreP = new System.Windows.Forms.TextBox();
@@ -100,6 +96,11 @@
             this.checkBoxREGIME = new System.Windows.Forms.CheckBox();
             this.checkBoxSMART = new System.Windows.Forms.CheckBox();
             this.checkBoxChooseAll = new System.Windows.Forms.CheckBox();
+            this.textBoxWASPASLambda = new System.Windows.Forms.TextBox();
+            this.labelWASPASParameter = new System.Windows.Forms.Label();
+            this.comboBoxSpecifyWASPAS = new System.Windows.Forms.ComboBox();
+            this.labelSpecifyWASPAS = new System.Windows.Forms.Label();
+            this.checkBoxWASPAS = new System.Windows.Forms.CheckBox();
             this.panelNewCriteriaData.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageCriterias.SuspendLayout();
@@ -116,10 +117,6 @@
             // panelNewCriteriaData
             // 
             this.panelNewCriteriaData.AutoScroll = true;
-            this.panelNewCriteriaData.Controls.Add(this.textBoxWASPASAlpha);
-            this.panelNewCriteriaData.Controls.Add(this.labelWASPASParameter);
-            this.panelNewCriteriaData.Controls.Add(this.comboBoxSpecifyWASPAS);
-            this.panelNewCriteriaData.Controls.Add(this.labelSpecifyWASPAS);
             this.panelNewCriteriaData.Controls.Add(this.labelElectreQ);
             this.panelNewCriteriaData.Controls.Add(this.textBoxElectreQ);
             this.panelNewCriteriaData.Controls.Add(this.textBoxElectreP);
@@ -161,47 +158,6 @@
             this.panelNewCriteriaData.Name = "panelNewCriteriaData";
             this.panelNewCriteriaData.Size = new System.Drawing.Size(343, 580);
             this.panelNewCriteriaData.TabIndex = 0;
-            // 
-            // textBoxWASPASAlpha
-            // 
-            this.textBoxWASPASAlpha.Location = new System.Drawing.Point(181, 210);
-            this.textBoxWASPASAlpha.Name = "textBoxWASPASAlpha";
-            this.textBoxWASPASAlpha.Size = new System.Drawing.Size(157, 20);
-            this.textBoxWASPASAlpha.TabIndex = 41;
-            // 
-            // labelWASPASParameter
-            // 
-            this.labelWASPASParameter.AutoSize = true;
-            this.labelWASPASParameter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelWASPASParameter.Location = new System.Drawing.Point(141, 213);
-            this.labelWASPASParameter.Name = "labelWASPASParameter";
-            this.labelWASPASParameter.Size = new System.Drawing.Size(34, 13);
-            this.labelWASPASParameter.TabIndex = 40;
-            this.labelWASPASParameter.Text = "Alpha";
-            this.labelWASPASParameter.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // comboBoxSpecifyWASPAS
-            // 
-            this.comboBoxSpecifyWASPAS.FormattingEnabled = true;
-            this.comboBoxSpecifyWASPAS.Items.AddRange(new object[] {
-            "None",
-            "Default",
-            "Manual"});
-            this.comboBoxSpecifyWASPAS.Location = new System.Drawing.Point(181, 182);
-            this.comboBoxSpecifyWASPAS.Name = "comboBoxSpecifyWASPAS";
-            this.comboBoxSpecifyWASPAS.Size = new System.Drawing.Size(157, 21);
-            this.comboBoxSpecifyWASPAS.TabIndex = 39;
-            // 
-            // labelSpecifyWASPAS
-            // 
-            this.labelSpecifyWASPAS.AutoSize = true;
-            this.labelSpecifyWASPAS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelSpecifyWASPAS.Location = new System.Drawing.Point(28, 188);
-            this.labelSpecifyWASPAS.Name = "labelSpecifyWASPAS";
-            this.labelSpecifyWASPAS.Size = new System.Drawing.Size(147, 13);
-            this.labelSpecifyWASPAS.TabIndex = 38;
-            this.labelSpecifyWASPAS.Text = "Special parameter (WASPAS)";
-            this.labelSpecifyWASPAS.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelElectreQ
             // 
@@ -790,6 +746,11 @@
             // 
             // panelMethodChoose
             // 
+            this.panelMethodChoose.Controls.Add(this.checkBoxWASPAS);
+            this.panelMethodChoose.Controls.Add(this.textBoxWASPASLambda);
+            this.panelMethodChoose.Controls.Add(this.labelWASPASParameter);
+            this.panelMethodChoose.Controls.Add(this.comboBoxSpecifyWASPAS);
+            this.panelMethodChoose.Controls.Add(this.labelSpecifyWASPAS);
             this.panelMethodChoose.Controls.Add(this.buttonCalc);
             this.panelMethodChoose.Controls.Add(this.checkBoxPROMETHEE);
             this.panelMethodChoose.Controls.Add(this.checkBoxREGIME);
@@ -803,7 +764,7 @@
             // 
             // buttonCalc
             // 
-            this.buttonCalc.Location = new System.Drawing.Point(55, 179);
+            this.buttonCalc.Location = new System.Drawing.Point(57, 221);
             this.buttonCalc.Name = "buttonCalc";
             this.buttonCalc.Size = new System.Drawing.Size(75, 23);
             this.buttonCalc.TabIndex = 4;
@@ -855,6 +816,59 @@
             this.checkBoxChooseAll.Text = "Select All";
             this.checkBoxChooseAll.UseVisualStyleBackColor = true;
             this.checkBoxChooseAll.CheckedChanged += new System.EventHandler(this.checkBoxChooseAll_CheckedChanged);
+            // 
+            // textBoxWASPASLambda
+            // 
+            this.textBoxWASPASLambda.Location = new System.Drawing.Point(13, 318);
+            this.textBoxWASPASLambda.Name = "textBoxWASPASLambda";
+            this.textBoxWASPASLambda.Size = new System.Drawing.Size(157, 20);
+            this.textBoxWASPASLambda.TabIndex = 45;
+            // 
+            // labelWASPASParameter
+            // 
+            this.labelWASPASParameter.AutoSize = true;
+            this.labelWASPASParameter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelWASPASParameter.Location = new System.Drawing.Point(10, 302);
+            this.labelWASPASParameter.Name = "labelWASPASParameter";
+            this.labelWASPASParameter.Size = new System.Drawing.Size(45, 13);
+            this.labelWASPASParameter.TabIndex = 44;
+            this.labelWASPASParameter.Text = "Lambda";
+            this.labelWASPASParameter.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // comboBoxSpecifyWASPAS
+            // 
+            this.comboBoxSpecifyWASPAS.FormattingEnabled = true;
+            this.comboBoxSpecifyWASPAS.Items.AddRange(new object[] {
+            "None",
+            "Default",
+            "Manual"});
+            this.comboBoxSpecifyWASPAS.Location = new System.Drawing.Point(13, 278);
+            this.comboBoxSpecifyWASPAS.Name = "comboBoxSpecifyWASPAS";
+            this.comboBoxSpecifyWASPAS.Size = new System.Drawing.Size(157, 21);
+            this.comboBoxSpecifyWASPAS.TabIndex = 43;
+            this.comboBoxSpecifyWASPAS.SelectedIndexChanged += new System.EventHandler(this.comboBoxSpecifyWASPAS_SelectedIndexChanged_1);
+            // 
+            // labelSpecifyWASPAS
+            // 
+            this.labelSpecifyWASPAS.AutoSize = true;
+            this.labelSpecifyWASPAS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelSpecifyWASPAS.Location = new System.Drawing.Point(10, 262);
+            this.labelSpecifyWASPAS.Name = "labelSpecifyWASPAS";
+            this.labelSpecifyWASPAS.Size = new System.Drawing.Size(147, 13);
+            this.labelSpecifyWASPAS.TabIndex = 42;
+            this.labelSpecifyWASPAS.Text = "Special parameter (WASPAS)";
+            this.labelSpecifyWASPAS.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // checkBoxWASPAS
+            // 
+            this.checkBoxWASPAS.AutoSize = true;
+            this.checkBoxWASPAS.Location = new System.Drawing.Point(8, 160);
+            this.checkBoxWASPAS.Name = "checkBoxWASPAS";
+            this.checkBoxWASPAS.Size = new System.Drawing.Size(72, 17);
+            this.checkBoxWASPAS.TabIndex = 46;
+            this.checkBoxWASPAS.Text = "WASPAS";
+            this.checkBoxWASPAS.UseVisualStyleBackColor = true;
+            this.checkBoxWASPAS.CheckedChanged += new System.EventHandler(this.checkBoxWASPAS_CheckedChanged);
             // 
             // FormDecisionMaster
             // 
@@ -932,10 +946,6 @@
         private System.Windows.Forms.CheckBox checkBoxChooseAll;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxCriteriaWeight;
-        private System.Windows.Forms.TextBox textBoxWASPASAlpha;
-        private System.Windows.Forms.Label labelWASPASParameter;
-        private System.Windows.Forms.ComboBox comboBoxSpecifyWASPAS;
-        private System.Windows.Forms.Label labelSpecifyWASPAS;
         private System.Windows.Forms.Label labelElectreQ;
         private System.Windows.Forms.TextBox textBoxElectreQ;
         private System.Windows.Forms.TextBox textBoxElectreP;
@@ -958,6 +968,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPROMETHEEConfig;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnWASPAS;
         private System.Windows.Forms.DataGridViewTextBoxColumn ELECTRE;
+        private System.Windows.Forms.TextBox textBoxWASPASLambda;
+        private System.Windows.Forms.Label labelWASPASParameter;
+        private System.Windows.Forms.ComboBox comboBoxSpecifyWASPAS;
+        private System.Windows.Forms.Label labelSpecifyWASPAS;
+        private System.Windows.Forms.CheckBox checkBoxWASPAS;
     }
 }
 

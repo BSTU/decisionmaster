@@ -22,7 +22,6 @@ namespace DecisionMaster.UserInterface.Controllers
 
         public SpecialParametersEnum PROMETHEEConfiguration { get; set; }
         public PreferenceFunction PreferenceFunction { get; set; }
-
     }
 
     public class CriteriasController
