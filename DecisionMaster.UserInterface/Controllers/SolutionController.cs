@@ -9,6 +9,7 @@ using DecisionMaster.AlgorithmsLibrary.Algorithms.SMART;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.REGIME;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.WASPAS;
+using DecisionMaster.AlgorithmsLibrary.Algorithms.TAXONOMY;
 using System.Windows.Forms;
 
 namespace DecisionMaster.UserInterface.Controllers
@@ -24,7 +25,8 @@ namespace DecisionMaster.UserInterface.Controllers
             {MethodsEnum.SMART, false },
             {MethodsEnum.REGIME, false },
             {MethodsEnum.PROMETHEE, false },
-            {MethodsEnum.WASPAS, false }
+            {MethodsEnum.WASPAS, false },
+            {MethodsEnum.TAXONOMY, false }
         };
 
         public List <String> GetAlternativesTitles()
@@ -101,6 +103,21 @@ namespace DecisionMaster.UserInterface.Controllers
                 }
                 result.Add(NewRow);
             }
+            if (_methods[MethodsEnum.TAXONOMY] == true)
+            {
+                DataGridViewRow NewRow = new DataGridViewRow();
+                DataGridViewTextBoxCell TitleCell = new DataGridViewTextBoxCell();
+                TitleCell.Value = "TAXONOMY";
+                NewRow.Cells.Add(TitleCell);
+
+                foreach (int value in GetRanksTAXONOMY())
+                {
+                    DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
+                    newCell.Value = value.ToString();
+                    NewRow.Cells.Add(newCell);
+                }
+                result.Add(NewRow);
+            }
 
             return result;
         }
@@ -162,7 +179,22 @@ namespace DecisionMaster.UserInterface.Controllers
             };
             provider.Init(config);
 
-            AlternativesBase alternatives = GetAlternativesBases(MethodsEnum.PROMETHEE);
+            AlternativesBase alternatives = GetAlternativesBases(MethodsEnum.WASPAS);
+
+            List<int> result = provider.Solve(alternatives).Ranks;
+            return result;
+        }
+
+        public List<int> GetRanksTAXONOMY()
+        {
+            IDecisionProvider provider = new TAXONOMYDecisionProvider();
+            IDecisionConfiguration config = new DecisionConfigurationBase
+            {
+                CriteriaRanks = _criterias.GetNormalizedWeight()
+            };
+            provider.Init(config);
+
+            AlternativesBase alternatives = GetAlternativesBases(MethodsEnum.TAXONOMY);
 
             List<int> result = provider.Solve(alternatives).Ranks;
             return result;
@@ -170,7 +202,7 @@ namespace DecisionMaster.UserInterface.Controllers
 
         public AlternativesBase GetAlternativesBases(MethodsEnum method)
         {
-            List<ICriteria> criterias = _criterias.GetCriteriasAsSMART();
+            List<ICriteria> criterias = (method == MethodsEnum.SMART ? _criterias.GetCriteriasAsSMART() : _criterias.GetCriterias());
             List<AlternativeBase> alternatives = _alternatives.GetAlternativeBases(criterias, GetQualitativeConverter(method));
 
             return new AlternativesBase
@@ -197,7 +229,8 @@ namespace DecisionMaster.UserInterface.Controllers
             SMART = 1,
             REGIME = 2,
             PROMETHEE = 3,
-            WASPAS = 4
+            WASPAS = 4,
+            TAXONOMY = 5
         };
     }
 }

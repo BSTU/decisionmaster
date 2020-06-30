@@ -538,6 +538,7 @@ namespace DecisionMaster.UserInterface
             comboBoxSpecifyPROMETHEE.Enabled = true;
             comboBoxSpecifyPROMETHEE.SelectedIndex = (int)data.PROMETHEEConfiguration;
 
+            comboBoxSpecifyPROMETHEE.SelectedIndex = (int)data.PROMETHEEConfiguration;
             if (data.PROMETHEEConfiguration == SpecialParametersEnum.Manual)
             {
                 comboBoxPreferenceFunction.Visible = true;
@@ -670,6 +671,7 @@ namespace DecisionMaster.UserInterface
                     if (comboBoxSpecifyWASPAS.SelectedIndex == 2)
                     {
                         textBoxWASPASLambda.Enabled = true;
+                        textBoxWASPASLambda.Text = controller.WASPASLambda.ToString();
                         checkBoxWASPAS.Enabled = true;
                     }
                 }
@@ -736,6 +738,7 @@ namespace DecisionMaster.UserInterface
                     checkBoxPROMETHEE.Checked = checkBoxChooseAll.Checked;
                     controller._methods[SolutionController.MethodsEnum.PROMETHEE] = checkBoxChooseAll.Checked;
                 }
+
                 checkBoxSMART.Checked = checkBoxChooseAll.Checked;
                 controller._methods[SolutionController.MethodsEnum.SMART] = checkBoxChooseAll.Checked;
 
@@ -747,6 +750,9 @@ namespace DecisionMaster.UserInterface
                     checkBoxWASPAS.Checked = checkBoxChooseAll.Checked;
                     controller._methods[SolutionController.MethodsEnum.WASPAS] = checkBoxChooseAll.Checked;
                 }
+
+                checkBoxTAXONOMY.Checked = checkBoxChooseAll.Checked;
+                controller._methods[SolutionController.MethodsEnum.TAXONOMY] = checkBoxChooseAll.Checked;
             }
         }
 
@@ -786,8 +792,18 @@ namespace DecisionMaster.UserInterface
             }
         }
 
+        private void checkBoxTAXONOMY_CheckedChanged(object sender, EventArgs e)
+        {
+            controller._methods[SolutionController.MethodsEnum.TAXONOMY] = checkBoxTAXONOMY.Checked;
+            if (checkBoxTAXONOMY.Checked == false)
+            {
+                checkBoxChooseAll.Checked = false;
+            }
+        }
+
         private void comboBoxSpecifyWASPAS_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            controller.WASPASConfiguration = (SpecialParametersEnum)comboBoxSpecifyWASPAS.SelectedIndex;
             if (comboBoxSpecifyWASPAS.SelectedIndex <= 0)
             {
                 checkBoxWASPAS.Enabled = false;

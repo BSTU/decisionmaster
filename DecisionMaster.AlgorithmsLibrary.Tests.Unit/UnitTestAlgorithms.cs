@@ -2,6 +2,7 @@ using DecisionMaster.AlgorithmsLibrary.Algorithms.SMART;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.REGIME;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.WASPAS;
+using DecisionMaster.AlgorithmsLibrary.Algorithms.TAXONOMY;
 using DecisionMaster.AlgorithmsLibrary.Interfaces;
 using DecisionMaster.AlgorithmsLibrary.Models;
 using NUnit.Framework;
@@ -105,21 +106,21 @@ namespace DecisionMaster.AlgorithmsLibrary.Tests.Unit
                         Values = new List<IAlternativeValue>
                         {
                             new AlternativeValueBase(3),
-                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.Good, new QualitativeCriteriaBase()),
-                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.FairlyWeak, new QualitativeCriteriaBase()),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.Medium, new QualitativeCriteriaBase()),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.VeryGood, new QualitativeCriteriaBase()),
                             new AlternativeValueBase(24000),
                             new QualitativeAlternativeValue(QualitativeCriteriaEnum.FairlyWeak, new QualitativeCriteriaBase())
-                        }                       
+                        }
                     },
                     new AlternativeBase
                     {
                         Values = new List<IAlternativeValue>
                         {
                             new AlternativeValueBase(1.2),
-                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.Medium, new QualitativeCriteriaBase()),
                             new QualitativeAlternativeValue(QualitativeCriteriaEnum.Good, new QualitativeCriteriaBase()),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.Medium, new QualitativeCriteriaBase()),
                             new AlternativeValueBase(25000),
-                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.FairlyWeak, new QualitativeCriteriaBase())
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.Medium, new QualitativeCriteriaBase())
                         }
                     },
                      new AlternativeBase
@@ -127,8 +128,8 @@ namespace DecisionMaster.AlgorithmsLibrary.Tests.Unit
                         Values = new List<IAlternativeValue>
                         {
                             new AlternativeValueBase(1.5),
-                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.FairlyWeak, new QualitativeCriteriaBase()),
-                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.Excellent, new QualitativeCriteriaBase()),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.VeryGood, new QualitativeCriteriaBase()),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.Poor, new QualitativeCriteriaBase()),
                             new AlternativeValueBase(32000),
                             new QualitativeAlternativeValue(QualitativeCriteriaEnum.Excellent, new QualitativeCriteriaBase())
                         }
@@ -358,6 +359,71 @@ namespace DecisionMaster.AlgorithmsLibrary.Tests.Unit
             Assert.IsTrue(result.Ranks[2] == 2);
             Assert.IsTrue(result.Ranks[3] == 1);
         }
-        
+
+        [Test]
+        public void TestTAXONOMYecision()
+        {
+            TAXONOMYDecisionProvider provider = new TAXONOMYDecisionProvider();
+            DecisionConfigurationBase configuration = new DecisionConfigurationBase
+            {
+                CriteriaRanks = new List<double> { 0.1, 0.175, 0.25, 0.35, 0.125 }
+            };
+
+            provider.Init(configuration);
+
+            var alternatives = new AlternativesBase
+            {
+                Criterias = new List<ICriteria>
+                {
+                    new CriteriaBase{CriteriaDirection = CriteriaDirectionType.Minimization},//cost
+                    new QualitativeCriteriaBase{CriteriaDirection = CriteriaDirectionType.Maximization}, //strength
+                    new QualitativeCriteriaBase{CriteriaDirection = CriteriaDirectionType.Maximization }, //national reputation
+                    new CriteriaBase{CriteriaDirection = CriteriaDirectionType.Maximization}, // capacity
+                    new QualitativeCriteriaBase{CriteriaDirection = CriteriaDirectionType.Minimization}, // work hardness
+                },
+                Alternatives = new List<AlternativeBase>
+                {
+                    new AlternativeBase
+                    {
+                        Values = new List<IAlternativeValue>
+                        {
+                            new AlternativeValueBase(3),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.Medium, new QualitativeCriteriaBase()),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.VeryGood, new QualitativeCriteriaBase()),
+                            new AlternativeValueBase(24000),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.FairlyWeak, new QualitativeCriteriaBase())
+                        }
+                    },
+                    new AlternativeBase
+                    {
+                        Values = new List<IAlternativeValue>
+                        {
+                            new AlternativeValueBase(1.2),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.Good, new QualitativeCriteriaBase()),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.Medium, new QualitativeCriteriaBase()),
+                            new AlternativeValueBase(25000),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.Medium, new QualitativeCriteriaBase())
+                        }
+                    },
+                     new AlternativeBase
+                    {
+                        Values = new List<IAlternativeValue>
+                        {
+                            new AlternativeValueBase(1.5),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.VeryGood, new QualitativeCriteriaBase()),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.Poor, new QualitativeCriteriaBase()),
+                            new AlternativeValueBase(32000),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.Excellent, new QualitativeCriteriaBase())
+                        }
+                     }
+                }
+            };
+            var result = provider.Solve(alternatives);
+            Assert.IsTrue(result.Ranks.Count == 3);
+            Assert.IsTrue(result.Ranks[0] == 3);
+            Assert.IsTrue(result.Ranks[1] == 2);
+            Assert.IsTrue(result.Ranks[2] == 1);
+        }
+
     }
 }

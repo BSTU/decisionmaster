@@ -26,7 +26,7 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.WASPAS
         {
             _alternatives = alternatives;
 
-            double[,] normalizedDecisionMarix = GetNormalizedMatrix(_alternatives);
+            double[,] normalizedDecisionMarix = GetNormalizedMatrix();
 
             double[] ranks = GetResultValues(
                 GetAdditiveValues(normalizedDecisionMarix),
@@ -61,23 +61,23 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.WASPAS
             return result;
         }
 
-        private double [,] GetNormalizedMatrix(AlternativesBase alternatives)
+        private double [,] GetNormalizedMatrix()
         {
-            double[,] result = new double[alternatives.Alternatives.Count, alternatives.Criterias.Count];
+            double[,] result = new double[_alternatives.Alternatives.Count, _alternatives.Criterias.Count];
 
-            List<double> MinMaxValues = GetMinMaxValues(_alternatives);
-            for (int i = 0; i < alternatives.Alternatives.Count; ++i)
+            List<double> MinMaxValues = GetMinMaxValues();
+            for (int i = 0; i < _alternatives.Alternatives.Count; ++i)
             {
-                for (int j = 0; j < alternatives.Criterias.Count; ++j)
+                for (int j = 0; j < _alternatives.Criterias.Count; ++j)
                 {
-                    if (alternatives.Criterias[j] is QualitativeCriteriaBase ||
-                    alternatives.Criterias[j].CriteriaDirection == CriteriaDirectionType.Maximization)
+                    if (_alternatives.Criterias[j] is QualitativeCriteriaBase ||
+                    _alternatives.Criterias[j].CriteriaDirection == CriteriaDirectionType.Maximization)
                     {
-                        result[i, j] = alternatives.Alternatives[i].Values[j].Value / MinMaxValues[j];
+                        result[i, j] = _alternatives.Alternatives[i].Values[j].Value / MinMaxValues[j];
                     }
                     else
                     {
-                        result[i, j] = MinMaxValues[j] / alternatives.Alternatives[i].Values[j].Value;
+                        result[i, j] = MinMaxValues[j] / _alternatives.Alternatives[i].Values[j].Value;
                     }
                 }
             }      
@@ -119,30 +119,30 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.WASPAS
             return result;
         }
 
-        private List<double> GetMinMaxValues(AlternativesBase alternatives)
+        private List<double> GetMinMaxValues()
         {
             List<double> result = new List<double>();
-            for (int i = 0; i < alternatives.Criterias.Count; ++i)
+            for (int i = 0; i < _alternatives.Criterias.Count; ++i)
             {
-                if (alternatives.Criterias[i] is QualitativeCriteriaBase || 
-                    alternatives.Criterias[i].CriteriaDirection == CriteriaDirectionType.Maximization)
+                if (_alternatives.Criterias[i] is IQualitativeCriteria || 
+                    _alternatives.Criterias[i].CriteriaDirection == CriteriaDirectionType.Maximization)
                 {
-                    result.Add(GetMaxValue(GetValuesRow(alternatives, i)));
+                    result.Add(GetMaxValue(GetValuesRow(i)));
                 }
                 else
                 {
-                    result.Add(GetMinValue(GetValuesRow(alternatives, i)));
+                    result.Add(GetMinValue(GetValuesRow(i)));
                 }
             }
             return result;
         }
 
-        double [] GetValuesRow(AlternativesBase alternatives, int index)
+        double [] GetValuesRow(int index)
         {
-            double[] result = new double[alternatives.Alternatives.Count];
-            for (int i = 0; i < alternatives.Alternatives.Count; ++i)
+            double[] result = new double[_alternatives.Alternatives.Count];
+            for (int i = 0; i < _alternatives.Alternatives.Count; ++i)
             {
-                result[i] = alternatives.Alternatives[i].Values[index].Value;
+                result[i] = _alternatives.Alternatives[i].Values[index].Value;
             }
 
             return result;
