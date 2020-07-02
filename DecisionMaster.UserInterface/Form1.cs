@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.SMART;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.REGIME;
+using DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE;
 using DecisionMaster.AlgorithmsLibrary.Interfaces;
 using DecisionMaster.AlgorithmsLibrary.Models;
 using DecisionMaster.UserInterface.Controllers;
@@ -132,6 +133,9 @@ namespace DecisionMaster.UserInterface
                 comboBoxSpecifyPROMETHEE.Enabled = true;
                 comboBoxSpecifyPROMETHEE.SelectedIndex = 0;
 
+                comboBoxSpecifyELECTRE.Enabled = true;
+                comboBoxSpecifyELECTRE.SelectedIndex = 0;
+
                 buttonApplyCriteria.Enabled = true;
 
                 if (comboBoxCriteriaType.SelectedIndex == 0)
@@ -243,6 +247,8 @@ namespace DecisionMaster.UserInterface
             comboBoxSpecifyPROMETHEE.SelectedIndex = -1;
             comboBoxPreferenceFunction.SelectedIndex = -1;
 
+            comboBoxSpecifyELECTRE.SelectedIndex = -1;            
+
             panelNewCriteriaData.Enabled = false;
             toolStripCriteriaManager.Enabled = true;
             dataGridViewCriteriasData.Enabled = true;
@@ -307,6 +313,39 @@ namespace DecisionMaster.UserInterface
                 CheckAndGetQuantitativeMinMax() :
                 CheckAndGetQualitativeMinMax()
                 );
+        }
+
+        private ELECTREParameters CheckAndGetELECTREValues()
+        {
+            ELECTREParameters result = new ELECTREParameters();
+
+            double p=0, v=0, q=0;
+            if (textBoxElectreP.Text == "" || double.TryParse(textBoxElectreP.Text, out p) == false)
+            {
+                throw new Exception("ELECTRE parameter P is empty");
+            }
+            if (textBoxElectreQ.Text == "" || double.TryParse(textBoxElectreQ.Text, out q) == false)
+            {
+                throw new Exception("ELECTRE parameter Q is empty");
+            }
+            if (textBoxElectreV.Text == "" || double.TryParse(textBoxElectreV.Text, out v) == false)
+            {
+                throw new Exception("ELECTRE parameter V is empty");
+            }
+
+            if (p < q)
+            {
+                throw new Exception("ELECTRE's data is invalid: P must be greater or equal Q");
+            }
+            if (v < q)
+            {
+                throw new Exception("ELECTRE's data is invalid: V must be greater or equal Q");
+            }
+
+            result.p = p;
+            result.q = q;
+            result.v = v;
+            return result;
         }
 
         private PreferenceFunction CheckAndGetPROMETHEEValues()
@@ -378,9 +417,6 @@ namespace DecisionMaster.UserInterface
             data.MinValue = MinMaxValues[0];
             data.MaxValue = MinMaxValues[1];
 
-
-
-
             data.PROMETHEEConfiguration = (SpecialParametersEnum)comboBoxSpecifyPROMETHEE.SelectedIndex;
             if (comboBoxSpecifyPROMETHEE.SelectedIndex == 2)
             {
@@ -389,6 +425,21 @@ namespace DecisionMaster.UserInterface
             if (data.PROMETHEEConfiguration == SpecialParametersEnum.Default)
             {
                 data.PreferenceFunction = new PreferenceFunction(PreferenceFunctionEnum.UsualCriterion);
+            }
+
+            data.ELECTREConfiguration = (SpecialParametersEnum)comboBoxSpecifyELECTRE.SelectedIndex;
+            if (comboBoxSpecifyELECTRE.SelectedIndex == 2)
+            {
+                data.ELECTREspecialParameters = CheckAndGetELECTREValues();
+            }
+            if (comboBoxSpecifyELECTRE.SelectedIndex == 1)
+            {
+                data.ELECTREspecialParameters = new ELECTREParameters
+                {
+                    p = 0,
+                    q = 0,
+                    v = 0
+                };
             }
 
         }
@@ -417,6 +468,7 @@ namespace DecisionMaster.UserInterface
             NewRow.Cells[5].Value = data.MinValue;
             NewRow.Cells[6].Value = data.MaxValue;
             NewRow.Cells[7].Value = data.PROMETHEEConfiguration.ToString();
+            NewRow.Cells[8].Value = data.ELECTREConfiguration.ToString();
             if (EditingIndex == -1)
             {
                 dataGridViewCriteriasData.Rows.Add(NewRow);
@@ -554,6 +606,23 @@ namespace DecisionMaster.UserInterface
                     textBoxPreferenceParameter2.Text = data.PreferenceFunction._parameters[1].ToString();
                 }
             }
+
+            comboBoxSpecifyELECTRE.SelectedIndex = (int)data.ELECTREConfiguration;
+            if (data.PROMETHEEConfiguration == SpecialParametersEnum.Manual)
+            {
+                textBoxElectreP.Enabled = true;
+                textBoxElectreP.Text = data.ELECTREspecialParameters.p.ToString();
+                textBoxElectreQ.Enabled = true;
+                textBoxElectreQ.Text = data.ELECTREspecialParameters.q.ToString();
+                textBoxElectreV.Enabled = true;
+                textBoxElectreV.Text = data.ELECTREspecialParameters.v.ToString();
+            }
+            else
+            {
+                textBoxElectreP.Enabled = false;
+                textBoxElectreQ.Enabled = false;
+                textBoxElectreV.Enabled = false;
+            }
         }
 
         private void toolStripButtonEditCriteria_Click(object sender, EventArgs e)
@@ -649,14 +718,23 @@ namespace DecisionMaster.UserInterface
                 try
                 {
                     CheckAlterntivesValues();
+                    textBoxELECTREBeta.Enabled = true;
+                    textBoxELECTREAlpha.Enabled = true;
+                    checkBoxPROMETHEE.Enabled = true;
                     foreach (CriteriaController data in controller._criterias.Criterias)
                     {
                         if (data.PROMETHEEConfiguration == SpecialParametersEnum.None)
                         {
-                            checkBoxPROMETHEE.Checked = false;
+//                            checkBoxPROMETHEE.Checked = false;
                             checkBoxPROMETHEE.Enabled = false;
                         }
+                        if(data.ELECTREConfiguration == SpecialParametersEnum.None)
+                        {
+                            textBoxELECTREAlpha.Enabled = false;
+                            textBoxELECTREBeta.Enabled = false;
+                        }
                     }
+
                     comboBoxSpecifyWASPAS.SelectedIndex = (int)controller.WASPASConfiguration;
                     if (comboBoxSpecifyWASPAS.SelectedIndex <= 0)
                     {
@@ -674,6 +752,8 @@ namespace DecisionMaster.UserInterface
                         textBoxWASPASLambda.Text = controller.WASPASLambda.ToString();
                         checkBoxWASPAS.Enabled = true;
                     }
+
+
                 }
                 catch (Exception E)
                 {
@@ -685,8 +765,10 @@ namespace DecisionMaster.UserInterface
 
         private void buttonCalc_Click(object sender, EventArgs e)
         {
-            if (CheckWASPASValue() == true)
+            try
             {
+                CheckWASPASValue();
+                CheckELECTREValues();
                 dataGridViewRanks.Rows.Clear();
                 dataGridViewRanks.Columns.Clear();
                 FillColumns();
@@ -695,13 +777,34 @@ namespace DecisionMaster.UserInterface
                     dataGridViewRanks.Rows.Add(row);
                 }
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("WASPAS parameter must belong [0,1] interval");
+                MessageBox.Show(ex.Message);
             }
         }
-
-        private bool CheckWASPASValue()
+        private void CheckELECTREValues()
+        {
+            if (textBoxELECTREAlpha.Enabled == false)
+            {
+                controller.ELECTREAlpha = 0;
+                controller.ELECTREBeta = 0;
+            }
+            else
+            {
+                double alpha = 0, beta = 0;
+                if (double.TryParse(textBoxELECTREAlpha.Text, out alpha) == false)
+                {
+                    throw new Exception("ELECTRE alpha is invalid");
+                }
+                if (double.TryParse(textBoxELECTREBeta.Text, out beta) == false)
+                {
+                    throw new Exception("ELECTRE beta is invalid");
+                }
+                controller.ELECTREAlpha = alpha;
+                controller.ELECTREBeta = beta;
+            }
+        }
+        private void CheckWASPASValue()
         {
             if (comboBoxSpecifyWASPAS.SelectedIndex == 1)
             {
@@ -712,11 +815,10 @@ namespace DecisionMaster.UserInterface
                 double Value;
                 if (textBoxWASPASLambda.Text == "" || double.TryParse(textBoxWASPASLambda.Text, out Value) == false)
                 {
-                    return false;
+                    throw new Exception("WASPAS parameter is invalid");
                 }
                 controller.WASPASLambda = Value;
             }
-            return true;
         }
 
         private void FillColumns()
@@ -736,6 +838,12 @@ namespace DecisionMaster.UserInterface
                 if (checkBoxPROMETHEE.Enabled == true)
                 {
                     checkBoxPROMETHEE.Checked = checkBoxChooseAll.Checked;
+                    controller._methods[SolutionController.MethodsEnum.PROMETHEE] = checkBoxChooseAll.Checked;
+                }
+
+                if (checkBoxELECTRE.Enabled == true)
+                {
+                    checkBoxELECTRE.Checked = checkBoxChooseAll.Checked;
                     controller._methods[SolutionController.MethodsEnum.PROMETHEE] = checkBoxChooseAll.Checked;
                 }
 
@@ -801,6 +909,15 @@ namespace DecisionMaster.UserInterface
             }
         }
 
+        private void checkBoxELECTRE_CheckedChanged(object sender, EventArgs e)
+        {
+            controller._methods[SolutionController.MethodsEnum.ELECTRE] = checkBoxELECTRE.Checked;
+            if (checkBoxELECTRE.Checked == false)
+            {
+                checkBoxChooseAll.Checked = false;
+            }
+        }
+
         private void comboBoxSpecifyWASPAS_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             controller.WASPASConfiguration = (SpecialParametersEnum)comboBoxSpecifyWASPAS.SelectedIndex;
@@ -818,6 +935,27 @@ namespace DecisionMaster.UserInterface
             {
                 textBoxWASPASLambda.Enabled = true;
                 checkBoxWASPAS.Enabled = true;
+            }
+        }
+
+        private void comboBoxSpecifyELECTRE_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxSpecifyELECTRE.SelectedIndex == 2)
+            {
+                textBoxElectreP.Enabled = true;
+                textBoxElectreP.Text = "";
+
+                textBoxElectreQ.Enabled = true;
+                textBoxElectreQ.Text = "";
+
+                textBoxElectreV.Enabled = true;
+                textBoxElectreV.Text = "";
+            }
+            else
+            {
+                textBoxElectreP.Enabled = true;
+                textBoxElectreQ.Enabled = true;
+                textBoxElectreV.Enabled = true;
             }
         }
 

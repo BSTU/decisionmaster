@@ -17,8 +17,7 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.REGIME
         private double CalculateSuperiorityIdentifier(
             AlternativeBase lhs, 
             AlternativeBase rhs, 
-            List <ICriteria> criterias, 
-            IDecisionConfiguration config)
+            List <ICriteria> criterias)
         {
             double result = 0;
 
@@ -27,22 +26,26 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.REGIME
                 var criteria = criterias[i];
                 var lhs_value = lhs.Values[i].Value;
                 var rhs_value = rhs.Values[i].Value;
-                if (criteria is QualitativeCriteriaBase)
+                if (criteria is IQualitativeCriteria)
+                {
+                    if (lhs_value >= rhs_value)
+                    {
+                        result += _configuration.CriteriaRanks[i];
+                    }
+                  
+                }
+                else 
                 {
                     if (criteria.CriteriaDirection == CriteriaDirectionType.Maximization &&
-                        lhs_value >= rhs_value)
+                    lhs_value >= rhs_value)
                     {
-                        result += config.CriteriaRanks[i];
+                        result += _configuration.CriteriaRanks[i];
                     }
                     if (criteria.CriteriaDirection == CriteriaDirectionType.Minimization &&
                         lhs_value <= rhs_value)
                     {
-                        result += config.CriteriaRanks[i];
+                        result += _configuration.CriteriaRanks[i];
                     }
-                }
-                else if (lhs_value >= rhs_value)
-                {
-                    result += config.CriteriaRanks[i];
                 }
             }
 
@@ -60,8 +63,7 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.REGIME
                     impact_matrix[i, j] = CalculateSuperiorityIdentifier(
                         alternatives.Alternatives[i],
                         alternatives.Alternatives[j],
-                        alternatives.Criterias,
-                        configuration
+                        alternatives.Criterias
                       );
                 }
             }

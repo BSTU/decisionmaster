@@ -3,6 +3,7 @@ using DecisionMaster.AlgorithmsLibrary.Algorithms.REGIME;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.WASPAS;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.TAXONOMY;
+using DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE;
 using DecisionMaster.AlgorithmsLibrary.Interfaces;
 using DecisionMaster.AlgorithmsLibrary.Models;
 using NUnit.Framework;
@@ -412,6 +413,81 @@ namespace DecisionMaster.AlgorithmsLibrary.Tests.Unit
                             new AlternativeValueBase(1.5),
                             new QualitativeAlternativeValue(QualitativeCriteriaEnum.VeryGood, new QualitativeCriteriaBase()),
                             new QualitativeAlternativeValue(QualitativeCriteriaEnum.Poor, new QualitativeCriteriaBase()),
+                            new AlternativeValueBase(32000),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.Excellent, new QualitativeCriteriaBase())
+                        }
+                     }
+                }
+            };
+            var result = provider.Solve(alternatives);
+            Assert.IsTrue(result.Ranks.Count == 3);
+            Assert.IsTrue(result.Ranks[0] == 3);
+            Assert.IsTrue(result.Ranks[1] == 2);
+            Assert.IsTrue(result.Ranks[2] == 1);
+        }
+
+        [Test]
+        public void TestELECTREDecision()
+        {
+            ELECTREDecisionProvider provider = new ELECTREDecisionProvider();
+            ELECTREDecisionConfiguration configuration = new ELECTREDecisionConfiguration
+            {
+                CriteriaRanks = new List<double> { 0.179, 0.062, 0.211, 0.017, 0.531 },
+                alpha = 0.05,
+                beta = 0.5,
+                Parameters = new List<ELECTREParameters>
+                {
+                    new ELECTREParameters{ v = 0.09, p = 0.08, q = 0.02},
+                    new ELECTREParameters{ v = 0.02, p = 0.015, q = 0.005},
+                    new ELECTREParameters{ v = 0.11, p = 0.1, q = 0.05},
+                    new ELECTREParameters{ v = 0.001, p = 0.001, q = 0},
+                    new ELECTREParameters{ v = 0.35, p = 0.33, q = 0.15},
+                }
+            };
+
+            provider.Init(configuration);
+
+            var alternatives = new AlternativesBase
+            {
+                Criterias = new List<ICriteria>
+                {
+                    new CriteriaBase{CriteriaDirection = CriteriaDirectionType.Minimization},//cost
+                    new QualitativeCriteriaBase{CriteriaDirection = CriteriaDirectionType.Maximization}, //strength
+                    new QualitativeCriteriaBase{CriteriaDirection = CriteriaDirectionType.Maximization }, //national reputation
+                    new CriteriaBase{CriteriaDirection = CriteriaDirectionType.Maximization}, // capacity
+                    new QualitativeCriteriaBase{CriteriaDirection = CriteriaDirectionType.Minimization}, // work hardness
+                },
+                Alternatives = new List<AlternativeBase>
+                {
+                    new AlternativeBase
+                    {
+                        Values = new List<IAlternativeValue>
+                        {
+                            new AlternativeValueBase(3),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.Medium, new QualitativeCriteriaBase()),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.VeryGood, new QualitativeCriteriaBase()),
+                            new AlternativeValueBase(24000),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.FairlyWeak, new QualitativeCriteriaBase())
+                        }
+                    },
+                    new AlternativeBase
+                    {
+                        Values = new List<IAlternativeValue>
+                        {
+                            new AlternativeValueBase(1.2),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.Good, new QualitativeCriteriaBase()),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.Medium, new QualitativeCriteriaBase()),
+                            new AlternativeValueBase(25000),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.Good, new QualitativeCriteriaBase())
+                        }
+                    },
+                     new AlternativeBase
+                    {
+                        Values = new List<IAlternativeValue>
+                        {
+                            new AlternativeValueBase(1.5),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.Excellent, new QualitativeCriteriaBase()),
+                            new QualitativeAlternativeValue(QualitativeCriteriaEnum.FairlyWeak, new QualitativeCriteriaBase()),
                             new AlternativeValueBase(32000),
                             new QualitativeAlternativeValue(QualitativeCriteriaEnum.Excellent, new QualitativeCriteriaBase())
                         }

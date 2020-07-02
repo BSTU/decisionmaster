@@ -8,6 +8,7 @@ using DecisionMaster.AlgorithmsLibrary.Interfaces;
 using DecisionMaster.AlgorithmsLibrary.Algorithms;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.SMART;
+using DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE;
 
 namespace DecisionMaster.UserInterface.Controllers
 {
@@ -22,6 +23,9 @@ namespace DecisionMaster.UserInterface.Controllers
 
         public SpecialParametersEnum PROMETHEEConfiguration { get; set; }
         public PreferenceFunction PreferenceFunction { get; set; }
+
+        public SpecialParametersEnum ELECTREConfiguration { get; set; }
+        public ELECTREParameters ELECTREspecialParameters { get; set; }
     }
 
     public class CriteriasController
@@ -31,6 +35,17 @@ namespace DecisionMaster.UserInterface.Controllers
             Criterias = new List<CriteriaController>();
         }
         public List<CriteriaController> Criterias { get; set; }
+
+        public List<ELECTREParameters> GetELECTREParameters()
+        {
+            List<ELECTREParameters> result = new List<ELECTREParameters>();
+            foreach (CriteriaController criteria in Criterias)
+            {
+                result.Add(criteria.ELECTREspecialParameters);
+            }
+
+            return result;
+        }
 
         public List<PreferenceFunction> GetPreferenceFunctions()
         {
