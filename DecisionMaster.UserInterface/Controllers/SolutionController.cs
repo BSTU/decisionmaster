@@ -12,6 +12,8 @@ using DecisionMaster.AlgorithmsLibrary.Algorithms.WASPAS;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.TAXONOMY;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace DecisionMaster.UserInterface.Controllers
 {
@@ -31,8 +33,14 @@ namespace DecisionMaster.UserInterface.Controllers
             {MethodsEnum.REGIME, false },
             {MethodsEnum.PROMETHEE, false },
             {MethodsEnum.WASPAS, false },
-            {MethodsEnum.TAXONOMY, false }
+            {MethodsEnum.TAXONOMY, false },
+            {MethodsEnum.ELECTRE, false }
         };
+
+        public SolutionController()
+        {
+
+        }
 
         public List <String> GetAlternativesTitles()
         {
@@ -218,7 +226,20 @@ namespace DecisionMaster.UserInterface.Controllers
                 TitleCell.Value = "ELECTRE";
                 NewRow.Cells.Add(TitleCell);
 
-                List<int> Ranks = GetRanksELECTRE();
+                List<int> Ranks = null;
+                try
+                {
+                    Ranks = GetRanksELECTRE();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    Ranks = new List<int>();
+                    for (int i = 0; i < _alternatives.Alternatives.Count; ++i)
+                    {
+                        Ranks.Add(1);
+                    }
+                }
 
                 for (int i = 0; i < Ranks.Count; ++i)
                 {
@@ -297,6 +318,11 @@ namespace DecisionMaster.UserInterface.Controllers
             AlternativesBase alternatives = GetAlternativesBases(MethodsEnum.REGIME);
 
             List<int> result = provider.Solve(alternatives).Ranks;
+            int MinResult = result.Min();
+            for (int i = 0; i < result.Count; ++i)
+            {
+                result[i] -= (MinResult-1);
+            }
             return result;
         }
 
@@ -347,7 +373,7 @@ namespace DecisionMaster.UserInterface.Controllers
             return result;
         }
 
-        public AlternativesBase GetAlternativesBases(MethodsEnum method)
+        private AlternativesBase GetAlternativesBases(MethodsEnum method)
         {
             List<ICriteria> criterias = (method == MethodsEnum.SMART ? _criterias.GetCriteriasAsSMART() : _criterias.GetCriterias());
             List<AlternativeBase> alternatives = _alternatives.GetAlternativeBases(criterias, GetQualitativeConverter(method));
@@ -370,7 +396,7 @@ namespace DecisionMaster.UserInterface.Controllers
                 return new QualitativeCriteriaBase();
             }
         }
-
+        [JsonConverter(typeof(StringEnumConverter))]
         public enum MethodsEnum
         {
             SMART = 1,

@@ -1,6 +1,8 @@
 ﻿using DecisionMaster.AlgorithmsLibrary.Interfaces;
 using System.Collections.Generic;
 using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE
 {
@@ -13,8 +15,11 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE
 
     public class PreferenceFunction
     {
-        public PreferenceFunction(PreferenceFunctionEnum FunctionType = PreferenceFunctionEnum.UsualCriterion,
-            List<double> Parameters = null)
+        public PreferenceFunction()
+        {
+
+        }
+        public PreferenceFunction(PreferenceFunctionEnum FunctionType, List<double> Parameters)
         {
             int ErrorCode = FunctionType switch
             {
@@ -54,7 +59,7 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE
 
     }
 
-
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum PreferenceFunctionEnum
     {
         UsualCriterion = 1,

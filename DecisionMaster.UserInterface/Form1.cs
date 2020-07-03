@@ -1,23 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE;
-using DecisionMaster.AlgorithmsLibrary.Algorithms.SMART;
-using DecisionMaster.AlgorithmsLibrary.Algorithms.REGIME;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE;
 using DecisionMaster.AlgorithmsLibrary.Interfaces;
-using DecisionMaster.AlgorithmsLibrary.Models;
 using DecisionMaster.UserInterface.Controllers;
+using Newtonsoft.Json;
 
 namespace DecisionMaster.UserInterface
 {
-   
+
     public partial class FormDecisionMaster : Form
     {
         SolutionController controller = new SolutionController();
@@ -32,6 +25,17 @@ namespace DecisionMaster.UserInterface
             {"Good", 5 },
             {"Very Good", 6 },
             {"Excellent", 7 }
+        };
+
+        public static Dictionary<double, String> DoubleToQulitative = new Dictionary<double, String>
+        {
+            {1, "Poor" },
+            {2, "Fairly Weak" },
+            {3, "Medium" },
+            {4, "Fairly Good" },
+            {5, "Good" },
+            {6, "Very Good" },
+            {7, "Excellent" }
         };
 
         public FormDecisionMaster()
@@ -75,6 +79,11 @@ namespace DecisionMaster.UserInterface
             labelPreferenceParameter1.Visible = false;
             textBoxPreferenceParameter2.Visible = false;
             labelPreferenceParameter2.Visible = false;
+
+            comboBoxSpecifyELECTRE.Enabled = false;
+            textBoxElectreP.Enabled = false;
+            textBoxElectreQ.Enabled = false;
+            textBoxElectreV.Enabled = false;
 
             buttonApplyCriteria.Enabled = false;
             buttonCriteriaCancel.Enabled = true;
@@ -187,6 +196,10 @@ namespace DecisionMaster.UserInterface
                 case 1:
                     labelPreferenceParameter1.Visible = true;
                     textBoxPreferenceParameter1.Visible = true;
+
+                    labelPreferenceParameter1.Enabled = true;
+                    textBoxPreferenceParameter1.Enabled = true;
+
                     labelPreferenceParameter2.Visible = false;
                     textBoxPreferenceParameter2.Visible = false;
 
@@ -195,6 +208,10 @@ namespace DecisionMaster.UserInterface
                 case 2:
                     labelPreferenceParameter1.Visible = true;
                     textBoxPreferenceParameter1.Visible = true;
+
+                    labelPreferenceParameter1.Enabled = true;
+                    textBoxPreferenceParameter1.Enabled = true;
+
                     labelPreferenceParameter2.Visible = false;
                     textBoxPreferenceParameter2.Visible = false;
 
@@ -206,6 +223,11 @@ namespace DecisionMaster.UserInterface
                     labelPreferenceParameter2.Visible = true;
                     textBoxPreferenceParameter2.Visible = true;
 
+                    labelPreferenceParameter1.Enabled = true;
+                    textBoxPreferenceParameter1.Enabled = true;
+                    labelPreferenceParameter2.Enabled = true;
+                    textBoxPreferenceParameter2.Enabled = true;
+
                     labelPreferenceParameter1.Text = "q";
                     labelPreferenceParameter2.Text = "p";
                     break;
@@ -215,12 +237,98 @@ namespace DecisionMaster.UserInterface
                     labelPreferenceParameter2.Visible = true;
                     textBoxPreferenceParameter2.Visible = true;
 
+                    labelPreferenceParameter1.Enabled = true;
+                    textBoxPreferenceParameter1.Enabled = true;
+                    labelPreferenceParameter2.Enabled = true;
+                    textBoxPreferenceParameter2.Enabled = true;
+
                     labelPreferenceParameter1.Text = "s";
                     labelPreferenceParameter2.Text = "r";
                     break;
                 case 5:
                     labelPreferenceParameter1.Visible = true;
                     textBoxPreferenceParameter1.Visible = true;
+                    labelPreferenceParameter2.Visible = false;
+                    textBoxPreferenceParameter2.Visible = false;
+
+                    labelPreferenceParameter1.Enabled = true;
+                    textBoxPreferenceParameter1.Enabled = true;
+
+                    labelPreferenceParameter1.Text = "sigma";
+                    break;
+            }
+        }
+
+        private void ShowPreferenceParameters(int index)
+        {
+            int SelectedIndex = index;
+            switch (SelectedIndex)
+            {
+                case 0:
+                    labelPreferenceParameter1.Visible = false;
+                    textBoxPreferenceParameter1.Visible = false;
+                    labelPreferenceParameter2.Visible = false;
+                    textBoxPreferenceParameter2.Visible = false;
+                    break;
+                case 1:
+                    labelPreferenceParameter1.Visible = true;
+                    textBoxPreferenceParameter1.Visible = true;
+
+                    labelPreferenceParameter1.Enabled = false;
+                    textBoxPreferenceParameter1.Enabled = false;
+
+                    labelPreferenceParameter2.Visible = false;
+                    textBoxPreferenceParameter2.Visible = false;
+
+                    labelPreferenceParameter1.Text = "l";
+                    break;
+                case 2:
+                    labelPreferenceParameter1.Visible = true;
+                    textBoxPreferenceParameter1.Visible = true;
+
+                    labelPreferenceParameter1.Enabled = false;
+                    textBoxPreferenceParameter1.Enabled = false;
+
+                    labelPreferenceParameter2.Visible = false;
+                    textBoxPreferenceParameter2.Visible = false;
+
+                    labelPreferenceParameter1.Text = "m";
+                    break;
+                case 3:
+                    labelPreferenceParameter1.Visible = true;
+                    textBoxPreferenceParameter1.Visible = true;
+                    labelPreferenceParameter2.Visible = true;
+                    textBoxPreferenceParameter2.Visible = true;
+
+                    labelPreferenceParameter1.Enabled = false;
+                    textBoxPreferenceParameter1.Enabled = false;
+                    labelPreferenceParameter2.Enabled = false;
+                    textBoxPreferenceParameter2.Enabled = false;
+
+                    labelPreferenceParameter1.Text = "q";
+                    labelPreferenceParameter2.Text = "p";
+                    break;
+                case 4:
+                    labelPreferenceParameter1.Visible = true;
+                    textBoxPreferenceParameter1.Visible = true;
+                    labelPreferenceParameter2.Visible = true;
+                    textBoxPreferenceParameter2.Visible = true;
+
+                    labelPreferenceParameter1.Enabled = false;
+                    textBoxPreferenceParameter1.Enabled = false;
+                    labelPreferenceParameter2.Enabled = false;
+                    textBoxPreferenceParameter2.Enabled = false;
+
+                    labelPreferenceParameter1.Text = "s";
+                    labelPreferenceParameter2.Text = "r";
+                    break;
+                case 5:
+                    labelPreferenceParameter1.Visible = true;
+                    textBoxPreferenceParameter1.Visible = true;
+
+                    labelPreferenceParameter1.Enabled = false;
+                    textBoxPreferenceParameter1.Enabled = false;
+
                     labelPreferenceParameter2.Visible = false;
                     textBoxPreferenceParameter2.Visible = false;
 
@@ -361,7 +469,7 @@ namespace DecisionMaster.UserInterface
                 double LParam, RParam;
                 if (SelectedIndex == 0)
                 {
-                    return new PreferenceFunction(PreferenceFunctionEnum.UsualCriterion);
+                    return new PreferenceFunction(PreferenceFunctionEnum.UsualCriterion, new List<double>());
                 }
                 if (SelectedIndex == 1 || SelectedIndex == 2 || SelectedIndex == 5)
                 {
@@ -372,7 +480,7 @@ namespace DecisionMaster.UserInterface
                     else
                     {
                         result =  new PreferenceFunction(
-                            PreferenceFunctionEnum.QuasiCriterion,
+                            (PreferenceFunctionEnum)SelectedIndex+1,
                             new List<double> { LParam }
                             );
                     }
@@ -387,7 +495,7 @@ namespace DecisionMaster.UserInterface
                     else
                     {
                         result = new PreferenceFunction(
-                            PreferenceFunctionEnum.LevelCriterion,
+                            (PreferenceFunctionEnum)SelectedIndex + 1,
                             new List<double> { LParam, RParam }
                             );
                     }
@@ -422,9 +530,13 @@ namespace DecisionMaster.UserInterface
             {
                 data.PreferenceFunction = CheckAndGetPROMETHEEValues();
             }
+            else
+            {
+                data.PreferenceFunction = new PreferenceFunction(PreferenceFunctionEnum.UsualCriterion, new List<double>());
+            }
             if (data.PROMETHEEConfiguration == SpecialParametersEnum.Default)
             {
-                data.PreferenceFunction = new PreferenceFunction(PreferenceFunctionEnum.UsualCriterion);
+                data.PreferenceFunction = new PreferenceFunction(PreferenceFunctionEnum.UsualCriterion, new List<double>());
             }
 
             data.ELECTREConfiguration = (SpecialParametersEnum)comboBoxSpecifyELECTRE.SelectedIndex;
@@ -595,7 +707,7 @@ namespace DecisionMaster.UserInterface
             {
                 comboBoxPreferenceFunction.Visible = true;
                 comboBoxPreferenceFunction.Enabled = true;
-                comboBoxPreferenceFunction.SelectedIndex = (int)data.PreferenceFunction._type;
+                comboBoxPreferenceFunction.SelectedIndex = (int)data.PreferenceFunction._type-1;
                 comboBoxPreferenceFunction_SelectedIndexChanged(sender, e);
                 if (data.PreferenceFunction._parameters.Count > 0)
                 {
@@ -608,13 +720,77 @@ namespace DecisionMaster.UserInterface
             }
 
             comboBoxSpecifyELECTRE.SelectedIndex = (int)data.ELECTREConfiguration;
-            if (data.PROMETHEEConfiguration == SpecialParametersEnum.Manual)
+            if (data.ELECTREConfiguration == SpecialParametersEnum.Manual)
             {
                 textBoxElectreP.Enabled = true;
                 textBoxElectreP.Text = data.ELECTREspecialParameters.p.ToString();
                 textBoxElectreQ.Enabled = true;
                 textBoxElectreQ.Text = data.ELECTREspecialParameters.q.ToString();
                 textBoxElectreV.Enabled = true;
+                textBoxElectreV.Text = data.ELECTREspecialParameters.v.ToString();
+            }
+            else
+            {
+                textBoxElectreP.Enabled = false;
+                textBoxElectreQ.Enabled = false;
+                textBoxElectreV.Enabled = false;
+            }
+        }
+
+        private void ShowCriterias(CriteriaController data, object sender, EventArgs e)
+        {
+            textBoxCriteriaTitle.Text = data.Title;
+
+            textBoxCriteriaWeight.Text = data.Weight.ToString();
+
+            comboBoxCriteriaType.SelectedIndex = (int)data.CriteriaType;
+
+            comboBoxCriteriaDitection.SelectedIndex = (int)data.CriteriaDirection - 1;
+
+            if (data.CriteriaType == CriteriaTypeEnum.Quantitative)
+            {
+                comboBoxQualitativeMaxValue.Visible = false;
+                textBoxQuantitativeMaxValue.Visible = true;
+                textBoxQuantitativeMaxValue.Text = data.MaxValue.ToString();
+
+                comboBoxQualitativeMinValue.Visible = false;
+                textBoxQuantitativeMinValue.Visible = true;
+                textBoxQuantitativeMinValue.Text = data.MinValue.ToString();
+            }
+            else
+            {
+                textBoxQuantitativeMaxValue.Visible = false;
+                comboBoxQualitativeMaxValue.Visible = true;
+                comboBoxQualitativeMaxValue.SelectedIndex = (int)data.MaxValue - 1;
+
+                textBoxQuantitativeMinValue.Visible = false;
+                comboBoxQualitativeMinValue.Visible = true;
+                comboBoxQualitativeMinValue.SelectedIndex = (int)data.MinValue - 1;
+            }
+
+            comboBoxSpecifyPROMETHEE.SelectedIndex = (int)data.PROMETHEEConfiguration;
+
+            comboBoxSpecifyPROMETHEE.SelectedIndex = (int)data.PROMETHEEConfiguration;
+            if (data.PROMETHEEConfiguration == SpecialParametersEnum.Manual)
+            {
+                comboBoxPreferenceFunction.Visible = true;
+                ShowPreferenceParameters((int)data.PreferenceFunction._type - 1);
+                
+                if (data.PreferenceFunction._parameters.Count > 0)
+                {
+                    textBoxPreferenceParameter1.Text = data.PreferenceFunction._parameters[0].ToString();
+                }
+                if (data.PreferenceFunction._parameters.Count > 1)
+                {
+                    textBoxPreferenceParameter2.Text = data.PreferenceFunction._parameters[1].ToString();
+                }
+            }
+
+            comboBoxSpecifyELECTRE.SelectedIndex = (int)data.ELECTREConfiguration;
+            if (data.ELECTREConfiguration == SpecialParametersEnum.Manual)
+            {
+                textBoxElectreP.Text = data.ELECTREspecialParameters.p.ToString();
+                textBoxElectreQ.Text = data.ELECTREspecialParameters.q.ToString();
                 textBoxElectreV.Text = data.ELECTREspecialParameters.v.ToString();
             }
             else
@@ -733,6 +909,12 @@ namespace DecisionMaster.UserInterface
                             textBoxELECTREAlpha.Enabled = false;
                             textBoxELECTREBeta.Enabled = false;
                         }
+                    }
+
+                    if (textBoxELECTREAlpha.Enabled == true)
+                    {
+                        textBoxELECTREAlpha.Text = controller.ELECTREAlpha.ToString();
+                        textBoxELECTREBeta.Text = controller.ELECTREBeta.ToString();
                     }
 
                     comboBoxSpecifyWASPAS.SelectedIndex = (int)controller.WASPASConfiguration;
@@ -943,23 +1125,142 @@ namespace DecisionMaster.UserInterface
             if (comboBoxSpecifyELECTRE.SelectedIndex == 2)
             {
                 textBoxElectreP.Enabled = true;
-                textBoxElectreP.Text = "";
-
                 textBoxElectreQ.Enabled = true;
-                textBoxElectreQ.Text = "";
-
                 textBoxElectreV.Enabled = true;
+
+
+                textBoxElectreP.Text = "";
+                textBoxElectreQ.Text = "";
                 textBoxElectreV.Text = "";
             }
             else
             {
-                textBoxElectreP.Enabled = true;
-                textBoxElectreQ.Enabled = true;
-                textBoxElectreV.Enabled = true;
+                textBoxElectreP.Enabled = false;
+                textBoxElectreP.Text = "";
+
+                textBoxElectreQ.Enabled = false;
+                textBoxElectreQ.Text = "";
+
+                textBoxElectreV.Enabled = false;
+                textBoxElectreV.Text = "";
             }
         }
 
-        
+        private void toolStripButtonSave_Click(object sender, EventArgs e)
+        {
+            SaveConfigToFile();
+        }
+
+        private void SaveConfigToFile()
+        {
+            try
+            {
+                if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
+                    return;
+                // получаем выбранный файл
+                string filename = saveFileDialog.FileName;
+                // сохраняем текст в файл
+                CheckAlterntivesValues();
+                string serialized = JsonConvert.SerializeObject(controller);
+                System.IO.File.WriteAllText(filename, serialized);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void FillTablesFromLoadedFile()
+        {
+            dataGridViewCriteriasData.Rows.Clear();
+            dataGridViewAlternatives.Rows.Clear();
+            dataGridViewAlternatives.Columns.Clear();
+            DataGridViewTextBoxColumn TitleCol = new DataGridViewTextBoxColumn { HeaderText = "Alternative's title" };
+            dataGridViewAlternatives.Columns.Add(TitleCol);
+            EditingIndex = -1;
+            for (int i = 0; i < controller._criterias.Criterias.Count; ++i)
+            {
+                AddToCriteriaDataGrid(controller._criterias.Criterias[i]);
+                AddCriteriaColumn(controller._criterias.Criterias[i]);
+                dataGridViewCriteriasData.Rows[i].Cells[0].Value = i.ToString();
+            }
+
+            for (int i = 0; i < controller._alternatives.Alternatives.Count; ++i)
+            {
+                AddAlternativeValuesTiDataGrid(controller._alternatives.Alternatives[i]);
+            }
+        }
+
+        private void AddAlternativeValuesTiDataGrid(AlternativeController alternative)
+        {
+            dataGridViewAlternatives.Rows.Add();
+            DataGridViewRow NewRow = dataGridViewAlternatives.Rows[dataGridViewAlternatives.Rows.Count - 2];
+            NewRow.Cells[0].Value = alternative.Title;
+            for (int i = 0; i < controller._criterias.Criterias.Count; ++i)
+            {
+                if (controller._criterias.Criterias[i].CriteriaType == CriteriaTypeEnum.Qualitative)
+                {
+                    NewRow.Cells[i + 1].Value = DoubleToQulitative[alternative.Values[i]];
+
+                }
+                else
+                {
+                    NewRow.Cells[i + 1].Value = alternative.Values[i].ToString();
+                }
+            }
+        }
+
+        private void LoadConfigFromFile()
+        {
+            try
+            {
+                if (openFileDialog.ShowDialog() == DialogResult.Cancel)
+                    return;
+                // получаем выбранный файл
+                string filename = openFileDialog.FileName;
+                // читаем файл в строку
+                string fileText = System.IO.File.ReadAllText(filename);
+                SolutionController NewController =  JsonConvert.DeserializeObject<SolutionController>(fileText);
+                controller = NewController;
+                FillTablesFromLoadedFile();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void toolStripButtonLoad_Click(object sender, EventArgs e)
+        {
+            LoadConfigFromFile();
+        }
+
+        private void toolStripButtonSaveAlternatives_Click(object sender, EventArgs e)
+        {
+            SaveConfigToFile();
+        }
+
+        private void toolStripButtonLoadAlternatives_Click(object sender, EventArgs e)
+        {
+            LoadConfigFromFile();
+        }
+
+        private void dataGridViewCriteriasData_SelectionChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridViewCriteriasData_Click(object sender, EventArgs e)
+        {
+            var SelectedRow = dataGridViewCriteriasData.SelectedRows;
+
+            if (SelectedRow.Count > 0)
+            {
+                EditingIndex = int.Parse(SelectedRow[0].Cells[0].Value.ToString());
+                ShowCriterias(controller._criterias.Criterias[EditingIndex], sender, e);
+
+            }
+        }
     }
 
 }

@@ -68,8 +68,22 @@
             this.toolStripButtonAddCriteria = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonEditCriteria = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonSave = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonLoad = new System.Windows.Forms.ToolStripButton();
             this.dataGridViewCriteriasData = new System.Windows.Forms.DataGridView();
+            this.ColumnCriteriaIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCriteriaTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCriteriaType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCriteriaDirection = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnMinValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnMaxValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPROMETHEEConfig = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ELECTRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageAlternatives = new System.Windows.Forms.TabPage();
+            this.toolStripAlternativesManager = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonSaveAlternatives = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonLoadAlternatives = new System.Windows.Forms.ToolStripButton();
             this.dataGridViewAlternatives = new System.Windows.Forms.DataGridView();
             this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageSolution = new System.Windows.Forms.TabPage();
@@ -77,6 +91,12 @@
             this.panelInfo = new System.Windows.Forms.Panel();
             this.labelResultsCaption = new System.Windows.Forms.Label();
             this.panelMethodChoose = new System.Windows.Forms.Panel();
+            this.checkBoxELECTRE = new System.Windows.Forms.CheckBox();
+            this.textBoxELECTREBeta = new System.Windows.Forms.TextBox();
+            this.labelELECTREBeta = new System.Windows.Forms.Label();
+            this.textBoxELECTREAlpha = new System.Windows.Forms.TextBox();
+            this.labelELECTRELambda = new System.Windows.Forms.Label();
+            this.labelSpecifyELECTREAlphaBeta = new System.Windows.Forms.Label();
             this.checkBoxTAXONOMY = new System.Windows.Forms.CheckBox();
             this.checkBoxWASPAS = new System.Windows.Forms.CheckBox();
             this.textBoxWASPASLambda = new System.Windows.Forms.TextBox();
@@ -88,38 +108,20 @@
             this.checkBoxREGIME = new System.Windows.Forms.CheckBox();
             this.checkBoxSMART = new System.Windows.Forms.CheckBox();
             this.checkBoxChooseAll = new System.Windows.Forms.CheckBox();
-            this.toolStripButtonSave = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonLoad = new System.Windows.Forms.ToolStripButton();
-            this.ColumnCriteriaIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnCriteriaTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnCriteriaType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnCriteriaDirection = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnMinValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnMaxValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPROMETHEEConfig = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ELECTRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toolStripAlternativesManager = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonSaveAlternatives = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonLoadAlternatives = new System.Windows.Forms.ToolStripButton();
-            this.labelSpecifyELECTREAlphaBeta = new System.Windows.Forms.Label();
-            this.labelELECTRELambda = new System.Windows.Forms.Label();
-            this.textBoxELECTREAlpha = new System.Windows.Forms.TextBox();
-            this.labelELECTREBeta = new System.Windows.Forms.Label();
-            this.textBoxELECTREBeta = new System.Windows.Forms.TextBox();
-            this.checkBoxELECTRE = new System.Windows.Forms.CheckBox();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.panelNewCriteriaData.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageCriterias.SuspendLayout();
             this.toolStripCriteriaManager.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCriteriasData)).BeginInit();
             this.tabPageAlternatives.SuspendLayout();
+            this.toolStripAlternativesManager.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlternatives)).BeginInit();
             this.tabPageSolution.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRanks)).BeginInit();
             this.panelInfo.SuspendLayout();
             this.panelMethodChoose.SuspendLayout();
-            this.toolStripAlternativesManager.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelNewCriteriaData
@@ -376,7 +378,7 @@
             this.textBoxQuantitativeMaxValue.Location = new System.Drawing.Point(181, 141);
             this.textBoxQuantitativeMaxValue.Name = "textBoxQuantitativeMaxValue";
             this.textBoxQuantitativeMaxValue.Size = new System.Drawing.Size(157, 20);
-            this.textBoxQuantitativeMaxValue.TabIndex = 11;
+            this.textBoxQuantitativeMaxValue.TabIndex = 28;
             // 
             // comboBoxQualitativeMaxValue
             // 
@@ -392,7 +394,7 @@
             this.comboBoxQualitativeMaxValue.Location = new System.Drawing.Point(181, 140);
             this.comboBoxQualitativeMaxValue.Name = "comboBoxQualitativeMaxValue";
             this.comboBoxQualitativeMaxValue.Size = new System.Drawing.Size(157, 21);
-            this.comboBoxQualitativeMaxValue.TabIndex = 10;
+            this.comboBoxQualitativeMaxValue.TabIndex = 28;
             this.comboBoxQualitativeMaxValue.Text = "Choose maximal value";
             // 
             // labelMaxValue
@@ -410,7 +412,7 @@
             this.textBoxQuantitativeMinValue.Location = new System.Drawing.Point(181, 110);
             this.textBoxQuantitativeMinValue.Name = "textBoxQuantitativeMinValue";
             this.textBoxQuantitativeMinValue.Size = new System.Drawing.Size(157, 20);
-            this.textBoxQuantitativeMinValue.TabIndex = 8;
+            this.textBoxQuantitativeMinValue.TabIndex = 27;
             // 
             // labelMinValue
             // 
@@ -436,7 +438,7 @@
             this.comboBoxQualitativeMinValue.Location = new System.Drawing.Point(181, 109);
             this.comboBoxQualitativeMinValue.Name = "comboBoxQualitativeMinValue";
             this.comboBoxQualitativeMinValue.Size = new System.Drawing.Size(157, 21);
-            this.comboBoxQualitativeMinValue.TabIndex = 4;
+            this.comboBoxQualitativeMinValue.TabIndex = 27;
             this.comboBoxQualitativeMinValue.Text = "Choose minimal value";
             // 
             // comboBoxCriteriaDitection
@@ -555,6 +557,26 @@
             this.toolStripButtonDelete.Text = "toolStripButton1";
             this.toolStripButtonDelete.Click += new System.EventHandler(this.toolStripButtonDelete_Click);
             // 
+            // toolStripButtonSave
+            // 
+            this.toolStripButtonSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSave.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSave.Image")));
+            this.toolStripButtonSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSave.Name = "toolStripButtonSave";
+            this.toolStripButtonSave.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonSave.Text = "Save";
+            this.toolStripButtonSave.Click += new System.EventHandler(this.toolStripButtonSave_Click);
+            // 
+            // toolStripButtonLoad
+            // 
+            this.toolStripButtonLoad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonLoad.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonLoad.Image")));
+            this.toolStripButtonLoad.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonLoad.Name = "toolStripButtonLoad";
+            this.toolStripButtonLoad.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonLoad.Text = "Load";
+            this.toolStripButtonLoad.Click += new System.EventHandler(this.toolStripButtonLoad_Click);
+            // 
             // dataGridViewCriteriasData
             // 
             this.dataGridViewCriteriasData.AllowUserToAddRows = false;
@@ -581,6 +603,64 @@
             this.dataGridViewCriteriasData.TabIndex = 1;
             this.dataGridViewCriteriasData.TabStop = false;
             this.dataGridViewCriteriasData.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridViewCriteriasData_RowsAdded);
+            this.dataGridViewCriteriasData.SelectionChanged += new System.EventHandler(this.dataGridViewCriteriasData_SelectionChanged);
+            this.dataGridViewCriteriasData.Click += new System.EventHandler(this.dataGridViewCriteriasData_Click);
+            // 
+            // ColumnCriteriaIndex
+            // 
+            this.ColumnCriteriaIndex.HeaderText = "Index";
+            this.ColumnCriteriaIndex.Name = "ColumnCriteriaIndex";
+            this.ColumnCriteriaIndex.ReadOnly = true;
+            this.ColumnCriteriaIndex.Visible = false;
+            this.ColumnCriteriaIndex.Width = 120;
+            // 
+            // ColumnCriteriaTitle
+            // 
+            this.ColumnCriteriaTitle.HeaderText = "Criteria Title";
+            this.ColumnCriteriaTitle.Name = "ColumnCriteriaTitle";
+            this.ColumnCriteriaTitle.ReadOnly = true;
+            // 
+            // Weight
+            // 
+            this.Weight.HeaderText = "Criteria weight";
+            this.Weight.Name = "Weight";
+            this.Weight.ReadOnly = true;
+            // 
+            // ColumnCriteriaType
+            // 
+            this.ColumnCriteriaType.HeaderText = "Type";
+            this.ColumnCriteriaType.Name = "ColumnCriteriaType";
+            this.ColumnCriteriaType.ReadOnly = true;
+            // 
+            // ColumnCriteriaDirection
+            // 
+            this.ColumnCriteriaDirection.HeaderText = "Direction";
+            this.ColumnCriteriaDirection.Name = "ColumnCriteriaDirection";
+            this.ColumnCriteriaDirection.ReadOnly = true;
+            // 
+            // ColumnMinValue
+            // 
+            this.ColumnMinValue.HeaderText = "Minimal Value";
+            this.ColumnMinValue.Name = "ColumnMinValue";
+            this.ColumnMinValue.ReadOnly = true;
+            // 
+            // ColumnMaxValue
+            // 
+            this.ColumnMaxValue.HeaderText = "Maximal Value";
+            this.ColumnMaxValue.Name = "ColumnMaxValue";
+            this.ColumnMaxValue.ReadOnly = true;
+            // 
+            // ColumnPROMETHEEConfig
+            // 
+            this.ColumnPROMETHEEConfig.HeaderText = "PROMETHEE";
+            this.ColumnPROMETHEEConfig.Name = "ColumnPROMETHEEConfig";
+            this.ColumnPROMETHEEConfig.ReadOnly = true;
+            // 
+            // ELECTRE
+            // 
+            this.ELECTRE.HeaderText = "ELECTRE";
+            this.ELECTRE.Name = "ELECTRE";
+            this.ELECTRE.ReadOnly = true;
             // 
             // tabPageAlternatives
             // 
@@ -589,10 +669,41 @@
             this.tabPageAlternatives.Location = new System.Drawing.Point(4, 22);
             this.tabPageAlternatives.Name = "tabPageAlternatives";
             this.tabPageAlternatives.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAlternatives.Size = new System.Drawing.Size(1292, 506);
+            this.tabPageAlternatives.Size = new System.Drawing.Size(1191, 506);
             this.tabPageAlternatives.TabIndex = 1;
             this.tabPageAlternatives.Text = "Alternatives";
             this.tabPageAlternatives.UseVisualStyleBackColor = true;
+            // 
+            // toolStripAlternativesManager
+            // 
+            this.toolStripAlternativesManager.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonSaveAlternatives,
+            this.toolStripButtonLoadAlternatives});
+            this.toolStripAlternativesManager.Location = new System.Drawing.Point(3, 3);
+            this.toolStripAlternativesManager.Name = "toolStripAlternativesManager";
+            this.toolStripAlternativesManager.Size = new System.Drawing.Size(1185, 25);
+            this.toolStripAlternativesManager.TabIndex = 1;
+            this.toolStripAlternativesManager.Text = "Alternatives manager";
+            // 
+            // toolStripButtonSaveAlternatives
+            // 
+            this.toolStripButtonSaveAlternatives.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSaveAlternatives.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSaveAlternatives.Image")));
+            this.toolStripButtonSaveAlternatives.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSaveAlternatives.Name = "toolStripButtonSaveAlternatives";
+            this.toolStripButtonSaveAlternatives.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonSaveAlternatives.Text = "Save";
+            this.toolStripButtonSaveAlternatives.Click += new System.EventHandler(this.toolStripButtonSaveAlternatives_Click);
+            // 
+            // toolStripButtonLoadAlternatives
+            // 
+            this.toolStripButtonLoadAlternatives.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonLoadAlternatives.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonLoadAlternatives.Image")));
+            this.toolStripButtonLoadAlternatives.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonLoadAlternatives.Name = "toolStripButtonLoadAlternatives";
+            this.toolStripButtonLoadAlternatives.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonLoadAlternatives.Text = "load";
+            this.toolStripButtonLoadAlternatives.Click += new System.EventHandler(this.toolStripButtonLoadAlternatives_Click);
             // 
             // dataGridViewAlternatives
             // 
@@ -617,7 +728,7 @@
             this.tabPageSolution.Controls.Add(this.panelMethodChoose);
             this.tabPageSolution.Location = new System.Drawing.Point(4, 22);
             this.tabPageSolution.Name = "tabPageSolution";
-            this.tabPageSolution.Size = new System.Drawing.Size(1292, 506);
+            this.tabPageSolution.Size = new System.Drawing.Size(1191, 506);
             this.tabPageSolution.TabIndex = 2;
             this.tabPageSolution.Text = "Solution";
             this.tabPageSolution.UseVisualStyleBackColor = true;
@@ -634,7 +745,7 @@
             this.dataGridViewRanks.Location = new System.Drawing.Point(200, 29);
             this.dataGridViewRanks.Name = "dataGridViewRanks";
             this.dataGridViewRanks.ReadOnly = true;
-            this.dataGridViewRanks.Size = new System.Drawing.Size(1092, 477);
+            this.dataGridViewRanks.Size = new System.Drawing.Size(991, 477);
             this.dataGridViewRanks.TabIndex = 2;
             // 
             // panelInfo
@@ -643,7 +754,7 @@
             this.panelInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelInfo.Location = new System.Drawing.Point(200, 0);
             this.panelInfo.Name = "panelInfo";
-            this.panelInfo.Size = new System.Drawing.Size(1092, 29);
+            this.panelInfo.Size = new System.Drawing.Size(991, 29);
             this.panelInfo.TabIndex = 1;
             // 
             // labelResultsCaption
@@ -680,6 +791,64 @@
             this.panelMethodChoose.Name = "panelMethodChoose";
             this.panelMethodChoose.Size = new System.Drawing.Size(200, 506);
             this.panelMethodChoose.TabIndex = 0;
+            // 
+            // checkBoxELECTRE
+            // 
+            this.checkBoxELECTRE.AutoSize = true;
+            this.checkBoxELECTRE.Location = new System.Drawing.Point(8, 206);
+            this.checkBoxELECTRE.Name = "checkBoxELECTRE";
+            this.checkBoxELECTRE.Size = new System.Drawing.Size(75, 17);
+            this.checkBoxELECTRE.TabIndex = 53;
+            this.checkBoxELECTRE.Text = "ELECTRE";
+            this.checkBoxELECTRE.UseVisualStyleBackColor = true;
+            this.checkBoxELECTRE.CheckedChanged += new System.EventHandler(this.checkBoxELECTRE_CheckedChanged);
+            // 
+            // textBoxELECTREBeta
+            // 
+            this.textBoxELECTREBeta.Location = new System.Drawing.Point(12, 457);
+            this.textBoxELECTREBeta.Name = "textBoxELECTREBeta";
+            this.textBoxELECTREBeta.Size = new System.Drawing.Size(157, 20);
+            this.textBoxELECTREBeta.TabIndex = 52;
+            // 
+            // labelELECTREBeta
+            // 
+            this.labelELECTREBeta.AutoSize = true;
+            this.labelELECTREBeta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelELECTREBeta.Location = new System.Drawing.Point(9, 441);
+            this.labelELECTREBeta.Name = "labelELECTREBeta";
+            this.labelELECTREBeta.Size = new System.Drawing.Size(29, 13);
+            this.labelELECTREBeta.TabIndex = 51;
+            this.labelELECTREBeta.Text = "Beta";
+            this.labelELECTREBeta.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // textBoxELECTREAlpha
+            // 
+            this.textBoxELECTREAlpha.Location = new System.Drawing.Point(12, 409);
+            this.textBoxELECTREAlpha.Name = "textBoxELECTREAlpha";
+            this.textBoxELECTREAlpha.Size = new System.Drawing.Size(157, 20);
+            this.textBoxELECTREAlpha.TabIndex = 50;
+            // 
+            // labelELECTRELambda
+            // 
+            this.labelELECTRELambda.AutoSize = true;
+            this.labelELECTRELambda.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelELECTRELambda.Location = new System.Drawing.Point(9, 393);
+            this.labelELECTRELambda.Name = "labelELECTRELambda";
+            this.labelELECTRELambda.Size = new System.Drawing.Size(34, 13);
+            this.labelELECTRELambda.TabIndex = 49;
+            this.labelELECTRELambda.Text = "Alpha";
+            this.labelELECTRELambda.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // labelSpecifyELECTREAlphaBeta
+            // 
+            this.labelSpecifyELECTREAlphaBeta.AutoSize = true;
+            this.labelSpecifyELECTREAlphaBeta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelSpecifyELECTREAlphaBeta.Location = new System.Drawing.Point(9, 369);
+            this.labelSpecifyELECTREAlphaBeta.Name = "labelSpecifyELECTREAlphaBeta";
+            this.labelSpecifyELECTREAlphaBeta.Size = new System.Drawing.Size(150, 13);
+            this.labelSpecifyELECTREAlphaBeta.TabIndex = 48;
+            this.labelSpecifyELECTREAlphaBeta.Text = "Special parameter (ELECTRE)";
+            this.labelSpecifyELECTREAlphaBeta.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // checkBoxTAXONOMY
             // 
@@ -800,166 +969,14 @@
             this.checkBoxChooseAll.UseVisualStyleBackColor = true;
             this.checkBoxChooseAll.CheckedChanged += new System.EventHandler(this.checkBoxChooseAll_CheckedChanged);
             // 
-            // toolStripButtonSave
+            // saveFileDialog
             // 
-            this.toolStripButtonSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonSave.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSave.Image")));
-            this.toolStripButtonSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonSave.Name = "toolStripButtonSave";
-            this.toolStripButtonSave.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonSave.Text = "Save";
+            this.saveFileDialog.Filter = "Config files|*.dmc";
             // 
-            // toolStripButtonLoad
+            // openFileDialog
             // 
-            this.toolStripButtonLoad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonLoad.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonLoad.Image")));
-            this.toolStripButtonLoad.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonLoad.Name = "toolStripButtonLoad";
-            this.toolStripButtonLoad.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonLoad.Text = "Load";
-            // 
-            // ColumnCriteriaIndex
-            // 
-            this.ColumnCriteriaIndex.HeaderText = "Index";
-            this.ColumnCriteriaIndex.Name = "ColumnCriteriaIndex";
-            this.ColumnCriteriaIndex.ReadOnly = true;
-            this.ColumnCriteriaIndex.Visible = false;
-            this.ColumnCriteriaIndex.Width = 120;
-            // 
-            // ColumnCriteriaTitle
-            // 
-            this.ColumnCriteriaTitle.HeaderText = "Criteria Title";
-            this.ColumnCriteriaTitle.Name = "ColumnCriteriaTitle";
-            this.ColumnCriteriaTitle.ReadOnly = true;
-            // 
-            // Weight
-            // 
-            this.Weight.HeaderText = "Criteria weight";
-            this.Weight.Name = "Weight";
-            this.Weight.ReadOnly = true;
-            // 
-            // ColumnCriteriaType
-            // 
-            this.ColumnCriteriaType.HeaderText = "Type";
-            this.ColumnCriteriaType.Name = "ColumnCriteriaType";
-            this.ColumnCriteriaType.ReadOnly = true;
-            // 
-            // ColumnCriteriaDirection
-            // 
-            this.ColumnCriteriaDirection.HeaderText = "Direction";
-            this.ColumnCriteriaDirection.Name = "ColumnCriteriaDirection";
-            this.ColumnCriteriaDirection.ReadOnly = true;
-            // 
-            // ColumnMinValue
-            // 
-            this.ColumnMinValue.HeaderText = "Minimal Value";
-            this.ColumnMinValue.Name = "ColumnMinValue";
-            this.ColumnMinValue.ReadOnly = true;
-            // 
-            // ColumnMaxValue
-            // 
-            this.ColumnMaxValue.HeaderText = "Maximal Value";
-            this.ColumnMaxValue.Name = "ColumnMaxValue";
-            this.ColumnMaxValue.ReadOnly = true;
-            // 
-            // ColumnPROMETHEEConfig
-            // 
-            this.ColumnPROMETHEEConfig.HeaderText = "PROMETHEE";
-            this.ColumnPROMETHEEConfig.Name = "ColumnPROMETHEEConfig";
-            this.ColumnPROMETHEEConfig.ReadOnly = true;
-            // 
-            // ELECTRE
-            // 
-            this.ELECTRE.HeaderText = "ELECTRE";
-            this.ELECTRE.Name = "ELECTRE";
-            this.ELECTRE.ReadOnly = true;
-            // 
-            // toolStripAlternativesManager
-            // 
-            this.toolStripAlternativesManager.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonSaveAlternatives,
-            this.toolStripButtonLoadAlternatives});
-            this.toolStripAlternativesManager.Location = new System.Drawing.Point(3, 3);
-            this.toolStripAlternativesManager.Name = "toolStripAlternativesManager";
-            this.toolStripAlternativesManager.Size = new System.Drawing.Size(1286, 25);
-            this.toolStripAlternativesManager.TabIndex = 1;
-            this.toolStripAlternativesManager.Text = "Alternatives manager";
-            // 
-            // toolStripButtonSaveAlternatives
-            // 
-            this.toolStripButtonSaveAlternatives.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonSaveAlternatives.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSaveAlternatives.Image")));
-            this.toolStripButtonSaveAlternatives.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonSaveAlternatives.Name = "toolStripButtonSaveAlternatives";
-            this.toolStripButtonSaveAlternatives.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonSaveAlternatives.Text = "Save";
-            // 
-            // toolStripButtonLoadAlternatives
-            // 
-            this.toolStripButtonLoadAlternatives.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonLoadAlternatives.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonLoadAlternatives.Image")));
-            this.toolStripButtonLoadAlternatives.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonLoadAlternatives.Name = "toolStripButtonLoadAlternatives";
-            this.toolStripButtonLoadAlternatives.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonLoadAlternatives.Text = "load";
-            // 
-            // labelSpecifyELECTREAlphaBeta
-            // 
-            this.labelSpecifyELECTREAlphaBeta.AutoSize = true;
-            this.labelSpecifyELECTREAlphaBeta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelSpecifyELECTREAlphaBeta.Location = new System.Drawing.Point(9, 369);
-            this.labelSpecifyELECTREAlphaBeta.Name = "labelSpecifyELECTREAlphaBeta";
-            this.labelSpecifyELECTREAlphaBeta.Size = new System.Drawing.Size(150, 13);
-            this.labelSpecifyELECTREAlphaBeta.TabIndex = 48;
-            this.labelSpecifyELECTREAlphaBeta.Text = "Special parameter (ELECTRE)";
-            this.labelSpecifyELECTREAlphaBeta.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // labelELECTRELambda
-            // 
-            this.labelELECTRELambda.AutoSize = true;
-            this.labelELECTRELambda.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelELECTRELambda.Location = new System.Drawing.Point(9, 393);
-            this.labelELECTRELambda.Name = "labelELECTRELambda";
-            this.labelELECTRELambda.Size = new System.Drawing.Size(34, 13);
-            this.labelELECTRELambda.TabIndex = 49;
-            this.labelELECTRELambda.Text = "Alpha";
-            this.labelELECTRELambda.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // textBoxELECTREAlpha
-            // 
-            this.textBoxELECTREAlpha.Location = new System.Drawing.Point(12, 409);
-            this.textBoxELECTREAlpha.Name = "textBoxELECTREAlpha";
-            this.textBoxELECTREAlpha.Size = new System.Drawing.Size(157, 20);
-            this.textBoxELECTREAlpha.TabIndex = 50;
-            // 
-            // labelELECTREBeta
-            // 
-            this.labelELECTREBeta.AutoSize = true;
-            this.labelELECTREBeta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelELECTREBeta.Location = new System.Drawing.Point(9, 441);
-            this.labelELECTREBeta.Name = "labelELECTREBeta";
-            this.labelELECTREBeta.Size = new System.Drawing.Size(29, 13);
-            this.labelELECTREBeta.TabIndex = 51;
-            this.labelELECTREBeta.Text = "Beta";
-            this.labelELECTREBeta.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // textBoxELECTREBeta
-            // 
-            this.textBoxELECTREBeta.Location = new System.Drawing.Point(12, 457);
-            this.textBoxELECTREBeta.Name = "textBoxELECTREBeta";
-            this.textBoxELECTREBeta.Size = new System.Drawing.Size(157, 20);
-            this.textBoxELECTREBeta.TabIndex = 52;
-            // 
-            // checkBoxELECTRE
-            // 
-            this.checkBoxELECTRE.AutoSize = true;
-            this.checkBoxELECTRE.Location = new System.Drawing.Point(8, 206);
-            this.checkBoxELECTRE.Name = "checkBoxELECTRE";
-            this.checkBoxELECTRE.Size = new System.Drawing.Size(75, 17);
-            this.checkBoxELECTRE.TabIndex = 53;
-            this.checkBoxELECTRE.Text = "ELECTRE";
-            this.checkBoxELECTRE.UseVisualStyleBackColor = true;
-            this.checkBoxELECTRE.CheckedChanged += new System.EventHandler(this.checkBoxELECTRE_CheckedChanged);
+            this.openFileDialog.FileName = "openFileDialog1";
+            this.openFileDialog.Filter = "Config files|*.dmc";
             // 
             // FormDecisionMaster
             // 
@@ -980,6 +997,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCriteriasData)).EndInit();
             this.tabPageAlternatives.ResumeLayout(false);
             this.tabPageAlternatives.PerformLayout();
+            this.toolStripAlternativesManager.ResumeLayout(false);
+            this.toolStripAlternativesManager.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlternatives)).EndInit();
             this.tabPageSolution.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRanks)).EndInit();
@@ -987,8 +1006,6 @@
             this.panelInfo.PerformLayout();
             this.panelMethodChoose.ResumeLayout(false);
             this.panelMethodChoose.PerformLayout();
-            this.toolStripAlternativesManager.ResumeLayout(false);
-            this.toolStripAlternativesManager.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -998,7 +1015,6 @@
         private System.Windows.Forms.Panel panelNewCriteriaData;
         private System.Windows.Forms.ComboBox comboBoxQualitativeMinValue;
         private System.Windows.Forms.ComboBox comboBoxCriteriaDitection;
-        private System.Windows.Forms.ComboBox comboBoxCriteriaType;
         private System.Windows.Forms.Label labelCritertiaDirection;
         private System.Windows.Forms.Label labelCriteriaType;
         private System.Windows.Forms.TextBox textBoxQuantitativeMinValue;
@@ -1074,6 +1090,9 @@
         private System.Windows.Forms.Label labelELECTRELambda;
         private System.Windows.Forms.Label labelSpecifyELECTREAlphaBeta;
         private System.Windows.Forms.CheckBox checkBoxELECTRE;
+        public System.Windows.Forms.ComboBox comboBoxCriteriaType;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }
 

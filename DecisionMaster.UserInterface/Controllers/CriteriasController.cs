@@ -9,7 +9,8 @@ using DecisionMaster.AlgorithmsLibrary.Algorithms;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.SMART;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE;
-
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 namespace DecisionMaster.UserInterface.Controllers
 {
     public class CriteriaController
@@ -26,6 +27,11 @@ namespace DecisionMaster.UserInterface.Controllers
 
         public SpecialParametersEnum ELECTREConfiguration { get; set; }
         public ELECTREParameters ELECTREspecialParameters { get; set; }
+
+        public CriteriaController()
+        {
+
+        }
     }
 
     public class CriteriasController
@@ -153,7 +159,7 @@ namespace DecisionMaster.UserInterface.Controllers
             return result;
         }
     }
-
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum SpecialParametersEnum
     {
         None = 0,
@@ -161,6 +167,7 @@ namespace DecisionMaster.UserInterface.Controllers
         Manual = 2
     }
 
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum CriteriaTypeEnum
     {
         Quantitative = 0,
