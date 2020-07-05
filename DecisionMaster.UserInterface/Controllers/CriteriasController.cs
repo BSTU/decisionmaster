@@ -8,7 +8,9 @@ using DecisionMaster.AlgorithmsLibrary.Interfaces;
 using DecisionMaster.AlgorithmsLibrary.Algorithms;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.SMART;
-
+using DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 namespace DecisionMaster.UserInterface.Controllers
 {
     public class CriteriaController
@@ -23,6 +25,13 @@ namespace DecisionMaster.UserInterface.Controllers
         public SpecialParametersEnum PROMETHEEConfiguration { get; set; }
         public PreferenceFunction PreferenceFunction { get; set; }
 
+        public SpecialParametersEnum ELECTREConfiguration { get; set; }
+        public ELECTREParameters ELECTREspecialParameters { get; set; }
+
+        public CriteriaController()
+        {
+
+        }
     }
 
     public class CriteriasController
@@ -32,6 +41,17 @@ namespace DecisionMaster.UserInterface.Controllers
             Criterias = new List<CriteriaController>();
         }
         public List<CriteriaController> Criterias { get; set; }
+
+        public List<ELECTREParameters> GetELECTREParameters()
+        {
+            List<ELECTREParameters> result = new List<ELECTREParameters>();
+            foreach (CriteriaController criteria in Criterias)
+            {
+                result.Add(criteria.ELECTREspecialParameters);
+            }
+
+            return result;
+        }
 
         public List<PreferenceFunction> GetPreferenceFunctions()
         {
@@ -139,7 +159,7 @@ namespace DecisionMaster.UserInterface.Controllers
             return result;
         }
     }
-
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum SpecialParametersEnum
     {
         None = 0,
@@ -147,6 +167,7 @@ namespace DecisionMaster.UserInterface.Controllers
         Manual = 2
     }
 
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum CriteriaTypeEnum
     {
         Quantitative = 0,

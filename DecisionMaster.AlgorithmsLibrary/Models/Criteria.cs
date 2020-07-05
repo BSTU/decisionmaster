@@ -1,4 +1,6 @@
 ﻿using DecisionMaster.AlgorithmsLibrary.Interfaces;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace DecisionMaster.AlgorithmsLibrary.Models
 {
@@ -20,7 +22,7 @@ namespace DecisionMaster.AlgorithmsLibrary.Models
             return (int)qualitativeCriteria;
         }
     }
-
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum QualitativeCriteriaEnum
     {
         Poor = 1,

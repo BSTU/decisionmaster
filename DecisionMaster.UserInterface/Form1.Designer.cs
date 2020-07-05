@@ -30,20 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDecisionMaster));
             this.panelNewCriteriaData = new System.Windows.Forms.Panel();
-            this.textBoxWASPASAlpha = new System.Windows.Forms.TextBox();
-            this.labelWASPASParameter = new System.Windows.Forms.Label();
-            this.comboBoxSpecifyWASPAS = new System.Windows.Forms.ComboBox();
-            this.labelSpecifyWASPAS = new System.Windows.Forms.Label();
             this.labelElectreQ = new System.Windows.Forms.Label();
             this.textBoxElectreQ = new System.Windows.Forms.TextBox();
             this.textBoxElectreP = new System.Windows.Forms.TextBox();
             this.labelElectreP = new System.Windows.Forms.Label();
             this.textBoxElectreV = new System.Windows.Forms.TextBox();
             this.labelElectreV = new System.Windows.Forms.Label();
-            this.textBoxElectreBeta = new System.Windows.Forms.TextBox();
-            this.labelELECTREBeta = new System.Windows.Forms.Label();
-            this.textBoxElectreAlpha = new System.Windows.Forms.TextBox();
-            this.labelELECTREAlpha = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxSpecifyELECTRE = new System.Windows.Forms.ComboBox();
             this.textBoxCriteriaWeight = new System.Windows.Forms.TextBox();
@@ -76,6 +68,8 @@
             this.toolStripButtonAddCriteria = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonEditCriteria = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonSave = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonLoad = new System.Windows.Forms.ToolStripButton();
             this.dataGridViewCriteriasData = new System.Windows.Forms.DataGridView();
             this.ColumnCriteriaIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCriteriaTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -85,9 +79,11 @@
             this.ColumnMinValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnMaxValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPROMETHEEConfig = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnWASPAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ELECTRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageAlternatives = new System.Windows.Forms.TabPage();
+            this.toolStripAlternativesManager = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonSaveAlternatives = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonLoadAlternatives = new System.Windows.Forms.ToolStripButton();
             this.dataGridViewAlternatives = new System.Windows.Forms.DataGridView();
             this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageSolution = new System.Windows.Forms.TabPage();
@@ -95,17 +91,32 @@
             this.panelInfo = new System.Windows.Forms.Panel();
             this.labelResultsCaption = new System.Windows.Forms.Label();
             this.panelMethodChoose = new System.Windows.Forms.Panel();
+            this.checkBoxELECTRE = new System.Windows.Forms.CheckBox();
+            this.textBoxELECTREBeta = new System.Windows.Forms.TextBox();
+            this.labelELECTREBeta = new System.Windows.Forms.Label();
+            this.textBoxELECTREAlpha = new System.Windows.Forms.TextBox();
+            this.labelELECTRELambda = new System.Windows.Forms.Label();
+            this.labelSpecifyELECTREAlphaBeta = new System.Windows.Forms.Label();
+            this.checkBoxTAXONOMY = new System.Windows.Forms.CheckBox();
+            this.checkBoxWASPAS = new System.Windows.Forms.CheckBox();
+            this.textBoxWASPASLambda = new System.Windows.Forms.TextBox();
+            this.labelWASPASParameter = new System.Windows.Forms.Label();
+            this.comboBoxSpecifyWASPAS = new System.Windows.Forms.ComboBox();
+            this.labelSpecifyWASPAS = new System.Windows.Forms.Label();
             this.buttonCalc = new System.Windows.Forms.Button();
             this.checkBoxPROMETHEE = new System.Windows.Forms.CheckBox();
             this.checkBoxREGIME = new System.Windows.Forms.CheckBox();
             this.checkBoxSMART = new System.Windows.Forms.CheckBox();
             this.checkBoxChooseAll = new System.Windows.Forms.CheckBox();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.panelNewCriteriaData.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageCriterias.SuspendLayout();
             this.toolStripCriteriaManager.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCriteriasData)).BeginInit();
             this.tabPageAlternatives.SuspendLayout();
+            this.toolStripAlternativesManager.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlternatives)).BeginInit();
             this.tabPageSolution.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRanks)).BeginInit();
@@ -116,20 +127,12 @@
             // panelNewCriteriaData
             // 
             this.panelNewCriteriaData.AutoScroll = true;
-            this.panelNewCriteriaData.Controls.Add(this.textBoxWASPASAlpha);
-            this.panelNewCriteriaData.Controls.Add(this.labelWASPASParameter);
-            this.panelNewCriteriaData.Controls.Add(this.comboBoxSpecifyWASPAS);
-            this.panelNewCriteriaData.Controls.Add(this.labelSpecifyWASPAS);
             this.panelNewCriteriaData.Controls.Add(this.labelElectreQ);
             this.panelNewCriteriaData.Controls.Add(this.textBoxElectreQ);
             this.panelNewCriteriaData.Controls.Add(this.textBoxElectreP);
             this.panelNewCriteriaData.Controls.Add(this.labelElectreP);
             this.panelNewCriteriaData.Controls.Add(this.textBoxElectreV);
             this.panelNewCriteriaData.Controls.Add(this.labelElectreV);
-            this.panelNewCriteriaData.Controls.Add(this.textBoxElectreBeta);
-            this.panelNewCriteriaData.Controls.Add(this.labelELECTREBeta);
-            this.panelNewCriteriaData.Controls.Add(this.textBoxElectreAlpha);
-            this.panelNewCriteriaData.Controls.Add(this.labelELECTREAlpha);
             this.panelNewCriteriaData.Controls.Add(this.label3);
             this.panelNewCriteriaData.Controls.Add(this.comboBoxSpecifyELECTRE);
             this.panelNewCriteriaData.Controls.Add(this.textBoxCriteriaWeight);
@@ -157,55 +160,14 @@
             this.panelNewCriteriaData.Controls.Add(this.labelCritertiaDirection);
             this.panelNewCriteriaData.Controls.Add(this.labelCriteriaType);
             this.panelNewCriteriaData.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelNewCriteriaData.Location = new System.Drawing.Point(946, 3);
+            this.panelNewCriteriaData.Location = new System.Drawing.Point(845, 3);
             this.panelNewCriteriaData.Name = "panelNewCriteriaData";
-            this.panelNewCriteriaData.Size = new System.Drawing.Size(343, 580);
+            this.panelNewCriteriaData.Size = new System.Drawing.Size(343, 500);
             this.panelNewCriteriaData.TabIndex = 0;
-            // 
-            // textBoxWASPASAlpha
-            // 
-            this.textBoxWASPASAlpha.Location = new System.Drawing.Point(181, 210);
-            this.textBoxWASPASAlpha.Name = "textBoxWASPASAlpha";
-            this.textBoxWASPASAlpha.Size = new System.Drawing.Size(157, 20);
-            this.textBoxWASPASAlpha.TabIndex = 41;
-            // 
-            // labelWASPASParameter
-            // 
-            this.labelWASPASParameter.AutoSize = true;
-            this.labelWASPASParameter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelWASPASParameter.Location = new System.Drawing.Point(141, 213);
-            this.labelWASPASParameter.Name = "labelWASPASParameter";
-            this.labelWASPASParameter.Size = new System.Drawing.Size(34, 13);
-            this.labelWASPASParameter.TabIndex = 40;
-            this.labelWASPASParameter.Text = "Alpha";
-            this.labelWASPASParameter.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // comboBoxSpecifyWASPAS
-            // 
-            this.comboBoxSpecifyWASPAS.FormattingEnabled = true;
-            this.comboBoxSpecifyWASPAS.Items.AddRange(new object[] {
-            "None",
-            "Default",
-            "Manual"});
-            this.comboBoxSpecifyWASPAS.Location = new System.Drawing.Point(181, 182);
-            this.comboBoxSpecifyWASPAS.Name = "comboBoxSpecifyWASPAS";
-            this.comboBoxSpecifyWASPAS.Size = new System.Drawing.Size(157, 21);
-            this.comboBoxSpecifyWASPAS.TabIndex = 39;
-            // 
-            // labelSpecifyWASPAS
-            // 
-            this.labelSpecifyWASPAS.AutoSize = true;
-            this.labelSpecifyWASPAS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelSpecifyWASPAS.Location = new System.Drawing.Point(28, 188);
-            this.labelSpecifyWASPAS.Name = "labelSpecifyWASPAS";
-            this.labelSpecifyWASPAS.Size = new System.Drawing.Size(147, 13);
-            this.labelSpecifyWASPAS.TabIndex = 38;
-            this.labelSpecifyWASPAS.Text = "Special parameter (WASPAS)";
-            this.labelSpecifyWASPAS.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelElectreQ
             // 
-            this.labelElectreQ.Location = new System.Drawing.Point(219, 466);
+            this.labelElectreQ.Location = new System.Drawing.Point(219, 398);
             this.labelElectreQ.Name = "labelElectreQ";
             this.labelElectreQ.Size = new System.Drawing.Size(23, 20);
             this.labelElectreQ.TabIndex = 37;
@@ -214,21 +176,21 @@
             // 
             // textBoxElectreQ
             // 
-            this.textBoxElectreQ.Location = new System.Drawing.Point(248, 463);
+            this.textBoxElectreQ.Location = new System.Drawing.Point(248, 395);
             this.textBoxElectreQ.Name = "textBoxElectreQ";
             this.textBoxElectreQ.Size = new System.Drawing.Size(90, 20);
             this.textBoxElectreQ.TabIndex = 36;
             // 
             // textBoxElectreP
             // 
-            this.textBoxElectreP.Location = new System.Drawing.Point(248, 437);
+            this.textBoxElectreP.Location = new System.Drawing.Point(248, 369);
             this.textBoxElectreP.Name = "textBoxElectreP";
             this.textBoxElectreP.Size = new System.Drawing.Size(90, 20);
             this.textBoxElectreP.TabIndex = 35;
             // 
             // labelElectreP
             // 
-            this.labelElectreP.Location = new System.Drawing.Point(219, 440);
+            this.labelElectreP.Location = new System.Drawing.Point(219, 372);
             this.labelElectreP.Name = "labelElectreP";
             this.labelElectreP.Size = new System.Drawing.Size(23, 20);
             this.labelElectreP.TabIndex = 34;
@@ -237,56 +199,24 @@
             // 
             // textBoxElectreV
             // 
-            this.textBoxElectreV.Location = new System.Drawing.Point(248, 408);
+            this.textBoxElectreV.Location = new System.Drawing.Point(248, 340);
             this.textBoxElectreV.Name = "textBoxElectreV";
             this.textBoxElectreV.Size = new System.Drawing.Size(90, 20);
-            this.textBoxElectreV.TabIndex = 33;
+            this.textBoxElectreV.TabIndex = 34;
             // 
             // labelElectreV
             // 
-            this.labelElectreV.Location = new System.Drawing.Point(219, 411);
+            this.labelElectreV.Location = new System.Drawing.Point(219, 343);
             this.labelElectreV.Name = "labelElectreV";
             this.labelElectreV.Size = new System.Drawing.Size(23, 20);
             this.labelElectreV.TabIndex = 32;
             this.labelElectreV.Text = "V";
             this.labelElectreV.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // textBoxElectreBeta
-            // 
-            this.textBoxElectreBeta.Location = new System.Drawing.Point(123, 437);
-            this.textBoxElectreBeta.Name = "textBoxElectreBeta";
-            this.textBoxElectreBeta.Size = new System.Drawing.Size(90, 20);
-            this.textBoxElectreBeta.TabIndex = 31;
-            // 
-            // labelELECTREBeta
-            // 
-            this.labelELECTREBeta.Location = new System.Drawing.Point(58, 440);
-            this.labelELECTREBeta.Name = "labelELECTREBeta";
-            this.labelELECTREBeta.Size = new System.Drawing.Size(49, 20);
-            this.labelELECTREBeta.TabIndex = 30;
-            this.labelELECTREBeta.Text = "Beta";
-            this.labelELECTREBeta.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // textBoxElectreAlpha
-            // 
-            this.textBoxElectreAlpha.Location = new System.Drawing.Point(123, 408);
-            this.textBoxElectreAlpha.Name = "textBoxElectreAlpha";
-            this.textBoxElectreAlpha.Size = new System.Drawing.Size(90, 20);
-            this.textBoxElectreAlpha.TabIndex = 29;
-            // 
-            // labelELECTREAlpha
-            // 
-            this.labelELECTREAlpha.Location = new System.Drawing.Point(42, 411);
-            this.labelELECTREAlpha.Name = "labelELECTREAlpha";
-            this.labelELECTREAlpha.Size = new System.Drawing.Size(65, 20);
-            this.labelELECTREAlpha.TabIndex = 28;
-            this.labelELECTREAlpha.Text = "Alpha";
-            this.labelELECTREAlpha.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 384);
+            this.label3.Location = new System.Drawing.Point(4, 316);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(155, 13);
             this.label3.TabIndex = 27;
@@ -300,17 +230,18 @@
             "None",
             "Default",
             "Manual"});
-            this.comboBoxSpecifyELECTRE.Location = new System.Drawing.Point(181, 381);
+            this.comboBoxSpecifyELECTRE.Location = new System.Drawing.Point(181, 313);
             this.comboBoxSpecifyELECTRE.Name = "comboBoxSpecifyELECTRE";
             this.comboBoxSpecifyELECTRE.Size = new System.Drawing.Size(157, 21);
-            this.comboBoxSpecifyELECTRE.TabIndex = 26;
+            this.comboBoxSpecifyELECTRE.TabIndex = 33;
+            this.comboBoxSpecifyELECTRE.SelectedIndexChanged += new System.EventHandler(this.comboBoxSpecifyELECTRE_SelectedIndexChanged);
             // 
             // textBoxCriteriaWeight
             // 
             this.textBoxCriteriaWeight.Location = new System.Drawing.Point(181, 32);
             this.textBoxCriteriaWeight.Name = "textBoxCriteriaWeight";
             this.textBoxCriteriaWeight.Size = new System.Drawing.Size(157, 20);
-            this.textBoxCriteriaWeight.TabIndex = 25;
+            this.textBoxCriteriaWeight.TabIndex = 24;
             // 
             // label2
             // 
@@ -341,7 +272,7 @@
             // 
             // buttonCriteriaCancel
             // 
-            this.buttonCriteriaCancel.Location = new System.Drawing.Point(263, 552);
+            this.buttonCriteriaCancel.Location = new System.Drawing.Point(263, 445);
             this.buttonCriteriaCancel.Name = "buttonCriteriaCancel";
             this.buttonCriteriaCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCriteriaCancel.TabIndex = 21;
@@ -351,31 +282,31 @@
             // 
             // buttonApplyCriteria
             // 
-            this.buttonApplyCriteria.Location = new System.Drawing.Point(178, 552);
+            this.buttonApplyCriteria.Location = new System.Drawing.Point(178, 445);
             this.buttonApplyCriteria.Name = "buttonApplyCriteria";
             this.buttonApplyCriteria.Size = new System.Drawing.Size(75, 23);
-            this.buttonApplyCriteria.TabIndex = 20;
+            this.buttonApplyCriteria.TabIndex = 37;
             this.buttonApplyCriteria.Text = "Apply";
             this.buttonApplyCriteria.UseVisualStyleBackColor = true;
             this.buttonApplyCriteria.Click += new System.EventHandler(this.buttonApplyCriteria_Click);
             // 
             // textBoxPreferenceParameter2
             // 
-            this.textBoxPreferenceParameter2.Location = new System.Drawing.Point(181, 339);
+            this.textBoxPreferenceParameter2.Location = new System.Drawing.Point(181, 271);
             this.textBoxPreferenceParameter2.Name = "textBoxPreferenceParameter2";
             this.textBoxPreferenceParameter2.Size = new System.Drawing.Size(157, 20);
-            this.textBoxPreferenceParameter2.TabIndex = 19;
+            this.textBoxPreferenceParameter2.TabIndex = 32;
             // 
             // textBoxPreferenceParameter1
             // 
-            this.textBoxPreferenceParameter1.Location = new System.Drawing.Point(181, 309);
+            this.textBoxPreferenceParameter1.Location = new System.Drawing.Point(181, 241);
             this.textBoxPreferenceParameter1.Name = "textBoxPreferenceParameter1";
             this.textBoxPreferenceParameter1.Size = new System.Drawing.Size(157, 20);
-            this.textBoxPreferenceParameter1.TabIndex = 18;
+            this.textBoxPreferenceParameter1.TabIndex = 31;
             // 
             // labelPreferenceParameter2
             // 
-            this.labelPreferenceParameter2.Location = new System.Drawing.Point(75, 342);
+            this.labelPreferenceParameter2.Location = new System.Drawing.Point(75, 274);
             this.labelPreferenceParameter2.Name = "labelPreferenceParameter2";
             this.labelPreferenceParameter2.Size = new System.Drawing.Size(100, 20);
             this.labelPreferenceParameter2.TabIndex = 17;
@@ -384,7 +315,7 @@
             // 
             // labelPreferenceParameter1
             // 
-            this.labelPreferenceParameter1.Location = new System.Drawing.Point(75, 312);
+            this.labelPreferenceParameter1.Location = new System.Drawing.Point(75, 244);
             this.labelPreferenceParameter1.Name = "labelPreferenceParameter1";
             this.labelPreferenceParameter1.Size = new System.Drawing.Size(100, 20);
             this.labelPreferenceParameter1.TabIndex = 16;
@@ -394,7 +325,7 @@
             // labelPreferenceFunction
             // 
             this.labelPreferenceFunction.AutoSize = true;
-            this.labelPreferenceFunction.Location = new System.Drawing.Point(75, 283);
+            this.labelPreferenceFunction.Location = new System.Drawing.Point(75, 215);
             this.labelPreferenceFunction.Name = "labelPreferenceFunction";
             this.labelPreferenceFunction.Size = new System.Drawing.Size(100, 13);
             this.labelPreferenceFunction.TabIndex = 15;
@@ -411,10 +342,10 @@
             "Level Criterion",
             "Linear Criterion",
             "Gaussia Criterion"});
-            this.comboBoxPreferenceFunction.Location = new System.Drawing.Point(181, 277);
+            this.comboBoxPreferenceFunction.Location = new System.Drawing.Point(181, 209);
             this.comboBoxPreferenceFunction.Name = "comboBoxPreferenceFunction";
             this.comboBoxPreferenceFunction.Size = new System.Drawing.Size(157, 21);
-            this.comboBoxPreferenceFunction.TabIndex = 14;
+            this.comboBoxPreferenceFunction.TabIndex = 30;
             this.comboBoxPreferenceFunction.Text = "Choose Preference Function";
             this.comboBoxPreferenceFunction.SelectedIndexChanged += new System.EventHandler(this.comboBoxPreferenceFunction_SelectedIndexChanged);
             // 
@@ -425,17 +356,17 @@
             "None",
             "Default",
             "Manual"});
-            this.comboBoxSpecifyPROMETHEE.Location = new System.Drawing.Point(181, 248);
+            this.comboBoxSpecifyPROMETHEE.Location = new System.Drawing.Point(181, 180);
             this.comboBoxSpecifyPROMETHEE.Name = "comboBoxSpecifyPROMETHEE";
             this.comboBoxSpecifyPROMETHEE.Size = new System.Drawing.Size(157, 21);
-            this.comboBoxSpecifyPROMETHEE.TabIndex = 13;
+            this.comboBoxSpecifyPROMETHEE.TabIndex = 29;
             this.comboBoxSpecifyPROMETHEE.SelectedIndexChanged += new System.EventHandler(this.comboBoxSpecifyPROMETHEE_SelectedIndexChanged);
             // 
             // labelPROMETHEEParameters
             // 
             this.labelPROMETHEEParameters.AutoSize = true;
             this.labelPROMETHEEParameters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPROMETHEEParameters.Location = new System.Drawing.Point(4, 251);
+            this.labelPROMETHEEParameters.Location = new System.Drawing.Point(4, 183);
             this.labelPROMETHEEParameters.Name = "labelPROMETHEEParameters";
             this.labelPROMETHEEParameters.Size = new System.Drawing.Size(174, 13);
             this.labelPROMETHEEParameters.TabIndex = 12;
@@ -447,7 +378,7 @@
             this.textBoxQuantitativeMaxValue.Location = new System.Drawing.Point(181, 141);
             this.textBoxQuantitativeMaxValue.Name = "textBoxQuantitativeMaxValue";
             this.textBoxQuantitativeMaxValue.Size = new System.Drawing.Size(157, 20);
-            this.textBoxQuantitativeMaxValue.TabIndex = 11;
+            this.textBoxQuantitativeMaxValue.TabIndex = 28;
             // 
             // comboBoxQualitativeMaxValue
             // 
@@ -463,7 +394,7 @@
             this.comboBoxQualitativeMaxValue.Location = new System.Drawing.Point(181, 140);
             this.comboBoxQualitativeMaxValue.Name = "comboBoxQualitativeMaxValue";
             this.comboBoxQualitativeMaxValue.Size = new System.Drawing.Size(157, 21);
-            this.comboBoxQualitativeMaxValue.TabIndex = 10;
+            this.comboBoxQualitativeMaxValue.TabIndex = 28;
             this.comboBoxQualitativeMaxValue.Text = "Choose maximal value";
             // 
             // labelMaxValue
@@ -481,7 +412,7 @@
             this.textBoxQuantitativeMinValue.Location = new System.Drawing.Point(181, 110);
             this.textBoxQuantitativeMinValue.Name = "textBoxQuantitativeMinValue";
             this.textBoxQuantitativeMinValue.Size = new System.Drawing.Size(157, 20);
-            this.textBoxQuantitativeMinValue.TabIndex = 8;
+            this.textBoxQuantitativeMinValue.TabIndex = 27;
             // 
             // labelMinValue
             // 
@@ -507,7 +438,7 @@
             this.comboBoxQualitativeMinValue.Location = new System.Drawing.Point(181, 109);
             this.comboBoxQualitativeMinValue.Name = "comboBoxQualitativeMinValue";
             this.comboBoxQualitativeMinValue.Size = new System.Drawing.Size(157, 21);
-            this.comboBoxQualitativeMinValue.TabIndex = 4;
+            this.comboBoxQualitativeMinValue.TabIndex = 27;
             this.comboBoxQualitativeMinValue.Text = "Choose minimal value";
             // 
             // comboBoxCriteriaDitection
@@ -519,7 +450,7 @@
             this.comboBoxCriteriaDitection.Location = new System.Drawing.Point(181, 83);
             this.comboBoxCriteriaDitection.Name = "comboBoxCriteriaDitection";
             this.comboBoxCriteriaDitection.Size = new System.Drawing.Size(157, 21);
-            this.comboBoxCriteriaDitection.TabIndex = 3;
+            this.comboBoxCriteriaDitection.TabIndex = 26;
             this.comboBoxCriteriaDitection.Text = "Choose criteria direction";
             this.comboBoxCriteriaDitection.SelectedIndexChanged += new System.EventHandler(this.comboBoxCriteriaDitection_SelectedIndexChanged);
             // 
@@ -532,7 +463,7 @@
             this.comboBoxCriteriaType.Location = new System.Drawing.Point(181, 56);
             this.comboBoxCriteriaType.Name = "comboBoxCriteriaType";
             this.comboBoxCriteriaType.Size = new System.Drawing.Size(157, 21);
-            this.comboBoxCriteriaType.TabIndex = 2;
+            this.comboBoxCriteriaType.TabIndex = 25;
             this.comboBoxCriteriaType.Text = "Choose criteria type";
             this.comboBoxCriteriaType.SelectedIndexChanged += new System.EventHandler(this.comboBoxCriteriaType_SelectedIndexChanged);
             // 
@@ -565,7 +496,7 @@
             this.tabControlMain.Location = new System.Drawing.Point(0, 0);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(1300, 612);
+            this.tabControlMain.Size = new System.Drawing.Size(1199, 532);
             this.tabControlMain.TabIndex = 1;
             this.tabControlMain.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControlMain_Selecting);
             // 
@@ -577,7 +508,7 @@
             this.tabPageCriterias.Location = new System.Drawing.Point(4, 22);
             this.tabPageCriterias.Name = "tabPageCriterias";
             this.tabPageCriterias.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageCriterias.Size = new System.Drawing.Size(1292, 586);
+            this.tabPageCriterias.Size = new System.Drawing.Size(1191, 506);
             this.tabPageCriterias.TabIndex = 0;
             this.tabPageCriterias.Text = "Criterias";
             this.tabPageCriterias.UseVisualStyleBackColor = true;
@@ -587,10 +518,12 @@
             this.toolStripCriteriaManager.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonAddCriteria,
             this.toolStripButtonEditCriteria,
-            this.toolStripButtonDelete});
+            this.toolStripButtonDelete,
+            this.toolStripButtonSave,
+            this.toolStripButtonLoad});
             this.toolStripCriteriaManager.Location = new System.Drawing.Point(3, 3);
             this.toolStripCriteriaManager.Name = "toolStripCriteriaManager";
-            this.toolStripCriteriaManager.Size = new System.Drawing.Size(943, 25);
+            this.toolStripCriteriaManager.Size = new System.Drawing.Size(842, 25);
             this.toolStripCriteriaManager.TabIndex = 2;
             this.toolStripCriteriaManager.Text = "Criteria manager";
             // 
@@ -624,6 +557,26 @@
             this.toolStripButtonDelete.Text = "toolStripButton1";
             this.toolStripButtonDelete.Click += new System.EventHandler(this.toolStripButtonDelete_Click);
             // 
+            // toolStripButtonSave
+            // 
+            this.toolStripButtonSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSave.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSave.Image")));
+            this.toolStripButtonSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSave.Name = "toolStripButtonSave";
+            this.toolStripButtonSave.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonSave.Text = "Save";
+            this.toolStripButtonSave.Click += new System.EventHandler(this.toolStripButtonSave_Click);
+            // 
+            // toolStripButtonLoad
+            // 
+            this.toolStripButtonLoad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonLoad.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonLoad.Image")));
+            this.toolStripButtonLoad.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonLoad.Name = "toolStripButtonLoad";
+            this.toolStripButtonLoad.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonLoad.Text = "Load";
+            this.toolStripButtonLoad.Click += new System.EventHandler(this.toolStripButtonLoad_Click);
+            // 
             // dataGridViewCriteriasData
             // 
             this.dataGridViewCriteriasData.AllowUserToAddRows = false;
@@ -640,17 +593,18 @@
             this.ColumnMinValue,
             this.ColumnMaxValue,
             this.ColumnPROMETHEEConfig,
-            this.ColumnWASPAS,
             this.ELECTRE});
             this.dataGridViewCriteriasData.Location = new System.Drawing.Point(0, 31);
             this.dataGridViewCriteriasData.MultiSelect = false;
             this.dataGridViewCriteriasData.Name = "dataGridViewCriteriasData";
             this.dataGridViewCriteriasData.ReadOnly = true;
             this.dataGridViewCriteriasData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewCriteriasData.Size = new System.Drawing.Size(945, 555);
+            this.dataGridViewCriteriasData.Size = new System.Drawing.Size(844, 555);
             this.dataGridViewCriteriasData.TabIndex = 1;
             this.dataGridViewCriteriasData.TabStop = false;
             this.dataGridViewCriteriasData.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridViewCriteriasData_RowsAdded);
+            this.dataGridViewCriteriasData.SelectionChanged += new System.EventHandler(this.dataGridViewCriteriasData_SelectionChanged);
+            this.dataGridViewCriteriasData.Click += new System.EventHandler(this.dataGridViewCriteriasData_Click);
             // 
             // ColumnCriteriaIndex
             // 
@@ -702,12 +656,6 @@
             this.ColumnPROMETHEEConfig.Name = "ColumnPROMETHEEConfig";
             this.ColumnPROMETHEEConfig.ReadOnly = true;
             // 
-            // ColumnWASPAS
-            // 
-            this.ColumnWASPAS.HeaderText = "WASPAS";
-            this.ColumnWASPAS.Name = "ColumnWASPAS";
-            this.ColumnWASPAS.ReadOnly = true;
-            // 
             // ELECTRE
             // 
             this.ELECTRE.HeaderText = "ELECTRE";
@@ -716,24 +664,55 @@
             // 
             // tabPageAlternatives
             // 
+            this.tabPageAlternatives.Controls.Add(this.toolStripAlternativesManager);
             this.tabPageAlternatives.Controls.Add(this.dataGridViewAlternatives);
             this.tabPageAlternatives.Location = new System.Drawing.Point(4, 22);
             this.tabPageAlternatives.Name = "tabPageAlternatives";
             this.tabPageAlternatives.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAlternatives.Size = new System.Drawing.Size(1292, 586);
+            this.tabPageAlternatives.Size = new System.Drawing.Size(1191, 506);
             this.tabPageAlternatives.TabIndex = 1;
             this.tabPageAlternatives.Text = "Alternatives";
             this.tabPageAlternatives.UseVisualStyleBackColor = true;
+            // 
+            // toolStripAlternativesManager
+            // 
+            this.toolStripAlternativesManager.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonSaveAlternatives,
+            this.toolStripButtonLoadAlternatives});
+            this.toolStripAlternativesManager.Location = new System.Drawing.Point(3, 3);
+            this.toolStripAlternativesManager.Name = "toolStripAlternativesManager";
+            this.toolStripAlternativesManager.Size = new System.Drawing.Size(1185, 25);
+            this.toolStripAlternativesManager.TabIndex = 1;
+            this.toolStripAlternativesManager.Text = "Alternatives manager";
+            // 
+            // toolStripButtonSaveAlternatives
+            // 
+            this.toolStripButtonSaveAlternatives.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSaveAlternatives.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSaveAlternatives.Image")));
+            this.toolStripButtonSaveAlternatives.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSaveAlternatives.Name = "toolStripButtonSaveAlternatives";
+            this.toolStripButtonSaveAlternatives.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonSaveAlternatives.Text = "Save";
+            this.toolStripButtonSaveAlternatives.Click += new System.EventHandler(this.toolStripButtonSaveAlternatives_Click);
+            // 
+            // toolStripButtonLoadAlternatives
+            // 
+            this.toolStripButtonLoadAlternatives.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonLoadAlternatives.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonLoadAlternatives.Image")));
+            this.toolStripButtonLoadAlternatives.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonLoadAlternatives.Name = "toolStripButtonLoadAlternatives";
+            this.toolStripButtonLoadAlternatives.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonLoadAlternatives.Text = "load";
+            this.toolStripButtonLoadAlternatives.Click += new System.EventHandler(this.toolStripButtonLoadAlternatives_Click);
             // 
             // dataGridViewAlternatives
             // 
             this.dataGridViewAlternatives.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAlternatives.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Title});
-            this.dataGridViewAlternatives.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewAlternatives.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewAlternatives.Location = new System.Drawing.Point(3, 34);
             this.dataGridViewAlternatives.Name = "dataGridViewAlternatives";
-            this.dataGridViewAlternatives.Size = new System.Drawing.Size(1286, 580);
+            this.dataGridViewAlternatives.Size = new System.Drawing.Size(1286, 549);
             this.dataGridViewAlternatives.TabIndex = 0;
             this.dataGridViewAlternatives.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAlternatives_CellValueChanged);
             // 
@@ -749,7 +728,7 @@
             this.tabPageSolution.Controls.Add(this.panelMethodChoose);
             this.tabPageSolution.Location = new System.Drawing.Point(4, 22);
             this.tabPageSolution.Name = "tabPageSolution";
-            this.tabPageSolution.Size = new System.Drawing.Size(1292, 586);
+            this.tabPageSolution.Size = new System.Drawing.Size(1191, 506);
             this.tabPageSolution.TabIndex = 2;
             this.tabPageSolution.Text = "Solution";
             this.tabPageSolution.UseVisualStyleBackColor = true;
@@ -766,7 +745,7 @@
             this.dataGridViewRanks.Location = new System.Drawing.Point(200, 29);
             this.dataGridViewRanks.Name = "dataGridViewRanks";
             this.dataGridViewRanks.ReadOnly = true;
-            this.dataGridViewRanks.Size = new System.Drawing.Size(1092, 557);
+            this.dataGridViewRanks.Size = new System.Drawing.Size(991, 477);
             this.dataGridViewRanks.TabIndex = 2;
             // 
             // panelInfo
@@ -775,7 +754,7 @@
             this.panelInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelInfo.Location = new System.Drawing.Point(200, 0);
             this.panelInfo.Name = "panelInfo";
-            this.panelInfo.Size = new System.Drawing.Size(1092, 29);
+            this.panelInfo.Size = new System.Drawing.Size(991, 29);
             this.panelInfo.TabIndex = 1;
             // 
             // labelResultsCaption
@@ -790,6 +769,18 @@
             // 
             // panelMethodChoose
             // 
+            this.panelMethodChoose.Controls.Add(this.checkBoxELECTRE);
+            this.panelMethodChoose.Controls.Add(this.textBoxELECTREBeta);
+            this.panelMethodChoose.Controls.Add(this.labelELECTREBeta);
+            this.panelMethodChoose.Controls.Add(this.textBoxELECTREAlpha);
+            this.panelMethodChoose.Controls.Add(this.labelELECTRELambda);
+            this.panelMethodChoose.Controls.Add(this.labelSpecifyELECTREAlphaBeta);
+            this.panelMethodChoose.Controls.Add(this.checkBoxTAXONOMY);
+            this.panelMethodChoose.Controls.Add(this.checkBoxWASPAS);
+            this.panelMethodChoose.Controls.Add(this.textBoxWASPASLambda);
+            this.panelMethodChoose.Controls.Add(this.labelWASPASParameter);
+            this.panelMethodChoose.Controls.Add(this.comboBoxSpecifyWASPAS);
+            this.panelMethodChoose.Controls.Add(this.labelSpecifyWASPAS);
             this.panelMethodChoose.Controls.Add(this.buttonCalc);
             this.panelMethodChoose.Controls.Add(this.checkBoxPROMETHEE);
             this.panelMethodChoose.Controls.Add(this.checkBoxREGIME);
@@ -798,12 +789,134 @@
             this.panelMethodChoose.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMethodChoose.Location = new System.Drawing.Point(0, 0);
             this.panelMethodChoose.Name = "panelMethodChoose";
-            this.panelMethodChoose.Size = new System.Drawing.Size(200, 586);
+            this.panelMethodChoose.Size = new System.Drawing.Size(200, 506);
             this.panelMethodChoose.TabIndex = 0;
+            // 
+            // checkBoxELECTRE
+            // 
+            this.checkBoxELECTRE.AutoSize = true;
+            this.checkBoxELECTRE.Location = new System.Drawing.Point(8, 206);
+            this.checkBoxELECTRE.Name = "checkBoxELECTRE";
+            this.checkBoxELECTRE.Size = new System.Drawing.Size(75, 17);
+            this.checkBoxELECTRE.TabIndex = 53;
+            this.checkBoxELECTRE.Text = "ELECTRE";
+            this.checkBoxELECTRE.UseVisualStyleBackColor = true;
+            this.checkBoxELECTRE.CheckedChanged += new System.EventHandler(this.checkBoxELECTRE_CheckedChanged);
+            // 
+            // textBoxELECTREBeta
+            // 
+            this.textBoxELECTREBeta.Location = new System.Drawing.Point(12, 457);
+            this.textBoxELECTREBeta.Name = "textBoxELECTREBeta";
+            this.textBoxELECTREBeta.Size = new System.Drawing.Size(157, 20);
+            this.textBoxELECTREBeta.TabIndex = 52;
+            // 
+            // labelELECTREBeta
+            // 
+            this.labelELECTREBeta.AutoSize = true;
+            this.labelELECTREBeta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelELECTREBeta.Location = new System.Drawing.Point(9, 441);
+            this.labelELECTREBeta.Name = "labelELECTREBeta";
+            this.labelELECTREBeta.Size = new System.Drawing.Size(29, 13);
+            this.labelELECTREBeta.TabIndex = 51;
+            this.labelELECTREBeta.Text = "Beta";
+            this.labelELECTREBeta.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // textBoxELECTREAlpha
+            // 
+            this.textBoxELECTREAlpha.Location = new System.Drawing.Point(12, 409);
+            this.textBoxELECTREAlpha.Name = "textBoxELECTREAlpha";
+            this.textBoxELECTREAlpha.Size = new System.Drawing.Size(157, 20);
+            this.textBoxELECTREAlpha.TabIndex = 50;
+            // 
+            // labelELECTRELambda
+            // 
+            this.labelELECTRELambda.AutoSize = true;
+            this.labelELECTRELambda.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelELECTRELambda.Location = new System.Drawing.Point(9, 393);
+            this.labelELECTRELambda.Name = "labelELECTRELambda";
+            this.labelELECTRELambda.Size = new System.Drawing.Size(34, 13);
+            this.labelELECTRELambda.TabIndex = 49;
+            this.labelELECTRELambda.Text = "Alpha";
+            this.labelELECTRELambda.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // labelSpecifyELECTREAlphaBeta
+            // 
+            this.labelSpecifyELECTREAlphaBeta.AutoSize = true;
+            this.labelSpecifyELECTREAlphaBeta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelSpecifyELECTREAlphaBeta.Location = new System.Drawing.Point(9, 369);
+            this.labelSpecifyELECTREAlphaBeta.Name = "labelSpecifyELECTREAlphaBeta";
+            this.labelSpecifyELECTREAlphaBeta.Size = new System.Drawing.Size(150, 13);
+            this.labelSpecifyELECTREAlphaBeta.TabIndex = 48;
+            this.labelSpecifyELECTREAlphaBeta.Text = "Special parameter (ELECTRE)";
+            this.labelSpecifyELECTREAlphaBeta.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // checkBoxTAXONOMY
+            // 
+            this.checkBoxTAXONOMY.AutoSize = true;
+            this.checkBoxTAXONOMY.Location = new System.Drawing.Point(8, 183);
+            this.checkBoxTAXONOMY.Name = "checkBoxTAXONOMY";
+            this.checkBoxTAXONOMY.Size = new System.Drawing.Size(87, 17);
+            this.checkBoxTAXONOMY.TabIndex = 47;
+            this.checkBoxTAXONOMY.Text = "TAXONOMY";
+            this.checkBoxTAXONOMY.UseVisualStyleBackColor = true;
+            this.checkBoxTAXONOMY.CheckedChanged += new System.EventHandler(this.checkBoxTAXONOMY_CheckedChanged);
+            // 
+            // checkBoxWASPAS
+            // 
+            this.checkBoxWASPAS.AutoSize = true;
+            this.checkBoxWASPAS.Location = new System.Drawing.Point(8, 160);
+            this.checkBoxWASPAS.Name = "checkBoxWASPAS";
+            this.checkBoxWASPAS.Size = new System.Drawing.Size(72, 17);
+            this.checkBoxWASPAS.TabIndex = 46;
+            this.checkBoxWASPAS.Text = "WASPAS";
+            this.checkBoxWASPAS.UseVisualStyleBackColor = true;
+            this.checkBoxWASPAS.CheckedChanged += new System.EventHandler(this.checkBoxWASPAS_CheckedChanged);
+            // 
+            // textBoxWASPASLambda
+            // 
+            this.textBoxWASPASLambda.Location = new System.Drawing.Point(12, 331);
+            this.textBoxWASPASLambda.Name = "textBoxWASPASLambda";
+            this.textBoxWASPASLambda.Size = new System.Drawing.Size(157, 20);
+            this.textBoxWASPASLambda.TabIndex = 45;
+            // 
+            // labelWASPASParameter
+            // 
+            this.labelWASPASParameter.AutoSize = true;
+            this.labelWASPASParameter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelWASPASParameter.Location = new System.Drawing.Point(9, 315);
+            this.labelWASPASParameter.Name = "labelWASPASParameter";
+            this.labelWASPASParameter.Size = new System.Drawing.Size(45, 13);
+            this.labelWASPASParameter.TabIndex = 44;
+            this.labelWASPASParameter.Text = "Lambda";
+            this.labelWASPASParameter.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // comboBoxSpecifyWASPAS
+            // 
+            this.comboBoxSpecifyWASPAS.FormattingEnabled = true;
+            this.comboBoxSpecifyWASPAS.Items.AddRange(new object[] {
+            "None",
+            "Default",
+            "Manual"});
+            this.comboBoxSpecifyWASPAS.Location = new System.Drawing.Point(12, 291);
+            this.comboBoxSpecifyWASPAS.Name = "comboBoxSpecifyWASPAS";
+            this.comboBoxSpecifyWASPAS.Size = new System.Drawing.Size(157, 21);
+            this.comboBoxSpecifyWASPAS.TabIndex = 43;
+            this.comboBoxSpecifyWASPAS.SelectedIndexChanged += new System.EventHandler(this.comboBoxSpecifyWASPAS_SelectedIndexChanged_1);
+            // 
+            // labelSpecifyWASPAS
+            // 
+            this.labelSpecifyWASPAS.AutoSize = true;
+            this.labelSpecifyWASPAS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelSpecifyWASPAS.Location = new System.Drawing.Point(9, 275);
+            this.labelSpecifyWASPAS.Name = "labelSpecifyWASPAS";
+            this.labelSpecifyWASPAS.Size = new System.Drawing.Size(147, 13);
+            this.labelSpecifyWASPAS.TabIndex = 42;
+            this.labelSpecifyWASPAS.Text = "Special parameter (WASPAS)";
+            this.labelSpecifyWASPAS.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // buttonCalc
             // 
-            this.buttonCalc.Location = new System.Drawing.Point(55, 179);
+            this.buttonCalc.Location = new System.Drawing.Point(56, 234);
             this.buttonCalc.Name = "buttonCalc";
             this.buttonCalc.Size = new System.Drawing.Size(75, 23);
             this.buttonCalc.TabIndex = 4;
@@ -856,11 +969,20 @@
             this.checkBoxChooseAll.UseVisualStyleBackColor = true;
             this.checkBoxChooseAll.CheckedChanged += new System.EventHandler(this.checkBoxChooseAll_CheckedChanged);
             // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.Filter = "Config files|*.dmc";
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            this.openFileDialog.Filter = "Config files|*.dmc";
+            // 
             // FormDecisionMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1300, 612);
+            this.ClientSize = new System.Drawing.Size(1199, 532);
             this.Controls.Add(this.tabControlMain);
             this.Name = "FormDecisionMaster";
             this.Text = "DecisionMaster";
@@ -874,6 +996,9 @@
             this.toolStripCriteriaManager.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCriteriasData)).EndInit();
             this.tabPageAlternatives.ResumeLayout(false);
+            this.tabPageAlternatives.PerformLayout();
+            this.toolStripAlternativesManager.ResumeLayout(false);
+            this.toolStripAlternativesManager.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlternatives)).EndInit();
             this.tabPageSolution.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRanks)).EndInit();
@@ -890,7 +1015,6 @@
         private System.Windows.Forms.Panel panelNewCriteriaData;
         private System.Windows.Forms.ComboBox comboBoxQualitativeMinValue;
         private System.Windows.Forms.ComboBox comboBoxCriteriaDitection;
-        private System.Windows.Forms.ComboBox comboBoxCriteriaType;
         private System.Windows.Forms.Label labelCritertiaDirection;
         private System.Windows.Forms.Label labelCriteriaType;
         private System.Windows.Forms.TextBox textBoxQuantitativeMinValue;
@@ -932,22 +1056,22 @@
         private System.Windows.Forms.CheckBox checkBoxChooseAll;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxCriteriaWeight;
-        private System.Windows.Forms.TextBox textBoxWASPASAlpha;
-        private System.Windows.Forms.Label labelWASPASParameter;
-        private System.Windows.Forms.ComboBox comboBoxSpecifyWASPAS;
-        private System.Windows.Forms.Label labelSpecifyWASPAS;
         private System.Windows.Forms.Label labelElectreQ;
         private System.Windows.Forms.TextBox textBoxElectreQ;
         private System.Windows.Forms.TextBox textBoxElectreP;
         private System.Windows.Forms.Label labelElectreP;
         private System.Windows.Forms.TextBox textBoxElectreV;
         private System.Windows.Forms.Label labelElectreV;
-        private System.Windows.Forms.TextBox textBoxElectreBeta;
-        private System.Windows.Forms.Label labelELECTREBeta;
-        private System.Windows.Forms.TextBox textBoxElectreAlpha;
-        private System.Windows.Forms.Label labelELECTREAlpha;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBoxSpecifyELECTRE;
+        private System.Windows.Forms.TextBox textBoxWASPASLambda;
+        private System.Windows.Forms.Label labelWASPASParameter;
+        private System.Windows.Forms.ComboBox comboBoxSpecifyWASPAS;
+        private System.Windows.Forms.Label labelSpecifyWASPAS;
+        private System.Windows.Forms.CheckBox checkBoxWASPAS;
+        private System.Windows.Forms.CheckBox checkBoxTAXONOMY;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSave;
+        private System.Windows.Forms.ToolStripButton toolStripButtonLoad;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCriteriaIndex;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCriteriaTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn Weight;
@@ -956,8 +1080,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMinValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMaxValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPROMETHEEConfig;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnWASPAS;
         private System.Windows.Forms.DataGridViewTextBoxColumn ELECTRE;
+        private System.Windows.Forms.ToolStrip toolStripAlternativesManager;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSaveAlternatives;
+        private System.Windows.Forms.ToolStripButton toolStripButtonLoadAlternatives;
+        private System.Windows.Forms.TextBox textBoxELECTREBeta;
+        private System.Windows.Forms.Label labelELECTREBeta;
+        private System.Windows.Forms.TextBox textBoxELECTREAlpha;
+        private System.Windows.Forms.Label labelELECTRELambda;
+        private System.Windows.Forms.Label labelSpecifyELECTREAlphaBeta;
+        private System.Windows.Forms.CheckBox checkBoxELECTRE;
+        public System.Windows.Forms.ComboBox comboBoxCriteriaType;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }
 
