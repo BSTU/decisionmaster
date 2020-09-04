@@ -16,14 +16,13 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.REGIME
 
         private double CalculateSuperiorityIdentifier(
             AlternativeBase lhs, 
-            AlternativeBase rhs, 
-            List <ICriteria> criterias)
+            AlternativeBase rhs)
         {
             double result = 0;
 
-            for (int i = 0; i < criterias.Count; ++i)
+            for (int i = 0; i < _alternatives.Criterias.Count; ++i)
             {
-                var criteria = criterias[i];
+                var criteria = _alternatives.Criterias[i];
                 var lhs_value = lhs.Values[i].Value;
                 var rhs_value = rhs.Values[i].Value;
                 if (criteria is IQualitativeCriteria)
@@ -52,18 +51,17 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.REGIME
             return result;
         }
 
-        private double [,] CalculateImpactMatrix(IDecisionConfiguration configuration, AlternativesBase alternatives)
+        private double [,] CalculateImpactMatrix()
         {
-            double[,] impact_matrix = new double[alternatives.Alternatives.Count, alternatives.Alternatives.Count];
+            double[,] impact_matrix = new double[_alternatives.Alternatives.Count, _alternatives.Alternatives.Count];
 
-            for (int i = 0; i < alternatives.Alternatives.Count; ++i)
+            for (int i = 0; i < _alternatives.Alternatives.Count; ++i)
             {
-                for (int j = 0; j < alternatives.Alternatives.Count; ++j)
+                for (int j = 0; j < _alternatives.Alternatives.Count; ++j)
                 {
                     impact_matrix[i, j] = CalculateSuperiorityIdentifier(
-                        alternatives.Alternatives[i],
-                        alternatives.Alternatives[j],
-                        alternatives.Criterias
+                        _alternatives.Alternatives[i],
+                        _alternatives.Alternatives[j]
                       );
                 }
             }
@@ -76,7 +74,7 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.REGIME
             _alternatives = alternatives;
 
             //Impacts Matrix
-            double[,] impact_matrix = CalculateImpactMatrix(_configuration, _alternatives);
+            double[,] impact_matrix = CalculateImpactMatrix();
 
             //calculate range with pairwise comparison
             DecisionResultBase result = new DecisionResultBase();
