@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using DecisionMaster.AlgorithmsLibrary.Interfaces;
 using DecisionMaster.AlgorithmsLibrary.Models;
-using DecisionMaster.AlgorithmsLibrary.Algorithms;
 
 namespace DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE
 {
@@ -11,7 +9,7 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE
     {
         ELECTREDecisionConfiguration _configuration;
         AlternativesBase _alternatives;
-        public void Init (IDecisionConfiguration config)
+        public void Init(IDecisionConfiguration config)
         {
             if (config is ELECTREDecisionConfiguration)
             {
@@ -62,7 +60,7 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE
                 }
             }
 
-            double S = _configuration.alpha + _configuration.beta*max;
+            double S = _configuration.alpha + _configuration.beta * max;
             double edge = max - S;
 
             for (int i = 0; i < _alternatives.Alternatives.Count; ++i)
@@ -74,12 +72,12 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE
                         result[i, j] = (matrix[i, j] >= edge ? 1 : 0);
                     }
                 }
-            }          
+            }
 
             return result;
         }
 
-        private int [,] GetFinalRanking(int [,] matrix)
+        private int[,] GetFinalRanking(int[,] matrix)
         {
             int[,] result = new int[_alternatives.Alternatives.Count, _alternatives.Alternatives.Count];
 
@@ -117,7 +115,7 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE
             return result;
         }
 
-        private double [,] GetGeneralPreferences(double[,] concordances, double [,] nonDiscordances)
+        private double[,] GetGeneralPreferences(double[,] concordances, double[,] nonDiscordances)
         {
             double[,] result = new double[_alternatives.Alternatives.Count, _alternatives.Alternatives.Count];
 
@@ -134,7 +132,7 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE
             return result;
         }
 
-        private double[,] GetNonDiscordanceIndices(List<double> [,] discordanceSets, double [,] concordances)
+        private double[,] GetNonDiscordanceIndices(List<double>[,] discordanceSets, double[,] concordances)
         {
             double[,] result = new double[_alternatives.Alternatives.Count, _alternatives.Alternatives.Count];
 
@@ -165,7 +163,7 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE
             return result;
         }
 
-        private double[,] GetConcordances(double [,] matrix)
+        private double[,] GetConcordances(double[,] matrix)
         {
             double[,] result = new double[_alternatives.Alternatives.Count, _alternatives.Alternatives.Count];
             for (int i = 0; i < _alternatives.Alternatives.Count; ++i)
@@ -181,7 +179,7 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE
             return result;
         }
 
-        private double GetConcordanceIndex(double [,] matrix, int i, int k)
+        private double GetConcordanceIndex(double[,] matrix, int i, int k)
         {
             double result = 0;
 
@@ -203,7 +201,7 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE
             return result;
         }
 
-        private List <double>[,] GetDiscordances(double [,] matrix)
+        private List<double>[,] GetDiscordances(double[,] matrix)
         {
             List<double>[,] result = new List<double>[_alternatives.Alternatives.Count, _alternatives.Alternatives.Count];
             for (int i = 0; i < _alternatives.Alternatives.Count; ++i)
@@ -220,7 +218,7 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE
             return result;
         }
 
-        private List <double> GetDiscordanceSet(double[,] matrix, int i, int k)
+        private List<double> GetDiscordanceSet(double[,] matrix, int i, int k)
         {
             List<double> result = new List<double>();
 
@@ -254,22 +252,22 @@ namespace DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE
             {
                 for (int j = 0; j < _alternatives.Criterias.Count; ++j)
                 {
-                    if(_alternatives.Criterias[j] is CriteriaBase && _alternatives.Criterias[j].CriteriaDirection == CriteriaDirectionType.Minimization)
+                    if (_alternatives.Criterias[j] is CriteriaBase && _alternatives.Criterias[j].CriteriaDirection == CriteriaDirectionType.Minimization)
                     {
                         result[i, j] = -(_alternatives.Alternatives[i].Values[j].Value / denominators[j]);
                     }
                     else
                     {
-                       result[i, j] = _alternatives.Alternatives[i].Values[j].Value / denominators[j];
-                    }                  
-                    result[i,j] *= _configuration.CriteriaRanks[j];
+                        result[i, j] = _alternatives.Alternatives[i].Values[j].Value / denominators[j];
+                    }
+                    result[i, j] *= _configuration.CriteriaRanks[j];
                 }
             }
 
             return result;
         }
 
-        private double [] GetNormalizeDenominators()
+        private double[] GetNormalizeDenominators()
         {
             double[] result = new double[_alternatives.Criterias.Count];
             for (int i = 0; i < _alternatives.Criterias.Count; ++i)

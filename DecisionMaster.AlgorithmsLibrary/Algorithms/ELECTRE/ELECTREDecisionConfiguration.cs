@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using DecisionMaster.AlgorithmsLibrary.Interfaces;
-using DecisionMaster.AlgorithmsLibrary.Models;
-using DecisionMaster.AlgorithmsLibrary.Algorithms;
 
 namespace DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE
 {

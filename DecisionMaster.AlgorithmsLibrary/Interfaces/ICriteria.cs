@@ -2,9 +2,9 @@
 {
     public interface ICriteria
     {
-        public double MinValue { get; set; }
-        public double MaxValue { get; set; }
-        public CriteriaDirectionType CriteriaDirection { get; set; }
+        double MinValue { get; set; }
+        double MaxValue { get; set; }
+        CriteriaDirectionType CriteriaDirection { get; set; }
     }
     public enum CriteriaDirectionType
     {

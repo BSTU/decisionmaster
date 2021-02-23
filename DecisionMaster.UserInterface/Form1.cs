@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Forms;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE;
@@ -16,7 +15,7 @@ namespace DecisionMaster.UserInterface
         SolutionController controller = new SolutionController();
         private int EditingIndex = -1;
 
-        public static Dictionary<String, double> QualitativeToDouble = new Dictionary<String, double>
+        public static Dictionary<string, double> QualitativeToDouble = new Dictionary<string, double>
         {
             {"Poor", 1 },
             {"Fairly Weak", 2 },
@@ -27,7 +26,7 @@ namespace DecisionMaster.UserInterface
             {"Excellent", 7 }
         };
 
-        public static Dictionary<double, String> DoubleToQulitative = new Dictionary<double, String>
+        public static Dictionary<double, string> DoubleToQulitative = new Dictionary<double, string>
         {
             {1, "Poor" },
             {2, "Fairly Weak" },
@@ -45,7 +44,7 @@ namespace DecisionMaster.UserInterface
 
         private void dataGridViewCriteriasData_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-           
+
         }
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
@@ -355,7 +354,7 @@ namespace DecisionMaster.UserInterface
             comboBoxSpecifyPROMETHEE.SelectedIndex = -1;
             comboBoxPreferenceFunction.SelectedIndex = -1;
 
-            comboBoxSpecifyELECTRE.SelectedIndex = -1;            
+            comboBoxSpecifyELECTRE.SelectedIndex = -1;
 
             panelNewCriteriaData.Enabled = false;
             toolStripCriteriaManager.Enabled = true;
@@ -374,7 +373,7 @@ namespace DecisionMaster.UserInterface
             ClearCriteriaPanel();
         }
 
-        private double [] CheckAndGetQuantitativeMinMax()
+        private double[] CheckAndGetQuantitativeMinMax()
         {
             double[] result = new double[2];
             if (textBoxQuantitativeMaxValue.Text == "" || !double.TryParse(textBoxQuantitativeMaxValue.Text, out result[1]))
@@ -384,7 +383,7 @@ namespace DecisionMaster.UserInterface
             else if (textBoxQuantitativeMaxValue.Text == "" || !double.TryParse(textBoxQuantitativeMinValue.Text.ToString(), out result[0]))
             {
                 throw new Exception("Criteria's min value is invalid");
-            } 
+            }
             else if (result[0] > result[1])
             {
                 throw new Exception("Min value must be less than Max value");
@@ -415,7 +414,7 @@ namespace DecisionMaster.UserInterface
         }
 
 
-        private double [] CheckAndGetMinMaxValues()
+        private double[] CheckAndGetMinMaxValues()
         {
             return (comboBoxCriteriaType.SelectedIndex == 0 ?
                 CheckAndGetQuantitativeMinMax() :
@@ -426,17 +425,15 @@ namespace DecisionMaster.UserInterface
         private ELECTREParameters CheckAndGetELECTREValues()
         {
             ELECTREParameters result = new ELECTREParameters();
-
-            double p=0, v=0, q=0;
-            if (textBoxElectreP.Text == "" || double.TryParse(textBoxElectreP.Text, out p) == false)
+            if (textBoxElectreP.Text == "" || double.TryParse(textBoxElectreP.Text, out var p) == false)
             {
                 throw new Exception("ELECTRE parameter P is empty");
             }
-            if (textBoxElectreQ.Text == "" || double.TryParse(textBoxElectreQ.Text, out q) == false)
+            if (textBoxElectreQ.Text == "" || double.TryParse(textBoxElectreQ.Text, out var q) == false)
             {
                 throw new Exception("ELECTRE parameter Q is empty");
             }
-            if (textBoxElectreV.Text == "" || double.TryParse(textBoxElectreV.Text, out v) == false)
+            if (textBoxElectreV.Text == "" || double.TryParse(textBoxElectreV.Text, out var v) == false)
             {
                 throw new Exception("ELECTRE parameter V is empty");
             }
@@ -479,8 +476,8 @@ namespace DecisionMaster.UserInterface
                     }
                     else
                     {
-                        result =  new PreferenceFunction(
-                            (PreferenceFunctionEnum)SelectedIndex+1,
+                        result = new PreferenceFunction(
+                            (PreferenceFunctionEnum)SelectedIndex + 1,
                             new List<double> { LParam }
                             );
                     }
@@ -499,7 +496,7 @@ namespace DecisionMaster.UserInterface
                             new List<double> { LParam, RParam }
                             );
                     }
-                }                
+                }
             }
             return result;
         }
@@ -609,7 +606,7 @@ namespace DecisionMaster.UserInterface
                     dataGridViewAlternatives.Columns.Add(NewCol);
                 }
                 else
-                {                    
+                {
                     dataGridViewAlternatives.Columns.Insert(EditingIndex + 1, NewCol);
                     dataGridViewAlternatives.Columns.RemoveAt(EditingIndex + 2);
                 }
@@ -672,7 +669,7 @@ namespace DecisionMaster.UserInterface
             comboBoxCriteriaType.SelectedIndex = (int)data.CriteriaType;
 
             comboBoxCriteriaDitection.Enabled = true;
-            comboBoxCriteriaDitection.SelectedIndex = (int)data.CriteriaDirection-1;
+            comboBoxCriteriaDitection.SelectedIndex = (int)data.CriteriaDirection - 1;
 
             if (data.CriteriaType == CriteriaTypeEnum.Quantitative)
             {
@@ -691,12 +688,12 @@ namespace DecisionMaster.UserInterface
                 textBoxQuantitativeMaxValue.Visible = false;
                 comboBoxQualitativeMaxValue.Visible = true;
                 comboBoxQualitativeMaxValue.Enabled = true;
-                comboBoxQualitativeMaxValue.SelectedIndex = (int)data.MaxValue-1;
+                comboBoxQualitativeMaxValue.SelectedIndex = (int)data.MaxValue - 1;
 
                 textBoxQuantitativeMinValue.Visible = false;
                 comboBoxQualitativeMinValue.Visible = true;
                 comboBoxQualitativeMinValue.Enabled = true;
-                comboBoxQualitativeMinValue.SelectedIndex = (int)data.MinValue-1;
+                comboBoxQualitativeMinValue.SelectedIndex = (int)data.MinValue - 1;
             }
 
             comboBoxSpecifyPROMETHEE.Enabled = true;
@@ -707,7 +704,7 @@ namespace DecisionMaster.UserInterface
             {
                 comboBoxPreferenceFunction.Visible = true;
                 comboBoxPreferenceFunction.Enabled = true;
-                comboBoxPreferenceFunction.SelectedIndex = (int)data.PreferenceFunction._type-1;
+                comboBoxPreferenceFunction.SelectedIndex = (int)data.PreferenceFunction._type - 1;
                 comboBoxPreferenceFunction_SelectedIndexChanged(sender, e);
                 if (data.PreferenceFunction._parameters.Count > 0)
                 {
@@ -775,7 +772,7 @@ namespace DecisionMaster.UserInterface
             {
                 comboBoxPreferenceFunction.Visible = true;
                 ShowPreferenceParameters((int)data.PreferenceFunction._type - 1);
-                
+
                 if (data.PreferenceFunction._parameters.Count > 0)
                 {
                     textBoxPreferenceParameter1.Text = data.PreferenceFunction._parameters[0].ToString();
@@ -822,7 +819,7 @@ namespace DecisionMaster.UserInterface
                 EditingIndex = int.Parse(SelectedRow[0].Cells[0].Value.ToString());
                 controller._criterias.Criterias.RemoveAt(EditingIndex);
                 dataGridViewCriteriasData.Rows.Remove(SelectedRow[0]);
-                for  (int i = EditingIndex; i < dataGridViewCriteriasData.Rows.Count; ++i)
+                for (int i = EditingIndex; i < dataGridViewCriteriasData.Rows.Count; ++i)
                 {
                     int buf = int.Parse(dataGridViewCriteriasData.Rows[i].Cells[0].Value.ToString());
                     --buf;
@@ -840,7 +837,7 @@ namespace DecisionMaster.UserInterface
         private void CheckAlterntivesValues()
         {
             controller._alternatives.Alternatives.Clear();
-            for (int i = 0; i < dataGridViewAlternatives.Rows.Count -1; ++i)
+            for (int i = 0; i < dataGridViewAlternatives.Rows.Count - 1; ++i)
             {
                 AlternativeController alternative = new AlternativeController();
                 DataGridViewRow row = dataGridViewAlternatives.Rows[i];
@@ -856,13 +853,13 @@ namespace DecisionMaster.UserInterface
                     {
                         DataGridViewTextBoxCell cell = (DataGridViewTextBoxCell)row.Cells[j + 1];
                         double value;
-                        if (cell.Value.ToString()=="" || double.TryParse(cell.Value.ToString(), out value) == false)
+                        if (cell.Value.ToString() == "" || double.TryParse(cell.Value.ToString(), out value) == false)
                         {
-                            throw new Exception("Value of alternative #" + (i+1).ToString() + " and criteria #" + (j + 1).ToString() + " is invalid.");
+                            throw new Exception("Value of alternative #" + (i + 1).ToString() + " and criteria #" + (j + 1).ToString() + " is invalid.");
                         }
                         if (!(value >= controller._criterias.Criterias[j].MinValue && value <= controller._criterias.Criterias[j].MaxValue))
                         {
-                            throw new Exception("Value of alternative #" + (i+1).ToString() + " and criteria #" + (j + 1).ToString() + " doesn't match MinMax interval.");
+                            throw new Exception("Value of alternative #" + (i + 1).ToString() + " and criteria #" + (j + 1).ToString() + " doesn't match MinMax interval.");
                         }
                         alternative.Values.Add(value);
                     }
@@ -874,7 +871,7 @@ namespace DecisionMaster.UserInterface
                             -1);
                         if (value.ToString() == "-1")
                         {
-                            throw new Exception("Value of alternative #" + (i+1).ToString() + " and criteria #" + (j + 1).ToString() + " is invalid.");
+                            throw new Exception("Value of alternative #" + (i + 1).ToString() + " and criteria #" + (j + 1).ToString() + " is invalid.");
                         }
                         if (!(value >= controller._criterias.Criterias[j].MinValue && value <= controller._criterias.Criterias[j].MaxValue))
                         {
@@ -901,10 +898,9 @@ namespace DecisionMaster.UserInterface
                     {
                         if (data.PROMETHEEConfiguration == SpecialParametersEnum.None)
                         {
-//                            checkBoxPROMETHEE.Checked = false;
                             checkBoxPROMETHEE.Enabled = false;
                         }
-                        if(data.ELECTREConfiguration == SpecialParametersEnum.None)
+                        if (data.ELECTREConfiguration == SpecialParametersEnum.None)
                         {
                             textBoxELECTREAlpha.Enabled = false;
                             textBoxELECTREBeta.Enabled = false;
@@ -921,7 +917,7 @@ namespace DecisionMaster.UserInterface
                     if (comboBoxSpecifyWASPAS.SelectedIndex <= 0)
                     {
                         checkBoxWASPAS.Enabled = false;
-                        checkBoxWASPAS.Checked = false;                        
+                        checkBoxWASPAS.Checked = false;
                     }
                     if (comboBoxSpecifyWASPAS.SelectedIndex == 1)
                     {
@@ -942,7 +938,7 @@ namespace DecisionMaster.UserInterface
                     MessageBox.Show(E.Message.ToString());
                     tabControlMain.SelectedIndex = 1;
                 }
-            }           
+            }
         }
 
         private void buttonCalc_Click(object sender, EventArgs e)
@@ -959,7 +955,7 @@ namespace DecisionMaster.UserInterface
                     dataGridViewRanks.Rows.Add(row);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -1005,7 +1001,7 @@ namespace DecisionMaster.UserInterface
 
         private void FillColumns()
         {
-            foreach(String columnTitle in controller.GetAlternativesTitles())
+            foreach (String columnTitle in controller.GetAlternativesTitles())
             {
                 DataGridViewColumn newCol = new DataGridViewColumn();
                 newCol.HeaderText = columnTitle;
@@ -1156,15 +1152,15 @@ namespace DecisionMaster.UserInterface
             try
             {
                 if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
+                {
                     return;
-                // получаем выбранный файл
+                }
                 string filename = saveFileDialog.FileName;
-                // сохраняем текст в файл
                 CheckAlterntivesValues();
                 string serialized = JsonConvert.SerializeObject(controller);
                 System.IO.File.WriteAllText(filename, serialized);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -1215,12 +1211,12 @@ namespace DecisionMaster.UserInterface
             try
             {
                 if (openFileDialog.ShowDialog() == DialogResult.Cancel)
+                {
                     return;
-                // получаем выбранный файл
+                }
                 string filename = openFileDialog.FileName;
-                // читаем файл в строку
                 string fileText = System.IO.File.ReadAllText(filename);
-                SolutionController NewController =  JsonConvert.DeserializeObject<SolutionController>(fileText);
+                SolutionController NewController = JsonConvert.DeserializeObject<SolutionController>(fileText);
                 controller = NewController;
                 FillTablesFromLoadedFile();
             }
@@ -1262,5 +1258,4 @@ namespace DecisionMaster.UserInterface
             }
         }
     }
-
 }

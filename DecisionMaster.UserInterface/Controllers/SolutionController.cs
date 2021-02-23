@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DecisionMaster.AlgorithmsLibrary.Interfaces;
 using DecisionMaster.AlgorithmsLibrary.Models;
 using DecisionMaster.AlgorithmsLibrary.Algorithms.SMART;
@@ -42,11 +40,13 @@ namespace DecisionMaster.UserInterface.Controllers
 
         }
 
-        public List <String> GetAlternativesTitles()
+        public List<string> GetAlternativesTitles()
         {
-            List<String> result = new List<string>();
-            result.Add("Method's title");
-            foreach(AlternativeController alternative in _alternatives.Alternatives)
+            List<string> result = new List<string>
+            {
+                "Method's title"
+            };
+            foreach (AlternativeController alternative in _alternatives.Alternatives)
             {
                 result.Add(alternative.Title);
             }
@@ -116,14 +116,14 @@ namespace DecisionMaster.UserInterface.Controllers
                 TitleCell.Value = "SMART";
                 NewRow.Cells.Add(TitleCell);
 
-                List<int> Ranks = GetRanksSMART();
+                List<int> localRanks = GetRanksSMART();
 
-                for (int i = 0; i < Ranks.Count; ++i)
+                for (int i = 0; i < localRanks.Count; ++i)
                 {
-                    resultAlternatives.Alternatives[i].Values.Add(new AlternativeValueBase(Ranks[i]));
+                    resultAlternatives.Alternatives[i].Values.Add(new AlternativeValueBase(localRanks[i]));
                 }
 
-                foreach(int value in Ranks)
+                foreach(int value in localRanks)
                 {                   
                     DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
                     newCell.Value = value.ToString();
@@ -138,14 +138,14 @@ namespace DecisionMaster.UserInterface.Controllers
                 TitleCell.Value = "REGIME";
                 NewRow.Cells.Add(TitleCell);
 
-                List<int> Ranks = GetRanksREGIME();
+                List<int> localRanks = GetRanksREGIME();
 
-                for (int i = 0; i < Ranks.Count; ++i)
+                for (int i = 0; i < localRanks.Count; ++i)
                 {
-                    resultAlternatives.Alternatives[i].Values.Add(new AlternativeValueBase(Ranks[i]));
+                    resultAlternatives.Alternatives[i].Values.Add(new AlternativeValueBase(localRanks[i]));
                 }
 
-                foreach (int value in Ranks)
+                foreach (int value in localRanks)
                 {
                     DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
                     newCell.Value = value.ToString();
@@ -160,14 +160,14 @@ namespace DecisionMaster.UserInterface.Controllers
                 TitleCell.Value = "PROMETHEE";
                 NewRow.Cells.Add(TitleCell);
 
-                List<int> Ranks = GetRanksPROMETHEE();
+                List<int> localRanks = GetRanksPROMETHEE();
 
-                for (int i = 0; i < Ranks.Count; ++i)
+                for (int i = 0; i < localRanks.Count; ++i)
                 {
-                    resultAlternatives.Alternatives[i].Values.Add(new AlternativeValueBase(Ranks[i]));
+                    resultAlternatives.Alternatives[i].Values.Add(new AlternativeValueBase(localRanks[i]));
                 }
 
-                foreach (int value in Ranks)
+                foreach (int value in localRanks)
                 {
                     DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
                     newCell.Value = value.ToString();
@@ -182,14 +182,14 @@ namespace DecisionMaster.UserInterface.Controllers
                 TitleCell.Value = "WASPAS";
                 NewRow.Cells.Add(TitleCell);
 
-                List<int> Ranks = GetRanksWASPAS();
+                List<int> localRanks = GetRanksWASPAS();
 
-                for (int i = 0; i < Ranks.Count; ++i)
+                for (int i = 0; i < localRanks.Count; ++i)
                 {
-                    resultAlternatives.Alternatives[i].Values.Add(new AlternativeValueBase(Ranks[i]));
+                    resultAlternatives.Alternatives[i].Values.Add(new AlternativeValueBase(localRanks[i]));
                 }
 
-                foreach (int value in Ranks)
+                foreach (int value in localRanks)
                 {
                     DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
                     newCell.Value = value.ToString();
@@ -204,14 +204,14 @@ namespace DecisionMaster.UserInterface.Controllers
                 TitleCell.Value = "TAXONOMY";
                 NewRow.Cells.Add(TitleCell);
 
-                List<int> Ranks = GetRanksTAXONOMY();
+                List<int> localRanks = GetRanksTAXONOMY();
 
-                for (int i = 0; i < Ranks.Count; ++i)
+                for (int i = 0; i < localRanks.Count; ++i)
                 {
-                    resultAlternatives.Alternatives[i].Values.Add(new AlternativeValueBase(Ranks[i]));
+                    resultAlternatives.Alternatives[i].Values.Add(new AlternativeValueBase(localRanks[i]));
                 }
 
-                foreach (int value in Ranks)
+                foreach (int value in localRanks)
                 {
                     DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
                     newCell.Value = value.ToString();
@@ -226,27 +226,27 @@ namespace DecisionMaster.UserInterface.Controllers
                 TitleCell.Value = "ELECTRE";
                 NewRow.Cells.Add(TitleCell);
 
-                List<int> Ranks = null;
+                List<int> localRanks;
                 try
                 {
-                    Ranks = GetRanksELECTRE();
+                    localRanks = GetRanksELECTRE();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                    Ranks = new List<int>();
+                    localRanks = new List<int>();
                     for (int i = 0; i < _alternatives.Alternatives.Count; ++i)
                     {
-                        Ranks.Add(1);
+                        localRanks.Add(1);
                     }
                 }
 
-                for (int i = 0; i < Ranks.Count; ++i)
+                for (int i = 0; i < localRanks.Count; ++i)
                 {
-                    resultAlternatives.Alternatives[i].Values.Add(new AlternativeValueBase(Ranks[i]));
+                    resultAlternatives.Alternatives[i].Values.Add(new AlternativeValueBase(localRanks[i]));
                 }
 
-                foreach (int value in Ranks)
+                foreach (int value in localRanks)
                 {
                     DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
                     newCell.Value = value.ToString();

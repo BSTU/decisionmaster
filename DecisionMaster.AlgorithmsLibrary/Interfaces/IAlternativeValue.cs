@@ -2,6 +2,6 @@
 {
     public interface IAlternativeValue
     {
-        public double Value { get; }
+        double Value { get; }
     }
 }
