@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Models.AlternativesBase">
+    <Position X="3.75" Y="4.25" Width="1.75" />
+    <AssociationLine Name="Criterias" Type="DecisionMaster.AlgorithmsLibrary.Interfaces.ICriteria" FixedToPoint="true">
+      <Path>
+        <Point X="5.375" Y="4.25" />
+        <Point X="5.375" Y="3.738" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AlternativesBase.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Alternatives" />
+      <Property Name="Criterias" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Models.AlternativeBase">
+    <Position X="8" Y="4.5" Width="1.5" />
+    <AssociationLine Name="Values" Type="DecisionMaster.AlgorithmsLibrary.Interfaces.IAlternativeValue">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.06" Y="0.61" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\Alternative.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Values" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Models.AlternativeValueBase" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\Alternative.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Models.QualitativeAlternativeValue" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="5.5" Width="3.5" />
+    <AssociationLine Name="_qualitativeCriteriaConverter" Type="DecisionMaster.AlgorithmsLibrary.Interfaces.IQualitativeCriteria" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="0.5" Y="6.468" />
+        <Point X="0.25" Y="6.468" />
+        <Point X="0.25" Y="2.097" />
+        <Point X="2.188" Y="2.097" />
+        <Point X="2.188" Y="1.733" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.018" Y="0.068" Height="0.182" Width="1.943" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAgCAAAAAA=</HashCode>
+      <FileName>Models\Alternative.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_qualitativeCriteriaConverter" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Models.CriteriaBase" BaseTypeListCollapsed="true">
+    <Position X="6.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAgAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\Criteria.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Models.QualitativeCriteriaBase" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="2.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAIAAAAAgAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\Criteria.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Models.DecisionConfigurationBase" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="2" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DecisionConfigurationBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Models.DecisionResultBase">
+    <Position X="10" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DecisionResultBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DecisionMaster.AlgorithmsLibrary.Interfaces.IAlternativeValue">
+    <Position X="7" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Interfaces\IAlternativeValue.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DecisionMaster.AlgorithmsLibrary.Interfaces.ICriteria">
+    <Position X="4" Y="2.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAgAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Interfaces\ICriteria.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DecisionMaster.AlgorithmsLibrary.Interfaces.IDecisionConfiguration">
+    <Position X="9" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IDecisionConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DecisionMaster.AlgorithmsLibrary.Interfaces.IDecisionProvider">
+    <Position X="9.75" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Interfaces\IDecisionProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DecisionMaster.AlgorithmsLibrary.Interfaces.IQualitativeCriteria">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <InheritanceLine Type="DecisionMaster.AlgorithmsLibrary.Interfaces.ICriteria" FixedToPoint="true">
+      <Path>
+        <Point X="5.25" Y="2.25" />
+        <Point X="5.25" Y="1.95" />
+        <Point X="2.55" Y="1.95" />
+        <Point X="2.55" Y="1.188" />
+        <Point X="2.25" Y="1.188" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IQualitativeCriteria.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DecisionMaster.AlgorithmsLibrary.Interfaces.CriteriaDirectionType">
+    <Position X="3.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAIAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Interfaces\ICriteria.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DecisionMaster.AlgorithmsLibrary.Models.QualitativeCriteriaEnum">
+    <Position X="4.5" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAEAAACAAAAAAAAAAAAAIAAAAIAAAAAAAEAAE=</HashCode>
+      <FileName>Models\Criteria.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

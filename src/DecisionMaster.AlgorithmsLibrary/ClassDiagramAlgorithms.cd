@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Algorithms.SMART.SMARTDecisionConfiguration" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="9" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Algorithms\SMART\SMARTDecisionConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Algorithms.SMART.SMARTDecisionProvider" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="11.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAACBAAECAAAAAAA=</HashCode>
+      <FileName>Algorithms\SMART\SMARTDecisionProvider.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_configuration" />
+      <Field Name="_alternatives" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Algorithms.SMART.SMARTQualitativeCriteria" BaseTypeListCollapsed="true">
+    <Position X="9" Y="7.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAIAAAAAgAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Algorithms\SMART\SMARTQualitativeCriteria.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Models.AlternativesBase">
+    <Position X="8.75" Y="13.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AlternativesBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE.PROMETHEEDecisionConfiguration" BaseTypeListCollapsed="true">
+    <Position X="1.75" Y="12.25" Width="2.75" />
+    <AssociationLine Name="PreferenceFunctions" Type="DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE.PreferenceFunction" FixedToPoint="true">
+      <Path>
+        <Point X="3.375" Y="12.25" />
+        <Point X="3.375" Y="10.497" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-3.031" Y="0.143" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Algorithms\PROMETHEE\PROMETHEEDecisionConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="PreferenceFunctions" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE.PreferenceFunction">
+    <Position X="2.75" Y="8.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Algorithms\PROMETHEE\PROMETHEEDecisionConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="_type" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE.PROMETHEEDecisionProvider" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="11.25" Width="2.75" />
+    <AssociationLine Name="_configuration" Type="DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE.PROMETHEEDecisionConfiguration" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.25" Y="11.75" />
+        <Point X="3.812" Y="11.75" />
+        <Point X="3.812" Y="12.25" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.378" Y="0.639" Height="0.182" Width="1.343" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAABAAAAAgAIAAAAAAABAAECAAAAAAE=</HashCode>
+      <FileName>Algorithms\PROMETHEE\PROMETHEEDecisionProvider.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_configuration" />
+      <Field Name="_alternatives" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Algorithms.TAXONOMY.TAXONOMYDecisionProvider">
+    <Position X="13" Y="13.5" Width="2.75" />
+    <AssociationLine Name="_alternatives" Type="DecisionMaster.AlgorithmsLibrary.Models.AlternativesBase" FixedToPoint="true">
+      <Path>
+        <Point X="13" Y="14.188" />
+        <Point X="11.75" Y="14.188" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAgAAgAAAAAAIBAAAAAABAAEiAAAAAAA=</HashCode>
+      <FileName>Algorithms\TAXONOMY\TAXONOMYDecisionProvider.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_alternatives" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Algorithms.WASPAS.WASPASDecisionConfiguration">
+    <Position X="12.75" Y="17" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAgABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Algorithms\WASPAS\WASPASDecisionConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Algorithms.WASPAS.WASPASDecisionProvider">
+    <Position X="8.75" Y="15.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAgAAAABAAgAMAAAAACABAAEKAAAAAAg=</HashCode>
+      <FileName>Algorithms\WASPAS\WASPASDecisionProvider.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_configuration" />
+      <Field Name="_alternatives" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE.ELECTREDecisionProvider" BaseTypeListCollapsed="true">
+    <Position X="5" Y="15" Width="3" />
+    <AssociationLine Name="_configuration" Type="DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE.ELECTREDecisionConfiguration" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5" Y="15.875" />
+        <Point X="3.875" Y="15.875" />
+        <Point X="3.875" Y="16.5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.042" Y="0.716" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAICAAgAAAAAAIIAIAAAAIAABAAkCAAAAGAQ=</HashCode>
+      <FileName>Algorithms\ELECTRE\ELECTREDecisionProvider.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_configuration" />
+      <Field Name="_alternatives" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE.ELECTREDecisionConfiguration" BaseTypeListCollapsed="true">
+    <Position X="1.75" Y="16.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAABAAAAAAAAAAAAIAQAAAAAAA=</HashCode>
+      <FileName>Algorithms\ELECTRE\ELECTREDecisionConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Parameters" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Algorithms.ELECTRE.ELECTREParameters">
+    <Position X="3" Y="13.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAAAAA=</HashCode>
+      <FileName>Algorithms\ELECTRE\ELECTREDecisionConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DecisionMaster.AlgorithmsLibrary.Algorithms.REGIME.REGIMEDecisionProvider">
+    <Position X="8.75" Y="9.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAIAAAAAAABAAECAAAAAQA=</HashCode>
+      <FileName>Algorithms\REGIME\REGIMEDecisionProvider.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_alternatives" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="DecisionMaster.AlgorithmsLibrary.Algorithms.PROMETHEE.PreferenceFunctionEnum">
+    <Position X="6" Y="8.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAQAEAgAAAQAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Algorithms\PROMETHEE\PROMETHEEDecisionConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
