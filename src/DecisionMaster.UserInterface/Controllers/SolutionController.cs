@@ -15,7 +15,7 @@ using Newtonsoft.Json.Converters;
 
 namespace DecisionMaster.UserInterface.Controllers
 {
-    class SolutionController
+    public class SolutionController
     {
         public CriteriasController _criterias = new CriteriasController();
         public AlternativesController _alternatives = new AlternativesController();
